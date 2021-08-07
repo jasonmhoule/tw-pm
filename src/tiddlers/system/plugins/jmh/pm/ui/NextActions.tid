@@ -1,0 +1,11 @@
+caption: {{$:/plugins/jmh/pm/images/target}} Next
+created: 20200425195221581
+list-after: $:/plugins/jmh/pm/ui/Schedule
+modified: 20210807182835098
+tags: $:/plugins/jmh/pm/tags/dashboard
+title: $:/plugins/jmh/pm/ui/NextActions
+type: text/vnd.tiddlywiki
+
+<dl>
+  <$list filter="[tag[Project]!tag[Archived]]" template="$:/plugins/jmh/pm/ui/ProjectNextActionTemplate"/>
+  </dl>

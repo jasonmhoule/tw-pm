@@ -1,0 +1,28 @@
+created: 20210406190131617
+modified: 20210807182834913
+tags: $:/tags/Macro
+title: $:/plugins/jmh/pm/macros/inline-editor
+type: text/vnd.tiddlywiki
+
+\define editactions()
+<$action-setfield $tiddler="$:/temp/editTimeblock" target={{!!title}}/>
+<$action-setfield $tiddler="$:/temp/editTimeblock" text={{!!text}}/>
+\end
+
+\define saveactions()
+<$action-setfield text={{$:/temp/editTimeblock!!text}}/><$action-setfield $tiddler="$:/temp/editTimeblock" target=""/>
+<$action-setfield $tiddler="$:/temp/editTimeblock" text=""/>
+\end
+
+\define tb()
+<$reveal state="$:/temp/editTimeblock!!target" text={{!!title}} type="nomatch"><span title="edit details"><$button actions=<<editactions>>>{{$:/core/images/edit-button}}</$button></span></$reveal>
+<$reveal state="$:/temp/editTimeblock!!target" text={{!!title}} type="match">
+<$button actions=<<saveactions>>>{{$:/core/images/done-button}}</$button><br>
+<$edit-text tiddler="$:/temp/editTimeblock" field="text" rows="2" minHeight="2em" class="my-field"/></$reveal>
+\end
+
+<style>
+.my-field {
+   width: 100%;
+}
+</style>

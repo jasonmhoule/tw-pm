@@ -1,0 +1,324 @@
+caption: setup
+created: 20210806162209045
+modified: 20210807182835069
+title: $:/plugins/jmh/pm/setup
+type: text/vnd.tiddlywiki
+
+\define makeOP()
+<div style="display:none">
+<style>
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.myTextEdit { 
+  width:450px;
+}
+</style>
+
+</div>
+
+<h1>June 2021</h1>
+<table style="font-size:12px"><$list filter="[tag[toplevel]!tag[Archived]addprefix[MW1-]]"><tr style="vertical-align:top"><td>{{!!title}}</td><td style="width:500px"><$edit-text minHeight="10px" class="myTextEdit" default="" /></td></tr></$list></table>
+\end
+
+\define makeDB()
+!!! [[Journal]] | [[Upcoming Meetings]] | [[Loose Threads]] | [[Weekly Pick List]]
+
+{{$:/plugins/jmh/pm/ui/Dashboard}}
+\end
+
+\define makeLT()
+! Orphaned Meetings
+<<list-links filter:"[!is[system]tag[Meeting]sort[title]!tag[Recurring]] -[!is[system]tag[Project]tagging[]tag[Meeting]] -[!is[system]tag[Recurring]tagging[]tag[Meeting]]">>
+
+! Inline Notes to Clean Up
+<$list filter="[!is[system]!is[current]!title[Dashboard]regexp:text[!!! ]sort[modified]]"><$link><$view field="title"/></$link><span class="pm-indent1"><$link><span class="pm-graybox"><$context term="!!! " before="0" after="200" /></span></$link></span></$list>
+
+! Unformatted Date Tiddlers
+//These should all be in the future//
+
+<$list filter=
+"[prefix[2021]!contains:text[<hr>]rest[72]sort[]]"><li>{{!!title}}</li></$list>
+\end
+
+\define makeUM()
+<$list filter="[tag[Meeting]!tag[Held]!tag[Recurring]sort[text]]">
+<h2><$link /></h2>
+<blockquote>{{!!text}}</blockquote>
+</$list>
+\end
+
+\define makeWP()
+*The pick list is intended for **guidance** in daily timeblocking. Hard deadlines override pick list and emerging priorities can trump items from the list as well.*<hr>
+## [[Objectives Planner]] <hr>
+
+## Monday
+
+## Tuesday
+
+## Wednesday
+
+## Thursday
+
+## Friday
+
+<hr>
+
+*Add priority to-dos here*
+
+# General Filler Tasks
+
+<$list filter="[has[minutes]!tag[waiting]!tag[done]sortan[minutes]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
+\end
+
+\define makeWWmain()
+[[2021 / 06 / 25]]
+
+{{Review Checklist 1}}
+
+{{Review Checklist 2}}
+
+{{Review Checklist 3}}
+
+{{Review Checklist 3.1}}
+
+{{Review Checklist 4}}
+
+{{Review Checklist 5}}
+\end
+
+\define makeMRmain()
+[[2021 / 08 / 05]]
+
+# Get Motivated
+[This is more for personal planning...](https://medium.com/the-mission/becoming-incredibly-successful-means-saying-no-to-the-wrong-money-34fbfddc528b)
+
+{{Review Checklist 1}}{{Review Checklist 3m}}{{Review Checklist 2}}{{Review Checklist 4}}{{Review Checklist 5}}
+
+# Archive
+
+<input type="checkbox"> Backup NoteHub and Emails files - those are a key resource without which the wiki is not as useful:
+- *Insert instructions for backup, e.g., Copy Downloads > Notes into "this repo" and rename as a dated folder.*
+\end
+
+\define makeCheck1()
+# Get Clear
+
+Get "in" to empty:
+
+<input type="checkbox"> Clear Outlook inbox.
+
+<input type="checkbox"> Clear any physical notes.
+
+<input type="checkbox"> Clear out Outlook 'To Review' folder, do not need to process each item:
+- disregard (if not associated to current project or reference location), or
+- log a task for next step (such as notetaking/filing)
+
+<input type="checkbox"> Run `mp.R` and associate/annotate any imported meetings.
+
+<input type="checkbox"> Clear out inline flags and link up any global meeting orphans ([[Loose Threads]])
+
+<input type="checkbox"> Clear out [[Dashboard]] inbox: assign each task to at least one Project
+
+<input type="checkbox"> ~~Pending [[Revise approach to Comms Planning]]~~
+
+<input type="checkbox"> ~~Pending incorporation of more complete personal planning.~~
+\end
+
+\define makeCheck2()
+# Get Current
+
+Get active lists up-to-date and complete.
+
+## Log as you go
+
+Open/create a [[Weekly Review Log]] and summarize key accomplishments/takeaways:
+  - to-dos, milestones, completed projects
+  - driving learnings and resume builders
+
+## Review Current Flow Context
+
+<input type="checkbox"> Review [[week's journal entries|Journal]], especially meeting notes
+- Are there any remaining or emergent action items without tasks? Log a task.
+- Are any follow-ups not getting proper prioritization? Determine next step and log a task or update dates.
+- Ensure meetings are tagged to (or reference) any areas where their outcomes are applicable.
+
+<input type="checkbox"> Review [[Upcoming Meetings]] for the week
+- Log any tasks that come to mind.
+- Make notes regarding prep and annotate prep dates.
+
+<input type="checkbox"> Review "waiting" list
+- Are any follow-ups complete? Clear "waiting" tag and ensure next step is defined.
+- Each follow-up should have a date associated to trigger follow-up on my daily plan.
+> <$list filter="[tag[waiting]sort[due]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
+
+<input type="checkbox"> Review for recurring meetings without children
+> <$list filter="[tag[Recurring]!tag[Held]] -[!tag[Held]tags[]tag[Recurring]]" template="$:/plugins/jmh/pm/ui/MeetingTemplate">
+\end
+
+\define makeCheck3()
+## Take Stock of Project Status
+
+Evaluate the status of projects, goals, and outcomes. **Objectives:** very quickly: [[|Weekly Project To-Do]]
+- Organize notes and catch up on status
+- Capture steps to celebrate accomplishments and consolidate learnings
+- Plan intentions for the next week
+
+<$list filter="[tag[toplevel]!tag[Archived]]">{{||Weekly Project To-Do}}</$list>
+\end
+
+\define makeCheck31()
+# Build Weekly Plan
+
+## Why a Weekly Plan?
+
+**Objectives** provide an end point; **deadlines** provide urgency; a **limited horizon** forces a realistic scope to attack **with intentionality**.
+
+The pick list is intended for *guidance* in daily timeblocking. Hard deadlines override pick list and emerging priorities can trump items from the list as well.
+
+<hr>
+
+## Process
+1. (Project reviews have populated the [[Weekly Pick List]] tiddler with hard deadlines and other priority tasks to add.)
+1. Review time/availability contours of the week from calendar:
+    - What are the big chunks (1.5 hr+) available for deep/strategic work?
+    - How much net time overflow is left? (Account for some breaks, admin, etc.)
+1. Rationalize weekly objectives across bandwidth and project priorities
+    - Generally prioritize across full set of tasks: refer to [[Objectives Planner]] to stay aligned to monthly objectives & time allocation estimates
+      - This can mingle MDT and other goals.
+    - Organize [[Weekly Pick List]] with **daily** high-level intentions followed by roughly prioritized **slush** tasks
+    - Kick tasks to 'backburner' that are very unlikely to happen.
+\end
+
+\define makeCheck3m()
+# Monthly Project Review
+
+Evaluate the status of projects, goals, and outcomes: 
+[[|Monthly Project To-Do]]
+<$list filter="[tag[toplevel]!tag[Archived]]">{{||Monthly Project To-Do}}</$list>
+
+<input type="checkbox"> Final update to [[Objectives Planner]]: add projected time allocation, totaling to 100%, to guide weekly planning
+- May need to trim back some of the objectives to match the allocation.
+\end
+
+\define makeCheck4()
+# Get Creative
+
+- Jot down some higher level thoughts about self-management, team/org directions, system improvements, white space goals, etc.
+  - Use [[Weekly Review Log]] entry as a catching point. Add this section at the bottom.
+  - Particular thoughts can branch off into other musing tiddlers: use `Yellow` tag for 'someday/maybe' and broader thoughts.
+
+- Review `Yellow` tag thoughts: what might make sense to reintegrate in strategic planning, turn into to-dos, etc.
+
+- Add to Locus:
+  - Week's summary, key takeaways, start/stop/continue (while fresh): add to a Locus daily journal tiddler
+  - Occasionally export the `Yellow` tag tiddlers into Locus
+\end
+
+\define makeCheck5()
+# Get Ahead
+
+<input type="checkbox"> Copy and timeblock next work day's Journal tiddler.
+
+# Log Off
+
+<input type="checkbox"> Update date on this tiddler for next Weekly Wrap, then run `nh.R` and shut down.
+
+<input type="checkbox"> Submit timesheets.
+\end
+
+<mark>Add notes here about setup!
+
+<$button>Objectives Planner
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Objectives Planner"
+  text=<<makeOP>>/>
+</$button>
+
+<$button>Dashboard
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Dashboard"
+  text=<<makeDB>>/>
+</$button>
+
+<$button>Loose Threads
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Loose Threads"
+  text=<<makeLT>>/>
+</$button>
+
+<$button>Upcoming Meetings
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Upcoming Meetings"
+  text=<<makeUM>>/>
+</$button>
+
+<$button>Weekly Pick List
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Weekly Pick List"
+  text=<<makeWP>>/>
+</$button>
+
+<$button>Weekly Wrap Checklist (& components)
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Weekly Wrap Checklist"
+  text=<<makeWWmain>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 1"
+  text=<<makeCheck1>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 2"
+  text=<<makeCheck2>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 3"
+  text=<<makeCheck3>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 31"
+  text=<<makeCheck31>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 4"
+  text=<<makeCheck4>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 5"
+  text=<<makeCheck5>>/>
+</$button>
+
+<$button>Monthly Review Checklist (& components)
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Monthly Review Checklist"
+  text=<<makeMRmain>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 1"
+  text=<<makeCheck1>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 2"
+  text=<<makeCheck2>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 3m"
+  text=<<makeCheck3m>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 4"
+  text=<<makeCheck4>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Review Checklist 5"
+  text=<<makeCheck5>>/>
+</$button>

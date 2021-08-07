@@ -1,0 +1,38 @@
+created: 20210807182508885
+modified: 20210807185037143
+tags: 
+title: $:/plugins/jmh/pm/readme
+type: text/vnd.tiddlywiki
+
+This plugin is forked from version 0.0.45 of a previous plugin called `nico/pm`, which is a preogenitor to [[Projectify|https://github.com/NicolasPetton/Projectify]]. (I can no longer find `nico/pm` to make a direct attribution.) This plugin is indebted to Nico and that project for its basis, and may clobber some of the macros (at minimum) if installed alongside it; from 0.0.45 it followed a different opinionated development path based on my own use and needs.
+
+! Dependencies
+
+PM depends on the following plugins:
+
+* [[$:/plugins/kixam/moment]]
+* [[$:/plugins/kixam/datepicker]]
+
+Install these plugins by dragging the above links to your wiki.
+
+PM is set up to be used with Markdown formatting. It does not strictly rely on Markdown, but shortcuts and templates assume the wiki is in markdown, so it causes less friction in a markdown environment. The core Tiddlywiki markdown plugin is offered here, but alternatives should also work just as well:
+
+* [[$:/plugins/tiddlywiki/markdown]]
+
+While not strictly required, we strongly recommand installing the [[Relink|$:/plugins/flibbles/relink]] plugin as well, as it makes renaming projects much more convenient.
+
+* [[$:/plugins/flibbles/relink]]
+
+! Plugin
+
+Drag & drop the following link into your wiki
+
+* [[$:/plugins/jmh/pm]]
+
+Then save & reload your wiki.
+
+! Getting started
+
+See [[Setup|$:/plugins/jmh/pm/setup]] to get started configuring your wiki to use this plugin.
+
+See [[Usage|$:/plugins/jmh/pm/usage]] for more information on available features.

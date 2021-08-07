@@ -1,0 +1,21 @@
+created: 20200422200123438
+modified: 20210807182835083
+title: $:/plugins/jmh/pm/ui/TodoTemplate
+type: text/vnd.tiddlywiki
+
+<$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes">
+  <span class="pm-todo"><$checkbox tag="done">
+    {{||$:/plugins/jmh/pm/ui/CheckboxTemplate}}
+    <$link to={{!!title}}><$view field="title"/></$link>
+  </$checkbox> <span style="font-size:10px"><$list filter="[all[current]has[minutes]]">{{!!minutes}}m</$list></span>
+<$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
+ {{||$:/plugins/jmh/pm/ui/TodoDueDateTemplate}}<br/>
+</$reveal></span>
+<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="hide">{{$:/core/images/fold-button}}</$button>
+<span class="pm-indent1">
+<span class="pm-graybox" style="white-space: normal">
+<$transclude field="text" mode="block" /></span></span>
+</$reveal>
+</$reveal>

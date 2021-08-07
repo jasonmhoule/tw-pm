@@ -1,0 +1,10 @@
+created: 20200427182745230
+key: ((pm-quick-capture))
+modified: 20210807182835073
+tags: $:/tags/KeyboardShortcut
+title: $:/plugins/jmh/pm/quick-capture
+type: text/vnd.tiddlywiki
+
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+  <$action-navigate $to="$:/plugins/jmh/pm/ui/QuickCapture"/>
+</$navigator>

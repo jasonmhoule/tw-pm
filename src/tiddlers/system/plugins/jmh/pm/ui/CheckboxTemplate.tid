@@ -1,0 +1,14 @@
+created: 20200428151242242
+modified: 20210807182835062
+title: $:/plugins/jmh/pm/ui/CheckboxTemplate
+type: text/vnd.tiddlywiki
+
+<span class="pm-checkbox">
+  <$list filter="[is[current]!tag[done]]">
+    <span class="todo"> {{$:/plugins/jmh/pm/images/circle}}</span>
+    <span class="todo-hover"> {{$:/plugins/jmh/pm/images/check-circle-light}}</span>
+  </$list>
+  <$list filter="[is[current]tag[done]]">
+    <span class="done"> {{$:/plugins/jmh/pm/images/check-circle}}</span>
+  </$list>
+</span>

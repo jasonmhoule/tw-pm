@@ -1,0 +1,9 @@
+created: 20210807184115555
+modified: 20210807184350564
+title: $:/plugins/jmh/pm/foldconfig
+type: application/json
+
+{
+    "My meeting": "hide",
+    "test it out": "hide"
+}

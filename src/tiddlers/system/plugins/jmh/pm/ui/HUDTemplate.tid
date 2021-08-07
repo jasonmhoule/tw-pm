@@ -1,0 +1,12 @@
+created: 20210409191946366
+modified: 20210807182835052
+title: $:/plugins/jmh/pm/ui/HUDTemplate
+type: text/vnd.tiddlywiki
+
+<li><$macrocall $name="checked-proj-name" title={{!!title}}/> | 
+<$macrocall $name="open-todo-count" tag={{!!title}}/>
+<$macrocall $name="dated-todo-count" tag={{!!title}}/>
+<$macrocall $name="total-todo-count" tag={{!!title}}/>
+<$macrocall $name="no-todo-ind" tag={{!!title}}/>
+<$macrocall $name="no-mtg-ind" tag={{!!title}}/>
+</li><ul><$list filter="[all[current]tagging[]tag[Project]]"><li>{{!!title||$:/plugins/jmh/pm/ui/HUDTemplate}}</li></$list></ul>

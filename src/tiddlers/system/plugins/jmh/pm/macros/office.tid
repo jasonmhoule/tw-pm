@@ -1,0 +1,17 @@
+created: 20210212161405899
+modified: 20210807182835079
+tags: $:/tags/Macro
+title: $:/plugins/jmh/pm/macros/office
+type: text/vnd.tiddlywiki
+
+\define doc(file name:"Word file")
+  <a href="ms-word:ofe|u|$file$"><table style="border:none"><tr style="border:none"><td style="border:none;padding:0px"><div style="width: 14pt; height: 14pt;">{{$:/plugins/jmh/pm/images/ms-word}}</div></td><td style="border:none">$name$</td></tr></table></a>
+\end
+
+\define xls(file name:"Excel file")
+    <div><a href="ms-excel:ofe|u|$file$"><table style="border:none"><tr style="border:none"><td style="border:none;padding:0px"><div style="width: 14pt; height: 14pt;">{{$:/plugins/jmh/pm/images/ms-excel}}</div></td><td style="border:none">$name$</td></tr></table></a></div>
+\end
+
+\define ppt(file name:"Powerpoint file")
+  <a href="ms-powerpoint:ofe|u|$file$"><table style="border:none"><tr style="border:none"><td style="border:none;padding:0px"><div style="width: 14pt; height: 14pt;">{{$:/plugins/jmh/pm/images/ms-powerpoint}}</div></td><td style="border:none">$name$</td></tr></table></a>
+\end

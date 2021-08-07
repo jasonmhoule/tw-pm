@@ -1,0 +1,18 @@
+color: #0088cc
+created: 20200427182956318
+icon: $:/plugins/jmh/pm/images/quick-capture
+modified: 20210807182835106
+title: $:/plugins/jmh/pm/ui/QuickCapture
+type: text/vnd.tiddlywiki
+
+!! {{$:/plugins/jmh/pm/images/tasks}} Quick add todo
+
+<$keyboard key="enter">
+  <$action-setfield $tiddler={{$:/state/Inbox!!todo_name}} tags="Inbox todo" text={{$:/state/Inbox!!todo_text}}/>
+  <$action-setfield $tiddler="$:/state/Inbox" todo_name=""/>
+  <$action-setfield $tiddler="$:/state/Inbox" todo_text=""/>
+  <$action-sendmessage $message="tm-close-tiddler"/>
+  <$edit-text class="pm-input input-large" tiddler="$:/state/Inbox" field="todo_name" placeholder="Add to inbox..." focus="true"/> 
+  <label class="pm-label">Press ⏎ to capture</label>
+  <$edit-text class="pm-input input-large" tiddler="$:/state/Inbox" field="todo_text" placeholder="Add text..." />
+</$keyboard>

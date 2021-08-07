@@ -1,0 +1,11 @@
+created: 20200425151042805
+modified: 20210807182835059
+title: $:/plugins/jmh/pm/ui/CompletedTodoTemplate
+type: text/vnd.tiddlywiki
+
+<div class="pm-todo pm-completed">
+  <$checkbox tag="done">
+    {{||$:/plugins/jmh/pm/ui/CheckboxTemplate}}
+    <$link to={{!!title}}>~~<$view field="title"/>~~</$link>
+  </$checkbox>
+</div>

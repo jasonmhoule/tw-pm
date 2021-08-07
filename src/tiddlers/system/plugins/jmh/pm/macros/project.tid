@@ -1,0 +1,214 @@
+created: 20200422200514984
+modified: 20210807182835076
+tags: $:/tags/Macro
+title: $:/plugins/jmh/pm/macros/project
+type: text/vnd.tiddlywiki
+
+\define archive-project()
+  <$fieldmangler>
+    <$button class="pm-btn btn-danger nc-archive-project">
+      <$action-sendmessage $message="tm-add-tag" $param="Archived"/>
+        {{$:/core/images/delete-button}} Archive project
+    </$button>
+  </$fieldmangler>
+\end
+
+\define restore-project()
+  <$fieldmangler>
+    <$button class="tc-btn-invisible">
+      <$action-sendmessage $message="tm-remove-tag" $param="Archived"/>
+        Restore project
+    </$button>
+  </$fieldmangler>
+\end
+
+\define todo-list(tag emptyMessage:"''🙌 All done!''")
+  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[todo]!has[draft.of]!tag[Project]" itemTemplate:"$:/plugins/jmh/pm/ui/TodoTemplate" emptyMessage:"$emptyMessage$">>
+\end
+
+\define meeting-list(tag emptyMessage:"''🙌 No meetings planned!''")
+  <div><<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]!tag[Recurring]!has[draft.of]sort[created]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">></div>
+\end
+
+\define rcr-meeting-list(tag emptyMessage:"<i>No recurring meetings</i>")
+  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]tag[Recurring]!has[draft.of]sort[created]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">>
+\end
+
+\define todo-list-completed(tag)
+  <$list filter="[!has[draft.of]tag[$tag$]tag[done]sort[created]]" template="$:/plugins/jmh/pm/ui/CompletedTodoTemplate"/>
+\end
+
+\define new-todo-button(tag label)
+  <$button class="pm-btn">
+    <$action-sendmessage $message="tm-new-tiddler" tags="[[$tag$]] todo"/>
+    {{$:/core/images/list-bullet}}
+    $label$
+  </$button>
+\end
+
+\define new-mtg-button(tag label title:"New")
+  <$button class="pm-btn">
+    <$action-sendmessage $message="tm-new-tiddler" title="$title$ YYMMDD" tags="[[$tag$]] Meeting"/>
+    {{$:/plugins/jmh/pm/images/meeting}}
+    $label$
+  </$button>
+\end
+
+\define new-sp-button(tag label title:"New")
+  <$button class="pm-btn">
+    <$action-sendmessage $message="tm-new-tiddler" title="Subproject of $title$" tags="[[$tag$]] todo Project" text="<<project>>"/>
+    {{$:/core/images/copy-clipboard}}
+    $label$
+  </$button>
+\end
+
+\define todo-count(tag)
+  <span class="pm-todo-count">
+    <$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]tag[done]count[]]">{{!!title}}</$list> 
+    / 
+    <$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]count[]]">{{!!title}}</$list>
+  </span>
+\end
+
+\define refile-inbox-actions2(rmv_tiddler)
+  <$fieldmangler tiddler=<<actionTiddler>>>
+    <$action-sendmessage $message="tm-add-tag" $param=<<currentTiddler>>/>
+    <$action-sendmessage $message="tm-remove-tag" $param=$rmv_tiddler$/>
+  </$fieldmangler>
+\end
+
+\define project-with-tag(tag newTodoLabel:"Add a todo")
+  <$list filter="[is[current]tag[Archived]]">
+    <div class="pm-banner">
+      This project is archived. <$macrocall $name="restore-project"/>
+    </div>
+  </$list>
+
+<$list filter="[all[current]tag[toplevel]]">  <h2>Month Objectives</h2>
+
+<table><$list filter="[!<currentTiddler>prefix[MW]suffix<currentTiddler>]"><tr><td><$list filter="[all[current]splitbefore[-]]">{{!!title}}</$list></td><td><$wikify name="out" text={{!!text}} type="text/x-markdown" output="html"><<out>></$wikify></td></tr></$list></table></$list>
+
+  <h2>Subprojects</h2>
+
+<$set name="myVariable" value=<<currentTiddler>>>
+<ul class="pm-projects">
+  <$list filter="[all[current]tagging[]tag[Project]!has[draft.of]!title[Inbox]!tag[Archived]]">
+      <$droppable actions=<<refile-inbox-actions2 [[<<myVariable>>]]>>>
+        <li>{{ !!title || $:/plugins/jmh/pm/ui/TodoTemplate }} <$macrocall $name="todo-count" tag={{!!title}}/></li>
+      </$droppable>
+  </$list>
+</ul>
+<$macrocall $name="new-sp-button" tag={{!!title}} label="New Subproject" title={{!!title}} />
+</$set>
+
+  <$list filter="[all[current]tagging[]tag[Meeting]tag[Recurring]first[1]]">
+  <h2>Recurring Meetings</h2>
+  <$macrocall $name="rcr-meeting-list" tag="$tag$"/>
+  </$list>
+
+  <h2>Meetings</h2>
+  
+  <$macrocall $name="meeting-list" tag="$tag$"/>
+
+  <h2>Todos 
+    <$macrocall $name="todo-count" tag="$tag$"/>
+  </h2>
+  
+  <$macrocall $name="todo-list" tag="$tag$"/>
+  <$macrocall $name="new-todo-button" tag="$tag$" label="$newTodoLabel$"/>
+  <$list filter="[is[current]!tag[Archived]]">
+    or <$macrocall $name="archive-project"/>
+  </$list>
+  
+\end
+
+\define project()
+  <$macrocall $name="project-with-tag" tag={{!!title}}/>
+\end
+
+\define todo(title)
+  {{ $title$ || $:/plugins/jmh/pm/ui/TodoTemplate}}
+\end
+
+\define mtg(title)
+  {{ $title$ || $:/plugins/jmh/pm/ui/MeetingTemplate}}
+\end
+
+\define recur-mtg()
+  <$macrocall $name="new-mtg-button" tag={{!!title}} label="New Occurrence" title={{!!title}} />
+
+  <$macrocall $name="list-tagged-draggable" tag={{!!title}} subFilter="tag[Meeting]!has[draft.of]!sort[title]" itemTemplate="$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage="No meetings set up." />
+
+\end
+
+\define checked-proj-name(title)
+<$list filter="[[$title$]tag[done]]" variable=result >
+<$reveal default="$title$" type="match" text=<<result>>>
+~~<$link><<result>></$link>~~
+</$reveal>
+</$list>
+<$list filter="[[$title$]!tag[done]!tag[toplevel]]" variable=result >
+<$reveal default="$title$" type="match" text=<<result>>>
+<$link><<result>></$link>
+</$reveal>
+</$list>
+<$list filter="[[$title$]!tag[done]tag[toplevel]]" variable=result >
+<$reveal default="$title$" type="match" text=<<result>>>
+<$link><span style='font-size:24px'><<result>></span></$link>
+</$reveal>
+</$list>
+\end
+
+\define open-todo-count(tag)
+<$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]!tag[done]count[]]" variable=result >
+<$reveal default="0" type="match" text=<<result>>>
+<span class="pm-todo-count"><<result>></span>
+</$reveal>
+<$reveal default="1" type="match" text=<<result>>>
+<span class="pm-todo-count"><<result>></span>
+</$reveal>
+<$reveal default="2" type="match" text=<<result>>>
+<span class="pm-lg-count"><<result>></span>
+</$reveal>
+<$reveal default="3" type="match" text=<<result>>>
+<span class="pm-lg-count"><<result>></span>
+</$reveal>
+</$list>
+<$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]!tag[done]count[]] -[[0]] -[[1]] -[[2]] -[[3]]" variable=result >
+<$reveal default="0" type="nomatch" text=<<result>>>
+<span class="pm-orange-count"><<result>></span>
+</$reveal>
+</$list>
+\end
+
+\define dated-todo-count(tag)
+<$list filter="[tag[todo]has[due]tag[$tag$]!tag[Project]!has[draft.of]!tag[done]count[]] -[[0]] -[[1]]" variable=result >
+<$reveal default="0" type="nomatch" text=<<result>>>
+<span class="pm-count"><<result>></span>
+</$reveal>
+</$list>
+\end
+
+\define total-todo-count(tag)
+<$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]count[]] -[[0]] -[[1]] -[[2]] -[[3]] -[[4]] -[[5]] -[[6]]" variable=result >
+<$reveal default="0" type="nomatch" text=<<result>>>
+<span class="pm-bluecir-count"><<result>></span>
+</$reveal>
+</$list>
+\end
+
+\define no-todo-ind(tag)
+<$list filter="[tag[todo]tag[$tag$]!has[draft.of]!tag[done]count[]]" variable=result >
+<$reveal default="0" type="match" text=<<result>>>
+<span class="pm-bluecir-count"><<result>></span>
+</$reveal>
+</$list>
+\end
+
+\define no-mtg-ind(tag)
+<$list filter="[tag[Meeting]tag[$tag$]!has[draft.of]!tag[Held]count[]]" variable=result >
+<$reveal default="0" type="match" text=<<result>>>
+<span class="pm-bluesq-count"><<result>></span>
+</$reveal>
+</$list>
+\end

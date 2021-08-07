@@ -1,0 +1,6 @@
+created: 20200424192751342
+modified: 20210807182835055
+title: $:/plugins/jmh/pm/ui/Dashboard
+type: text/vnd.tiddlywiki
+
+<<tabs "[all[tiddlers+shadows]tag[$:/plugins/jmh/pm/tags/dashboard]]" "$:/plugins/jmh/pm/ui/InboxAndProjects" "$:/state/projects-and-schedule"  "pm-tabs">>

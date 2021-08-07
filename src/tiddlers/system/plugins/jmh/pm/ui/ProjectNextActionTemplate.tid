@@ -1,0 +1,11 @@
+created: 20200425201356996
+modified: 20210807182835038
+title: $:/plugins/jmh/pm/ui/ProjectNextActionTemplate
+type: text/vnd.tiddlywiki
+
+<dt>
+  {{!!title}} <$macrocall $name="todo-count" tag={{!!title}}/>
+</dt>
+<dd>
+  <$list filter="[!has[daft.of]tag{!!title}tag[todo]!tag[done]limit[1]]" template="$:/plugins/jmh/pm/ui/TodoTemplate"></$list>
+</dd>
