@@ -1,5 +1,5 @@
 created: 20210406190131617
-modified: 20210807182834913
+modified: 20210811012119237
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/inline-editor
 type: text/vnd.tiddlywiki
@@ -19,10 +19,10 @@ type: text/vnd.tiddlywiki
 <$reveal state="$:/temp/editTimeblock!!target" text={{!!title}} type="match">
 <$button actions=<<saveactions>>>{{$:/core/images/done-button}}</$button><br>
 <$edit-text tiddler="$:/temp/editTimeblock" field="text" rows="2" minHeight="2em" class="my-field"/></$reveal>
-\end
 
 <style>
 .my-field {
    width: 100%;
 }
 </style>
+\end
