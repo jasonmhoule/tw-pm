@@ -1,7 +1,8 @@
+$: /config/shortcuts/pm-quick-capture
 additional-tiddlers: $:/config/ShortcutInfo/pm-quick-capture
 $:/config/shortcuts/pm-quick-capture
 created: 20210807181949817
-modified: 20210807182753846
+modified: 20210812152826829
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/jmh/pm
 type: text/vnd.tiddlywiki

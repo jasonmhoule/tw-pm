@@ -3,12 +3,12 @@ core-version: >=5.1.23
 created: 20210807181949819
 description: PM: project management plugin
 list: readme usage setup license history
-modified: 20210807183215987
+modified: 20210812152937291
 plugin-type: plugin
 source: https://github.com/jasonmhoule/tw-pm
 tags: 
 title: $:/plugins/jmh/pm
 type: application/json
-version: 0.0.1
+version: 0.0.3
 
 {"tiddlers": {}}
