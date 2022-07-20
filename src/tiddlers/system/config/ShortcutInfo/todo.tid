@@ -1,0 +1,6 @@
+created: 20220707141658251
+modified: 20220720192057822
+title: $:/config/ShortcutInfo/todo
+type: text/vnd.tiddlywiki
+
+{{$:/language/Buttons/Todo/Hint}}

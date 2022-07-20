@@ -1,0 +1,18 @@
+caption: {{$:/language/Buttons/Todo/Caption}} (Markdown)
+condition: [<targetTiddler>type[text/x-markdown]]
+created: 20220707141720714
+description: {{$:/language/Buttons/Todo/Hint}}
+icon: $:/plugins/jmh/pm/images/tasks
+list-after: $:/core/ui/EditorToolbar/list-bullet
+modified: 20220720192057831
+shortcuts: ((todo))
+tags: $:/tags/EditorToolbar
+title: $:/plugins/jmh/pm/EditorToolbar/todo
+type: text/vnd.tiddlywiki
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<<todo "
+	suffix=">>"
+/>

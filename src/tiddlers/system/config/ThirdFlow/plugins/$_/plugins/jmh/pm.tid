@@ -1,7 +1,7 @@
 $: /config/shortcuts/pm-quick-capture
-additional-tiddlers: $:/config/ShortcutInfo/pm-quick-capture $:/config/shortcuts/pm-quick-capture $:/core/ui/EditorToolbar/strikethrough
+additional-tiddlers: $:/config/ShortcutInfo/pm-quick-capture $:/config/shortcuts/pm-quick-capture $:/core/ui/EditorToolbar/strikethrough $:/config/ShortcutInfo/meeting $:/config/ShortcutInfo/todo $:/config/shortcuts-mac/meeting $:/config/shortcuts-mac/todo $:/config/shortcuts-not-mac/meeting $:/config/shortcuts-not-mac/todo $:/language/Buttons/Meeting/Caption $:/language/Buttons/Meeting/Hint $:/language/Buttons/Todo/Caption $:/language/Buttons/Todo/Hint
 created: 20210807181949817
-modified: 20220720190619739
+modified: 20220720191903905
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/jmh/pm
 type: text/vnd.tiddlywiki

@@ -1,0 +1,18 @@
+caption: {{$:/language/Buttons/Meeting/Caption}} (Markdown)
+condition: [<targetTiddler>type[text/x-markdown]]
+created: 20220707143248742
+description: {{$:/language/Buttons/Meeting/Hint}}
+icon: $:/plugins/jmh/pm/images/meeting
+list-after: $:/plugins/jmh/pm/EditorToolbar/todo
+modified: 20220720191935058
+shortcuts: ((meeting))
+tags: $:/tags/EditorToolbar
+title: $:/plugins/jmh/pm/EditorToolbar/meeting
+type: text/vnd.tiddlywiki
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<<mtg "
+	suffix=">>"
+/>

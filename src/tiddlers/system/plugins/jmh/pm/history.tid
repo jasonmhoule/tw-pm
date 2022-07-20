@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220720190907710
+modified: 20220720192214370
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -8,6 +8,7 @@ type: text/vnd.tiddlywiki
 ** Major additions
 ** Minor additions
 *** Make strikethrough available in markdown editing
+*** Add hotkeys to wrap text with `<<todo` or `<<mtg`
 * ''0.0.3'' -- bug fix - add quick-add shortcut.
 * ''0.0.2'' -- bug fix on inline-editor.
 * ''0.0.1'' -- initial release.
