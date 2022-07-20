@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220720195501506
+modified: 20220720202657134
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -11,6 +11,7 @@ type: text/vnd.tiddlywiki
 *** Add hotkeys to wrap text with `<<todo` or `<<mtg`
 *** New Journals, meetings, todos, and subprojects are type `text/x-markdown` by default
 *** Add `<<bg>>` macro for easy linking of details located in subtiddlers
+*** Update `waiting` indicator to an icon in `todo` template
 * ''0.0.3'' -- bug fix - add quick-add shortcut.
 * ''0.0.2'' -- bug fix on inline-editor.
 * ''0.0.1'' -- initial release.
