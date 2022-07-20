@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220720193230780
+modified: 20220720194430409
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -211,4 +211,9 @@ type: text/vnd.tiddlywiki
 <span class="pm-bluesq-count"><<result>></span>
 </$reveal>
 </$list>
+\end
+
+\define bg(bgtext:"Background" suffix:"bg")
+<$wikify name="txt" text="{{{ [<currentTiddler>addsuffix[/$suffix$]] }}}">
+<div style="background-color:#eeeeee;padding:1em"><details><summary>$bgtext$</summary><$tiddler tiddler=<<txt>>><$transclude tiddler=<<txt>> /></$tiddler></details></div></$wikify>
 \end
