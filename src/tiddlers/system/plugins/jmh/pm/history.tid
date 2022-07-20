@@ -1,9 +1,13 @@
 created: 20210807182508881
-modified: 20210812152928861
+modified: 20220720190907710
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
 
+* ''0.1.0'' -- significant update of many primary and supporting features
+** Major additions
+** Minor additions
+*** Make strikethrough available in markdown editing
 * ''0.0.3'' -- bug fix - add quick-add shortcut.
 * ''0.0.2'' -- bug fix on inline-editor.
 * ''0.0.1'' -- initial release.

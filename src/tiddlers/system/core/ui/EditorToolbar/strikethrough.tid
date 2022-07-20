@@ -1,0 +1,17 @@
+caption: {{$:/language/Buttons/Strikethrough/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[text/x-markdown]]
+created: 20220720190514683
+description: {{$:/language/Buttons/Strikethrough/Hint}}
+icon: $:/core/images/strikethrough
+modified: 20220720190537543
+shortcuts: ((strikethrough))
+tags: $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/strikethrough
+type: text/vnd.tiddlywiki
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="~~"
+	suffix="~~"
+/>
