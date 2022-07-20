@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220720194704070
+modified: 20220720195501506
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 ** Minor additions
 *** Make strikethrough available in markdown editing
 *** Add hotkeys to wrap text with `<<todo` or `<<mtg`
-*** New meetings and todos will be type `text/x-markdown` by default
+*** New Journals, meetings, todos, and subprojects are type `text/x-markdown` by default
 *** Add `<<bg>>` macro for easy linking of details located in subtiddlers
 * ''0.0.3'' -- bug fix - add quick-add shortcut.
 * ''0.0.2'' -- bug fix on inline-editor.

@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220720194430409
+modified: 20220720195059567
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -56,7 +56,7 @@ type: text/vnd.tiddlywiki
 
 \define new-sp-button(tag label title:"New")
   <$button class="pm-btn">
-    <$action-sendmessage $message="tm-new-tiddler" title="Subproject of $title$" tags="[[$tag$]] todo Project" text="<<project>>"/>
+    <$action-sendmessage $message="tm-new-tiddler" title="Subproject of $title$" tags="[[$tag$]] todo Project"  type="text/x-markdown" text="<<project>>"/>
     {{$:/core/images/copy-clipboard}}
     $label$
   </$button>
