@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220720213942639
+modified: 20220720215236013
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -13,6 +13,9 @@ type: text/vnd.tiddlywiki
 *** Add `<<bg>>` macro for easy linking of details located in subtiddlers
 *** Update `waiting` indicator to an icon in `todo` template
 *** Add an offset to datepicker so selected due date is true
+*** Update MS Office macros
+**** Improve formatting
+**** Add a copy button
 * ''0.0.3'' -- bug fix - add quick-add shortcut.
 * ''0.0.2'' -- bug fix on inline-editor.
 * ''0.0.1'' -- initial release.

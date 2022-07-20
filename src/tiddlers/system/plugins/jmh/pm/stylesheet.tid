@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20220720202329890
+modified: 20220720215021324
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -226,6 +226,14 @@ input.pm-input.input-large {
   color: #554535;
   fill: #554535;
   text-decoration: underline;
+}
+
+.ms-cp-button {
+  display:none
+}
+
+div.ms-full-link:hover .ms-cp-button {
+  display:inline
 }
 
 .waiting-icon svg {
