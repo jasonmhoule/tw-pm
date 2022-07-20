@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20210807182835076
+modified: 20220720193230780
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -40,7 +40,7 @@ type: text/vnd.tiddlywiki
 
 \define new-todo-button(tag label)
   <$button class="pm-btn">
-    <$action-sendmessage $message="tm-new-tiddler" tags="[[$tag$]] todo"/>
+    <$action-sendmessage $message="tm-new-tiddler" tags="[[$tag$]] todo" type="text/x-markdown" />
     {{$:/core/images/list-bullet}}
     $label$
   </$button>
@@ -48,7 +48,7 @@ type: text/vnd.tiddlywiki
 
 \define new-mtg-button(tag label title:"New")
   <$button class="pm-btn">
-    <$action-sendmessage $message="tm-new-tiddler" title="$title$ YYMMDD" tags="[[$tag$]] Meeting"/>
+    <$action-sendmessage $message="tm-new-tiddler" title="$title$ YYMMDD" tags="[[$tag$]] Meeting" type="text/x-markdown" />
     {{$:/plugins/jmh/pm/images/meeting}}
     $label$
   </$button>
