@@ -1,13 +1,21 @@
 created: 20210807182508881
-modified: 20220721164713441
+modified: 20220721201048124
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
+
+<$fieldmangler tiddler="$:/plugins/jmh/pm/ui/ViewTemplate/journaleditor">
+    <$button>
+      <$action-sendmessage $message="tm-add-tag" $param="$:/tags/ViewTemplate"/>
+        Make it so
+    </$button>
+  </$fieldmangler>
 
 * ''0.1.0'' -- significant update of many primary and supporting features
 ** Major additions
 *** Update of list and display functionality to work best with Meetings dated with a YYMMDD prefix, as explained [[here|$:/plugins/jmh/pm/usage]].
 *** Considerable cleanup, enhancement, and addition to the [[setup|$:/plugins/jmh/pm/setup]] content available.
+*** Replaced the inline-editor (`<<tb>>`) with a clickable editor (configurable to apply to a subset of tiddlers).
 ** Minor additions
 *** Add sidebar tab with PM views: Journals, Schedule, Projects, HUD
 *** Make strikethrough available in markdown editing

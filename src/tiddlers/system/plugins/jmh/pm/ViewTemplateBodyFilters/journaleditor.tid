@@ -1,0 +1,8 @@
+created: 20220719154446417
+list-before: $:/config/ViewTemplateBodyFilters/default
+modified: 20220721200323749
+tags: $:/tags/ViewTemplateBodyFilter
+title: $:/plugins/jmh/pm/ViewTemplateBodyFilters/journaleditor
+type: text/vnd.tiddlywiki
+
+[tag[Journal]] [tag[todo]] +[then[$:/core/ui/ViewTemplate/body/blank]]

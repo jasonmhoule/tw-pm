@@ -1,0 +1,58 @@
+created: 20220719154609408
+list-after: $:/core/ui/ViewTemplate/body
+modified: 20220721201116504
+title: $:/plugins/jmh/pm/ui/ViewTemplate/journaleditor
+type: text/vnd.tiddlywiki
+
+\define saveactions(tiddler, field)
+<$action-setfield $tiddler="$tiddler$" $field$={{{ [<temp>get[text]] }}} />
+<$action-deletetiddler $tiddler=<<temp>> />
+\end
+
+\define editactions(tiddler, field)
+<$set name="chk1" filter="[[ctrl]] -[<modifier>]" emptyValue="" value="""
+<$action-setfield $tiddler=<<temp>> text={{$tiddler$!!$field$}} type="text/x-markdown" />
+<$action-setfield $tiddler="$tiddler$" $field$="" />
+"""><<chk1>></$set>
+\end
+
+\define draft-editor(tiddler, field:"text")
+<$set name="temp" value="$:/state/pm/editor/$tiddler$/$field$">
+<$set name="showbutton" filter="[<temp>is[tiddler]]" value="""
+<$button actions=<<saveactions tiddler:"$tiddler$" field:"$field$">>>
+{{$:/core/images/done-button}}
+</$button>
+<$keyboard actions=<<saveactions tiddler:"$tiddler$" field:"$field$">> key="ctrl+enter">
+<div class="custom-editor">{{{ [<temp>] ||$:/core/ui/EditTemplate/body }}}</div>
+</$keyboard>
+""" emptyValue="""
+<table style="width:100%;border:0"><tr><$button tag="td" style="border:0" class="inline-edit tc-tiddler-body tc-reveal" actions=<<editactions tiddler:"$tiddler$" field:"$field$">>>
+{{$tiddler$!!$field$}}
+</$button></tr></table>
+"""><<showbutton>></$set>
+</$set>
+\end
+
+\define outstr()
++[then[$:/core/ui/ViewTemplate/body/blank]]
+\end
+
+\define instr()
++[is[current]]
+\end
+
+<$set name="a" filter={{{ [{$:/plugins/jmh/pm/ViewTemplateBodyFilters/journaleditor}search-replace::<outstr>,<instr>] }}} emptyValue="" value="""
+
+<$macrocall $name="draft-editor" tiddler=<<currentTiddler>> />
+
+<style>
+.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
+display:none;
+}
+.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
+td.inline-edit:hover {
+    background: rgba(0, 100, 255, 0.005);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
+}
+</style>
+"""><<a>></$set>
