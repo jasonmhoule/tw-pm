@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220721152748385
+modified: 20220721162143849
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -27,11 +27,11 @@ type: text/vnd.tiddlywiki
 \end
 
 \define meeting-list(tag emptyMessage:"''🙌 No meetings planned!''")
-  <div><<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]!tag[Recurring]!has[draft.of]sort[created]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">></div>
+  <div><<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]!tag[Recurring]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">></div>
 \end
 
 \define rcr-meeting-list(tag emptyMessage:"<i>No recurring meetings</i>")
-  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]tag[Recurring]!has[draft.of]sort[created]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">>
+  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]tag[Recurring]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">>
 \end
 
 \define todo-list-completed(tag)
@@ -48,7 +48,7 @@ type: text/vnd.tiddlywiki
 
 \define new-mtg-button(tag label title:"New")
   <$button class="pm-btn">
-    <$action-sendmessage $message="tm-new-tiddler" title="$title$ YYMMDD" tags="[[$tag$]] Meeting" type="text/x-markdown" />
+    <$action-sendmessage $message="tm-new-tiddler" title="YYMMDD $title$" tags="[[$tag$]] Meeting" type="text/x-markdown" />
     {{$:/plugins/jmh/pm/images/meeting}}
     $label$
   </$button>

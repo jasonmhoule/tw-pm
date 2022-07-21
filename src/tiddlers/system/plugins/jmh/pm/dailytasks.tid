@@ -4,7 +4,7 @@ created: 20161118171456554
 description: Insert Day Tasks
 icon: $:/plugins/jmh/pm/images/checklist
 list-before: $:/core/ui/EditorToolbar/more
-modified: 20210807182835032
+modified: 20220721161640609
 tags: $:/tags/EditorToolbar
 title: $:/plugins/jmh/pm/dailytasks
 type: text/vnd.tiddlywiki
@@ -14,9 +14,10 @@ type: text/vnd.tiddlywiki
 \define b4j()
 <$list filter="[all[current]backlinks[]!tag[todo]!tag[Meeting]]"><<p3>>[{{!!title}}]]<br>
 </$list>
-<$list filter="[all[current]backlinks[]tag[Meeting]]"><<p1>>[{{!!title}}]]>><br>
+<$list filter="[search:title<currentTiddler>tag[Meeting]]"><<p1>>[{{!!title}}]]>><br>
 </$list>
 <$list filter="[all[current]backlinks[]tag[todo]]"><<p2>>[{{!!title}}]]>><br>
+</$list><$list filter="[all[current]backlinks[]tag[Meeting]]"><<p4>>[{{!!title}}]]<br>
 </$list>
 & follow-ups:
 <$list filter="[tag[todo]tag[waiting]days:due[1]]">  <<p2>>[{{!!title}}]]>><br>
@@ -28,6 +29,8 @@ type: text/vnd.tiddlywiki
 \define p2() - <<todo [
 
 \define p3() - [
+
+\define p4() - prep [
 
 <$wikify name=currentTiddler text=<<myrealtid>>>
 <$wikify name=insertText text=<<b4j>>>

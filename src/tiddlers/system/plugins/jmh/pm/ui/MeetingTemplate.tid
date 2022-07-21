@@ -1,12 +1,12 @@
 created: 20201203173858914
-modified: 20210807182835042
+modified: 20220721161805718
 title: $:/plugins/jmh/pm/ui/MeetingTemplate
 type: text/vnd.tiddlywiki
 
 <$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes"> <span class="pm-todo">{{||$:/plugins/jmh/pm/images/meeting}} <$link to={{!!title}}><$view field="title"/></$link>
 <$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
-    {{{ [all[current]tags[]match[Held]] ||$:/core/ui/TagTemplate}}}<$list filter="[all[current]links[]regexp[202. /]]" />
+    {{{ [all[current]tags[]match[Held]] ||$:/core/ui/TagTemplate}}}
 <br/>
 </$reveal></span>
 <$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
