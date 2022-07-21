@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220721162143849
+modified: 20220721165521912
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -86,7 +86,9 @@ type: text/vnd.tiddlywiki
 
 <$list filter="[all[current]tag[toplevel]]">  <h2>Month Objectives</h2>
 
-<table><$list filter="[!<currentTiddler>prefix[MW]suffix<currentTiddler>]"><tr><td><$list filter="[all[current]splitbefore[-]]">{{!!title}}</$list></td><td><$wikify name="out" text={{!!text}} type="text/x-markdown" output="html"><<out>></$wikify></td></tr></$list></table></$list>
+<$tiddler tiddler=<<getfield>>>
+<$wikify name="out" text={{!!text}} type="text/x-markdown" output="html"><<out>></$wikify>
+</$tiddler></$list>
 
   <h2>Subprojects</h2>
 
@@ -220,4 +222,8 @@ type: text/vnd.tiddlywiki
 \define bg(bgtext:"Background" suffix:"bg")
 <$wikify name="txt" text="{{{ [<currentTiddler>addsuffix[/$suffix$]] }}}">
 <div style="background-color:#eeeeee;padding:1em"><details><summary>$bgtext$</summary><$tiddler tiddler=<<txt>>><$transclude tiddler=<<txt>> /></$tiddler></details></div></$wikify>
+\end
+
+\define getfield()
+{{$:/config/pm/objectives/$(currentTiddler)$}}
 \end

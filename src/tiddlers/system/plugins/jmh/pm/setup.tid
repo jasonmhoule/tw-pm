@@ -1,10 +1,12 @@
 caption: setup
 created: 20210806162209045
-modified: 20220721164528403
+modified: 20220721165356519
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
 \define makeOP()
+\define tidname() $:/config/pm/objectives/$(fieldname)$
+
 <div style="display:none">
 <style>
 .scrolling-wrapper {
@@ -18,8 +20,8 @@ type: text/vnd.tiddlywiki
 
 </div>
 
-<h1>June 2021</h1>
-<table style="font-size:12px"><$list filter="[tag[toplevel]!tag[Archived]addprefix[MW1-]]"><tr style="vertical-align:top"><td>{{!!title}}</td><td style="width:500px"><$edit-text minHeight="10px" class="myTextEdit" default="" /></td></tr></$list></table>
+<h1>MM YYYY</h1>
+<table style="font-size:12px"><$list filter="[tag[toplevel]!tag[Archived]]" variable="fieldname"><tr style="vertical-align:top"><td><$link to=<<fieldname>>/></td><td style="width:500px"><$edit-text tiddler=<<tidname>> minHeight="10px" tag='textarea' class="myTextEdit" default="" /></td></tr></$list></table>
 \end
 
 \define makeDB()
