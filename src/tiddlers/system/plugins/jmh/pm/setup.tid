@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20210807182835069
+modified: 20220721164528403
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -35,11 +35,34 @@ type: text/vnd.tiddlywiki
 ! Inline Notes to Clean Up
 <$list filter="[!is[system]!is[current]!title[Dashboard]regexp:text[!!! ]sort[modified]]"><$link><$view field="title"/></$link><span class="pm-indent1"><$link><span class="pm-graybox"><$context term="!!! " before="0" after="200" /></span></$link></span></$list>
 
+! [[Past Dues]]
+
+! Dated but not waiting
+<$list filter="[has[due]!tag[waiting]!tag[done]]"><li>{{!!title}}</li></$list>
+
+! 10 earliest dates linked since <$list filter=
+"[!sort[modified]limit[300]last[1]]"><$view format="date" field="modified" template="mmm 0DD "/></$list>; [[details|Date assignment check]]
+
+<$list filter=
+"[!sort[modified]limit[300]links[]prefix[202]sort[]first[10]]"><li><$link tiddler={{!!title}} /></li></$list>
+
 ! Unformatted Date Tiddlers
 //These should all be in the future//
 
 <$list filter=
-"[prefix[2021]!contains:text[<hr>]rest[72]sort[]]"><li>{{!!title}}</li></$list>
+"[prefix[202]!contains:text[<hr>]rest[100]sort[]]"><li><$link tiddler={{!!title}} /></li></$list>
+\end
+
+\define makePD()
+<$list filter="[tag[todo]!tag[done]links[]prefix[2021]sort[]]" variable="date"><li><<date>></li>
+<ul><$list filter="[<date>backlinks[]tag[todo]!tag[done]]"><li><$link {{!!title}} /></li></$list>
+</ul></$list>
+\end
+
+\define makeDAC()
+All dates linked from tiddlers edited in the past 14 days (with the edited backlink tiddlers)
+
+<$list filter="[days[-14]links[]prefix[202]sort[]]"><li><$link /></li><<list-links filter:"[is[current]backlinks[]days[-14]]">></$list>
 \end
 
 \define makeUM()
@@ -94,7 +117,7 @@ type: text/vnd.tiddlywiki
 # Get Motivated
 [This is more for personal planning...](https://medium.com/the-mission/becoming-incredibly-successful-means-saying-no-to-the-wrong-money-34fbfddc528b)
 
-{{Review Checklist 1}}{{Review Checklist 3m}}{{Review Checklist 2}}{{Review Checklist 4}}{{Review Checklist 5}}
+{{Review Checklist 1}}{{Review Checklist 2}}{{Review Checklist 3m}}{{Review Checklist 4}}{{Review Checklist 5}}
 
 # Archive
 
@@ -228,7 +251,214 @@ Evaluate the status of projects, goals, and outcomes:
 <input type="checkbox"> Submit timesheets.
 \end
 
-<mark>Add notes here about setup!
+\define URS()
+- **nh.R** - NH file management
+
+```
+nh <- "C:/Users/houlej2/Downloads/Notes/NoteHub.html"
+nh_old <- "C:/Users/houlej2/Downloads/Notes/NoteHub_old.html"
+
+check_dir <- function() {
+  print("Running...")
+  fl <- dir("//mspm1bnas57s/global_it_bi/eu_mdr/dropfiles")
+  fl <- fl[!(fl %in% c("Open Notebook.onetoc2","New Section 1.one"))]
+  is <- grep(" ",fl)
+  if(length(is) == 0) {
+    print("No issues!")
+    return()
+  }
+  for(i in is) {
+    print(paste("File",i,"has a space in the name."))
+  }
+  print(fl)
+}
+
+# Find all matches in Downloads
+dl <- "C:/Users/houlej2/Downloads/"
+dl_files <- dir(dl)
+flist <- dl_files[grep("NoteHub",dl_files)]
+if (length(flist) > 0) {
+  dl_nh <- paste0(dl,flist)
+  
+  chktime <- function(fn) {
+    file.info(fn)$atime
+  }
+  
+  # ID correct new file
+  j <- mapply(dl_nh, FUN=chktime)
+  nh_new <- names(j[j==max(j)])
+  
+  # Move and remove files
+  if(file.exists(nh_old)) {
+    file.remove(nh_old)
+  }
+  file.copy(nh, nh_old)
+  file.remove(nh)
+  file.copy(nh_new, nh)
+  file.remove(dl_nh)
+}
+
+# check_dir()
+```
+
+- **mp.R** - turn meeting invites into tiddlers
+
+```
+library(msgxtractr)
+
+# Find all matches in Meetings
+dl <- "C:/Users/houlej2/Downloads/Notes/Meetings"
+dl_files <- dir(dl,recursive = TRUE)
+file <- dl_files[1]
+for(file in dl_files) {
+  
+  fname <- paste0(dl,"/",file)
+  msg2 <- read_msg(fname)
+  
+  year <- paste0("20",sub("(.{2}).*","\\1",file))
+  month <- sub(".{2}(.{2}).*","\\1",file)
+  day <- sub(".{4}(.{2}).*","\\1",file)
+  
+  # title <- msg2$subject
+  title <- gsub("\\s+", " ", msg2$subject[1])
+  host <- msg2$sender$sender_name[1]
+  attendees <- msg2$display_envelope$display_to[1]
+  optional <- msg2$display_envelope$display_cc[1]
+  
+  content <- msg2$body$text[1]
+  content <- content[length(content)]
+  content <- sub("<https://zoom.us/>.*","",content)
+  content <- gsub("\r\n\r\n","\n",content)
+  content <- gsub("\\*\t","- ",content)
+  
+  tid <- c(paste("title: ", title),
+           paste("type: ", "text/x-markdown"),
+           paste("tags: ", "Meeting"),
+           "",
+           paste0("[[", year, " / ", month, " / ", day, "]]"),
+           "",
+           paste("Host: ", host),
+           "",
+           paste("Attendees: ", attendees),
+           "",
+           paste("Optional:", optional),
+           "",
+           content,
+           "<hr>",
+           "",
+           "**Minutes**",
+           "",
+           "**Next Steps**")
+  
+  outf <- as.numeric(Sys.time())
+  Sys.sleep(1)
+  writeLines(tid,paste0("C:/Users/houlej2/Downloads/Notes/",outf,".tid"))
+  file.remove(fname)
+}
+
+# # Not working
+# library(jsonlite)
+# 
+# ccc <- paste(paste0("[[", year, " / ", month, " / ", day, "]]"),
+# "",
+# paste("Host: ", host),
+# paste("Attendees: ", attendees),
+# paste("Optional:", optional),
+# "",
+# content,
+# "<hr>", sep = "\n")
+# jsout <- jsonlite::toJSON(list("title" = title, "type" = "text/x-markdown", "tags" = "Meeting", "text" = ccc))
+# 
+# writeLines(jsout,paste0("\\\\mspm1bnas04/home26/houlej2/Notes/","outf",".json"))
+```
+
+- **dm.R** - setup meeting folders
+
+```
+make_date_folders <- function(year, month, firstmon) {
+  
+  dc <- Vectorize(dir.create)
+  dl <- "C:/Users/houlej2/Downloads/Notes/Meetings/"
+  
+  basewk <- c(firstmon:(firstmon+4))
+  
+  days <- c(basewk - 7, basewk, basewk + 7, basewk + 14, basewk + 21, basewk + 28)
+  days <- stringr::str_pad(days[days > 0 & days < 32], 2, "left","0")
+  
+  dirs <- paste0(dl, year, month, days)
+  newdirs <- dirs[!dir.exists(dirs)]
+  dc(newdirs)
+}
+
+# Update this line with YY, MM, and the date of the first Monday of the month
+make_date_folders("22","07",4)
+```
+
+- **vtt.R** - process vtt files
+
+```
+vttfile <- "C:/Users/houlej2/Downloads/GMT20210527-210754_Recording.transcript.vtt"
+vr <- readLines(vttfile)
+
+vr2 <- vr[!grepl("-->",vr)]
+vr3 <- vr2[!grepl("[0-9]{1,3}",vr2)]
+vr4 <- vr3[vr3 != ""]
+
+writeLines(vr4, "C:/Users/houlej2/Downloads/Hyatt.txt")
+```
+
+- **migration.R** - directly edit NH source file (for file location migration)
+
+```
+library(tidyverse)
+
+nh <- "C:/Users/houlej2/Downloads/Notes/NoteHub.html"
+# nh_old <- "C:/Users/houlej2/Downloads/Notes/migration_mapping.csv"
+
+#### Example ####
+
+k <- readLines(nh)
+# k <- readLines(nh_old, 100000)
+linefrom1 <- "file:///C:/Users/houlej2/Downloads/Data%20Team%20Workspace/Initiatives/1A%20Portfolio"
+linefrom2 <- "file://sitebuilder2/corporate/EUMDR/EUMDRDataTeam/Shared%20Documents/Data%20Team%20Workspace/Initiatives/1A%20Portfolio"
+lineto <- "file:///C:/Users/houlej2/OneDrive%20-%20Medtronic%20PLC/EU%20MDR%20Portfolio%20Tracker/Archives/Solution%20Design%20and%20Implementation"
+start <- Sys.time()
+k %>% 
+  gsub(linefrom1,lineto, .) %>% 
+  gsub(linefrom2,lineto, .) %>% 
+  writeLines("C:/Users/houlej2/Downloads/Notes/NoteHub_edited.html")
+end <- Sys.time()
+end - start
+
+# k[grep("Downloads/Notes",k)]
+# 
+# gsub("hi","bye",c("hi","hith","ho","hiho"))
+
+k %>% grep(linefrom2, .)
+```
+\end
+
+\define SE()
+<$edit-text tiddler="$:/styleexport" field="text" tag="input" size="60" focus="true"/>
+<span style="font-family:calibri;font-size:11pt;color:black;background-color:rgba(255,0,0,0.1)"><$set name="myVariable" tiddler="$:/styleexport" field="text">
+<$transclude tiddler=<<myVariable>> />
+</$set></span>
+\end
+
+* ''Installation:'' A brand new project should start from tiddlywiki/empty (v5.2.2, although later should also work), and include the following plugins (available from this demo wiki):
+** <mark>Add these, some already noted</mark>
+
+* ''Configuration:'' Recommended setup is to have local saving upon ($:/ControlPanel > Saving > General)
+** Config scripts help manage the files that are produced, and related pieces of data that will flow into the wiki or be accessed thereby. <mark>More info about these?</mark>
+** Helpful file structures that play well with such a wiki (and config files):
+*** Setup the wiki in a `Notes` subdirectory of `Downloads` (and adjust config scripts accordingly); existing and archived versions will reside here 
+*** Setup email subfolders in an `Emails` directory under shared location (e.g., OneDrive); the email subfolders can be changed out on occasion as they fill up.
+*** Create shortcuts to these locations in Chrome for quick access
+*** Also create a `Meetings` subdirectory inside `Downloads/Notes`, where dated folders will contain meeting invites (adjust config scripts)
+
+The buttons below help set up a wiki with tiddlers that include tools and reports to help manage the flow of work and information.
+
+<hr>
 
 <$button>Objectives Planner
 <$action-sendmessage 
@@ -237,6 +467,10 @@ Evaluate the status of projects, goals, and outcomes:
   text=<<makeOP>>/>
 </$button>
 
+A dashboard for assigning periodic objectives across all active projects, which become visible within each project.
+
+<hr>
+
 <$button>Dashboard
 <$action-sendmessage 
   $message="tm-new-tiddler"
@@ -244,12 +478,28 @@ Evaluate the status of projects, goals, and outcomes:
   text=<<makeDB>>/>
 </$button>
 
+Contains links to some of these tools and a tabbed display for accessing grouped lists of projects and todos by status, due date, etc.
+
+<hr>
+
 <$button>Loose Threads
 <$action-sendmessage 
   $message="tm-new-tiddler"
   title="Loose Threads"
   text=<<makeLT>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Past Dues"
+  text=<<makePD>>/>
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Date assignment check"
+  text=<<makeDAC>>/>
 </$button>
+
+Landing place for tiddlers that are marked inline for follow-up, also contains a few other lists to ensure the integrity of some of the other tools and reports (such as 'orphaned meetings' not assigned to projects, etc.)
+
+<hr>
 
 <$button>Upcoming Meetings
 <$action-sendmessage 
@@ -258,12 +508,20 @@ Evaluate the status of projects, goals, and outcomes:
   text=<<makeUM>>/>
 </$button>
 
+A list of upcoming meetings (not yet marked Held), sorted by date.
+
+<hr>
+
 <$button>Weekly Pick List
 <$action-sendmessage 
   $message="tm-new-tiddler"
   title="Weekly Pick List"
   text=<<makeWP>>/>
 </$button>
+
+A simple planning list, to use for weekly planning and reference in daily timeblocking.
+
+<hr>
 
 <$button>Weekly Wrap Checklist (& components)
 <$action-sendmessage 
@@ -296,6 +554,10 @@ Evaluate the status of projects, goals, and outcomes:
   text=<<makeCheck5>>/>
 </$button>
 
+A review checklist for closing the week and looking ahead.
+
+<hr>
+
 <$button>Monthly Review Checklist (& components)
 <$action-sendmessage 
   $message="tm-new-tiddler"
@@ -322,3 +584,76 @@ Evaluate the status of projects, goals, and outcomes:
   title="Review Checklist 5"
   text=<<makeCheck5>>/>
 </$button>
+
+A review checklist for closing the month and looking ahead.
+
+<hr>
+
+<$button>PM Tags
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="done"
+  color="#C1E4B4"
+  icon="$:/core/images/done-button" />
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Meeting"
+  color="#B8E0FF"
+  icon="$:/plugins/jmh/pm/images/meeting" />
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="todo"
+  color="#F0B775"
+  icon="$:/plugins/jmh/pm/images/tasks" />
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Held"
+  color="#C3FFAD"
+  icon="$:/core/images/done-button" />
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Project"
+  color="#99056A"
+  icon="$:/core/images/copy-clipboard" />
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Yellow"
+  color="#F9DA3E"
+  icon="$:/core/images/export-button" />
+</$button>
+
+Apply styling to commonly used PM tags.
+
+<hr>
+
+<$button>Utility R scripts
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Utility R scripts"
+  text=<<makeURS>>
+  type="text/x-markdown" />
+</$button>
+
+Utility scripts in R helpful for file processing around managing the single file wiki.
+
+<hr>
+
+<$button>Style Export
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Style Export"
+  text=<<makeSE>>/>
+</$button>
+
+Transclusion template to format tiddler in vanilla, MS Outlook-compatible format (e.g., for pasting meeting minutes into email)
+
+<hr>
+
+<$button>Datelink Explorer
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Datelink Explorer"
+  text={{$:/plugins/jmh/pm/setup/de}} />
+</$button>
+
+Simple search and filter utility to find and organize tiddlers linking to a common tiddler (e.g., a date, perhaps to find all tiddlers citing a past date)
