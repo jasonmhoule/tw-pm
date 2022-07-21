@@ -1,7 +1,8 @@
 caption: {{$:/plugins/jmh/pm/images/target}} HUD
 created: 20210409192007553
 list-after: $:/plugins/jmh/pm/ui/NextActions
-modified: 20210807182835095
+modified: 20220721154915008
+pm-tabs: true
 tags: $:/plugins/jmh/pm/tags/dashboard
 title: $:/plugins/jmh/pm/ui/HUD
 type: text/vnd.tiddlywiki

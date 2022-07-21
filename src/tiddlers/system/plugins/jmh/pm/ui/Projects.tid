@@ -1,6 +1,7 @@
 caption: {{$:/plugins/jmh/pm/images/tasks}} Projects
 created: 20200424193106051
-modified: 20210807182835110
+modified: 20220721154938521
+pm-tabs: true
 tags: $:/plugins/jmh/pm/ui/Projects
 title: $:/plugins/jmh/pm/ui/Projects
 type: text/vnd.tiddlywiki

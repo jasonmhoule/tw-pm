@@ -1,0 +1,12 @@
+caption: {{$:/plugins/jmh/pm/images/checklist}} Journal
+created: 20220708205652682
+modified: 20220721154714119
+pm-tabs: true
+tags: 
+title: $:/plugins/jmh/pm/ui/Journals
+type: text/vnd.tiddlywiki
+
+Subfilter: <$edit-text tiddler="$:/temp/journal" tag="input" />
+<$button><$action-setfield $tiddler="$:/temp/journal" $field="text" $value="" />{{$:/core/images/close-button}}</$button>
+
+<<tabs tabsList:"[tag[Journal]search:title{$:/temp/journal}]" class:"tc-vertical">>

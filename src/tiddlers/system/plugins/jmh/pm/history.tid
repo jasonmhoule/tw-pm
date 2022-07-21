@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220721153554503
+modified: 20220721155156902
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -7,6 +7,7 @@ type: text/vnd.tiddlywiki
 * ''0.1.0'' -- significant update of many primary and supporting features
 ** Major additions
 ** Minor additions
+*** Add sidebar tab with PM views: Journals, Schedule, Projects, HUD
 *** Make strikethrough available in markdown editing
 *** Add hotkeys to wrap text with `<<todo` or `<<mtg`
 *** Add a toolbar button to copy tiddler title (or open it for editing in a new pane)

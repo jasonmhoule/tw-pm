@@ -1,7 +1,8 @@
-caption: {{$:/plugins/nico/pm/images/calendar-check}} Schedule
+caption: {{$:/plugins/jmh/pm/images/calendar}} Schedule
 created: 20200424193230404
-list-after: $:/plugins/nico/pm/ui/InboxAndProjects
-modified: 20210807182835102
+list-after: $:/plugins/jmh/pm/ui/InboxAndProjects
+modified: 20220721154950211
+pm-tabs: true
 tags: $:/plugins/jmh/pm/tags/dashboard
 title: $:/plugins/jmh/pm/ui/Schedule
 type: text/vnd.tiddlywiki
