@@ -1,0 +1,8 @@
+created: 20220714170252504
+modified: 20220721210814060
+title: $:/plugins/jmh/pm/ui/TodoMeetingTemplate
+type: text/vnd.tiddlywiki
+
+<$set name="usetemplate" filter="[is[current]tag[Meeting]]" value="{{||$:/plugins/jmh/pm/ui/MeetingTemplate}}" emptyValue="<$link />">
+<$set name="usetemplate2" filter="[is[current]tag[todo]]" value="{{||$:/plugins/jmh/pm/ui/TodoTemplate}}" emptyValue=<<usetemplate>>>
+<<usetemplate2>></$set></$set>

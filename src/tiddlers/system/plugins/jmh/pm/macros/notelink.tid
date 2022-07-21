@@ -1,0 +1,48 @@
+created: 20210320085237753
+description: list-table-draggable(rowTemplate:"undefined",tiddler,field:"list",class)
+modified: 20220721210814070
+tags: $:/tags/Macro
+title: $:/plugins/jmh/pm/macros/notelink
+type: text/vnd.tiddlywiki
+
+\define list-table-draggable-drop-actions()
+<$action-listops $tiddler=<<targetTiddler>> $field=<<targetField>> $subfilter="""+[<tiddler>get<__field__>enlist-input[]prefix[note/]contains:list<hostTiddler>] [enlist<auto2>] +[is[tiddler]]"""/>
+<$action-listops $tiddler=<<targetTiddler>> $field=<<targetField>> $subfilter="""+[insertbefore:currentTiddler<actionTiddler>is[tiddler]]"""/>
+\end
+
+\define list-table-draggable(rowTemplate:"$:/plugins/jmh/pm/ui/NotelinkRowTemplate",tiddler,field:"list",class)
+\whitespace trim
+
+<$vars tiddler={{{ [<__tiddler__>is[blank]then<currentTiddler>else[$tiddler$]] }}}>
+
+<table style="width:100%" class="list-table-draggable $class$">
+<$vars targetTiddler=<<tiddler>> targetField="""$field$""" hostTiddler=<<currentTiddler>>>
+<$tiddler tiddler=<<tiddler>>>
+<$set name=auto filter='[prefix[note/]contains:list<hostTiddler>]' >
+<$set name=auto2 filter="[enlist<auto>] -[<tiddler>get[$field$]enlist-input[]]" >
+<$list filter="""[<tiddler>get[$field$]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
+<$droppable
+   actions=<<list-table-draggable-drop-actions>>
+   tag="tr"
+   enable=<<tv-enable-drag-and-drop>>>
+   <$transclude tiddler="""$rowTemplate$"""/>
+</$droppable>
+</$list>
+</$set>
+</$set>
+</$tiddler>
+</$vars>
+</table>
+</$vars>
+<$button class="new-notelink" tooltip="Add a note">
+<$action-createtiddler $basetitle="$:/temp/notelink" />
+<$set name="subfvalue" filter="[<currentTiddler>tag[Meeting]]" value={{$:/plugins/jmh/pm/config!!subf-todo}} emptyValue={{$:/plugins/jmh/pm/config!!subf-other}}>
+<$set name="subfvalue2" filter="[<currentTiddler>tag[todo]]" value={{$:/plugins/jmh/pm/config!!subf-mtg}} emptyValue=<<subfvalue>>>
+<$action-createtiddler $basetitle={{{ [{$:/temp/notelink!!created}addprefix[note/]] }}} list="[[$(currentTiddler)$]]" type="text/x-markdown" editing="yes" projfilter={{$:/plugins/jmh/pm/config!!projf}} subfilter=<<subfvalue2>> />
+</$set></$set>
+<$action-deletetiddler $tiddler="$:/temp/notelink" /> {{$:/core/images/new-button}} </$button>
+\end
+
+\define showstatus(status)
+<$set name="staticon" filter="[is[current]has[status]]" value="""<$button disabled="yes" tooltip={{$status$!!text}} class={{{ [[$status$]removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]addsuffix[ tc-btn-invisible tc-btn-dropdown no-click]] }}}><$tiddler tiddler="$status$"><$transclude tiddler={{!!icon}}/></$tiddler></$button>""" emptyValue="{{$:/core/images/close-button}}"><<staticon>></$set>
+\end

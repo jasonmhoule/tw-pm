@@ -1,0 +1,103 @@
+created: 20220715175217416
+modified: 20220721211241200
+msg-prefix: TBD
+projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
+subf-mtg: tag[Meeting]
+subf-other: !tag[todo]!tag[Meeting]!prefix[note/]
+subf-todo: tag[todo]
+title: $:/plugins/jmh/pm/config
+type: text/vnd.tiddlywiki
+
+\define lingo-base() $:/language/TagManager/
+\define iconEditorTab(type)
+\whitespace trim
+<$link to=""><<lingo Icons/None>></$link>
+<$list filter="[all[shadows+tiddlers]is[image]] [all[shadows+tiddlers]tag[$:/tags/Image]] -[type[application/pdf]] +[sort[title]] +[$type$is[system]]">
+<$link to={{!!title}}>
+<$transclude/> <$view field="title"/>
+</$link>
+</$list>
+\end
+
+\define iconEditor(title)
+\whitespace trim
+<div class="tc-drop-down-wrapper">
+<$button popupTitle={{{ [[$:/state/popup/icon/]addsuffix<__title__>] }}} class={{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]addsuffix[ tc-btn-invisible tc-btn-dropdown]] }}}><$set name="btnpick" filter="[is[current]has[icon]]" value="<$transclude tiddler={{!!icon}}/>" emptyValue="{{$:/core/images/down-arrow}}"><<btnpick>></$set></$button>
+<$reveal stateTitle={{{ [[$:/state/popup/icon/]addsuffix<__title__>] }}} type="popup" position="belowleft" text="" default="">
+<div class="tc-drop-down">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<__title__>> icon=<<navigateTo>>/>""">
+<<iconEditorTab type:"!">>
+<hr/>
+<<iconEditorTab type:"">>
+</$linkcatcher>
+</div>
+</$reveal>
+</div>
+\end
+
+\define showfield(field, editfield)
+<$set name=nf filter="[is[current]has[$editfield$]]" value=<<fieldedit "$field$" "$editfield$">> emptyValue=<<fieldview "$field$" "$editfield$">>><<nf>></$set>
+\end
+
+\define fieldview(field, editfield)
+<$button class="tc-btn-invisible"><$action-setfield $editfield$="yes" />{{$:/core/images/edit-button}}</$button> {{!!$field$}}
+\end
+
+\define fieldedit(field, editfield)
+<$button><$action-deletefield $editfield$ />
+{{$:/core/images/done-button}}</$button><$edit-text field="$field$" tag="input" />
+\end
+
+\define newstatus()
+<$button>
+<$action-createtiddler $basetitle="$:/temp/pm-status" />
+<$action-createtiddler $basetitle={{{ [{$:/temp/pm-status!!created}addprefix[$:/plugins/jmh/pm/config/status/]] }}} text="New Status" description="TBD" />
+<$action-deletetiddler $tiddler="$:/temp/pm-status" />
+New Status Code</$button>
+\end
+
+\define btn-class()
+{{{ [{!!text}removeprefix[$:/plugins/jmh/pm/config/status/]addsuffix[ tc-btn-invisible tc-btn-dropdown]] }}}
+\end
+
+\define deletestatus()
+<$button>
+<$list filter="[field:status{!!title}]">
+<$action-deletefield $tiddler={{!!title}} $field=status />
+</$list>
+<$action-deletetiddler $tiddler={{!!title}} />
+{{$:/core/images/delete-button}}
+</$button>
+\end
+
+! ''Note Link Configuration''
+
+!!! ''Note Link Status values''
+
+<table style="width:100%">
+<$list filter="[prefix[$:/plugins/jmh/pm/config/status/]]"><tr style="height:40px"><td><$macrocall $name="iconEditor" title={{!!title}}/></td><td><$edit-text field="color" type="color" tag="input"/></td><td><<showfield "text" "editname">></td><td><<showfield "description" "editdesc">></td><td>{{{ [prefix[note/]status{!!title}count[]] }}}</td><td><<deletestatus>></td></tr></$list>
+</table>
+<<newstatus>>
+
+!!! ''Subfilters used in note links''
+
+<span style="color:red"><b>{{$:/core/images/warning}} Be very careful editing these!</b></span>
+
+<table style="width:100%">
+<$list filter="[[projf]] [[subf-mtg]] [[subf-todo]] [[subf-other]]" variable="field"><tr>
+<td><<field>></td>
+<td><$edit-text field=<<field>> size=60 /></td>
+</tr></$list>
+</table>
+
+! ''Inline Editing Configuration''
+
+Tags to tiddlers in which to allow inline editing of text (do not change content after `+`):
+
+<$edit-text tiddler="$:/plugins/jmh/pm/ViewTemplateBodyFilters/journaleditor" tag="input" size=80 />
+
+! ''MSG Macro - Prefix Trimming''
+
+Prefix (corresponding to file directory where .msg files are kept) to trim from `<<msg>>` macro:
+
+<$edit-text field="msg-prefix" tag="input" size=80 />

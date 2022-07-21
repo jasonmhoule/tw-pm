@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20220721204510489
+modified: 20220721210657620
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -440,10 +440,16 @@ k %>% grep(linefrom2, .)
 \end
 
 \define makeSE()
-<$edit-text tiddler="$:/styleexport" field="text" tag="input" size="60" focus="true"/>
-<span style="font-family:calibri;font-size:11pt;color:black;background-color:rgba(255,0,0,0.1)"><$set name="myVariable" tiddler="$:/styleexport" field="text">
-<$transclude tiddler=<<myVariable>> />
-</$set></span>
+<$edit-text tiddler="$:/temp/styleexport" field="text" tag="input" size="60" focus="true"/>
+<span style="font-family:calibri;font-size:11pt;color:black;background-color:rgba(255,255,255,0.1)">
+<$transclude tiddler={{$:/temp/styleexport}} />
+<b>Next Steps</b>
+<$set name=auto filter='[prefix[note/]contains:list{$:/temp/styleexport}]' >
+<$set name=auto2 filter="[enlist<auto>] -[{$:/temp/styleexport}get[list]enlist-input[]]" >
+<$list filter="""[{$:/temp/styleexport}get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]]""">{{!!text}}</$list>
+</$set>
+</$set>
+</span>
 \end
 
 \define makeNJT()

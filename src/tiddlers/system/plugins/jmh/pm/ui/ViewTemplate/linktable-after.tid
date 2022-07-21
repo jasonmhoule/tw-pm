@@ -1,0 +1,12 @@
+created: 20220715174018922
+list-after: $:/core/ui/ViewTemplate/body
+modified: 20220721210814053
+tags: $:/tags/ViewTemplate
+title: $:/plugins/jmh/pm/ui/ViewTemplate/linktable-after
+type: text/vnd.tiddlywiki
+
+<$reveal tag="div" class="tc-tiddler-body" type="nomatch" stateTitle=<<folded-state>> text="hide" retain="yes" animate="yes">
+
+<$set name="post-table" filter="[is[current]tag[Meeting]!tag[Recurring]]" value="<br><<list-table-draggable>>" emptyValue=""><<post-table>></$set>
+
+</$reveal>

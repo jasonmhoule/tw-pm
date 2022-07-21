@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220721203614327
+modified: 20220721211538812
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -13,6 +13,17 @@ type: text/vnd.tiddlywiki
 
 * ''0.1.0'' -- significant update of many primary and supporting features
 ** Major additions
+*** Create and view linking elements between mtg/todo tiddlers. Facilitates two-way use/lookup and allows for workflow management between tiddlers via status marking, noting takeaways, etc. Features include:
+**** Ability to create sub-notes to link between meetings and todos. The sub-notes carry their own status codes across the other notes.
+***** Smart searching, filtering, and linking capabilities when creating sub-notes.
+**** A viewtemplate for a table within meetings and todos that shows all of these incl status, drill-down
+***** Integrated with Minutes Editor for use in note-taking
+***** Draggable table rows for easy organization.
+***** Nicely transcluded fragments where tiddlers are previewed (drop-downs, [[Style Export]])
+**** Configurable
+***** Status codes, descriptions, and icons
+***** Filters for easy linking
+
 *** Update of list and display functionality to work best with Meetings dated with a YYMMDD prefix, as explained [[here|$:/plugins/jmh/pm/usage]].
 *** Considerable cleanup, enhancement, and addition to the [[setup|$:/plugins/jmh/pm/setup]] content available.
 *** Replaced the inline-editor (`<<tb>>`) with a clickable editor (configurable to apply to a subset of tiddlers).

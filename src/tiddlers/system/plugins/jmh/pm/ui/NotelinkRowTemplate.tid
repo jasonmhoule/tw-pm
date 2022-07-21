@@ -1,0 +1,122 @@
+created: 20220714153746404
+modified: 20220721210814066
+title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
+type: text/vnd.tiddlywiki
+
+\define combobox2(tiddler, field:"text", subf, subtext, projf)
+<$vars focus=<<qualify $:/state/combo>>>
+<$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-mtg}} state="!!subfilter"><$button tooltip="Meetings" class="notelink-type-select"><$action-setfield subfilter={{$:/plugins/jmh/pm/config!!subf-todo}} />{{$:/plugins/jmh/pm/images/meeting}}</$button></$reveal>
+<$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-todo}} state="!!subfilter"><$button tooltip="Tasks" class="notelink-type-select"><$action-setfield subfilter={{$:/plugins/jmh/pm/config!!subf-other}} />{{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
+<$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-other}} state="!!subfilter"><$button tooltip="Other Notes" class="notelink-type-select"><$action-setfield subfilter={{$:/plugins/jmh/pm/config!!subf-mtg}} />{{$:/core/images/globe}}</$button></$reveal>
+<$set name=disable filter="[is[current]todo-edit[yes]]" value="yes" emptyValue="no">
+<$edit-text tiddler="""$tiddler$""" field="""$field$""" tag="input" default="" disabled=<<disable>> focus="yes" focusPopup=<<focus>> class="tc-popup-handle notelink-combo"/></$set>
+<$reveal state=<<focus>> type="nomatch" text="" default="">
+<div class="tc-block-dropdown">
+<$linkcatcher to="""$tiddler$!!$field$""" >
+<$list filter="""$projf$[!is[system]$subf$$(donef)$search:title{$tiddler$!!$field$}] -[<hostTiddler>] +[!sort[modified]limit[20]]"""><div class="tc-dropdown-item">
+<$link class="dropdown-link"><$set name="ic0" filter="[is[current]tag[Meeting]]" value="{{$:/plugins/jmh/pm/images/meeting}}" emptyValue=""><$set name="ic" filter="[is[current]tag[todo]]" value="{{$:/plugins/jmh/pm/images/tasks}}" emptyValue=<<ic0>>><<ic>></$set></$set> &nbsp; {{!!title}}</$link><div style="padding-left:20px">$subtext$</div></div></$list>
+</$linkcatcher>
+</div> 
+</$reveal> 
+</$vars> 
+\end
+
+\define new-todo-button()
+<$reveal type="match" text="tag[todo]" state="!!subfilter"><<donefilter>> <$button> 
+<$action-setfield todo-edit="yes" />
+<$action-createtiddler $tiddler=<<qualify $:/temp/todo-text>> />
+<$action-setfield $tiddler=<<qualify $:/temp/todo-text>> type="text/x-markdown" text="" />
+<$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="""[<hostTiddler>tags[]]  [[todo]] -[[Meeting]]""" />New {{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
+\end
+
+\define new-todo-section()
+<br><br><div class="pm-graybox">
+<b>New To-do Name:</b> <$edit-text field="stage-list" tag="input" default="" />&nbsp;
+<<new-todo-create-area>>&nbsp;
+<$button><$action-setfield tags="" />
+<$action-deletefield todo-edit />
+{{$:/core/images/delete-button}} Discard</$button>
+<br><p style="height:0px"/>{{||$:/core/ui/EditTemplate/tags}}Todo text:<br>
+<$macrocall $name="direct-editor2" tiddler=<<qualify $:/temp/todo-text>> />
+</div>
+\end
+
+\define new-todo-create-area()
+<$set name="clobbercheck" filter="[{!!stage-list}is[tiddler]]" value="""
+<button disabled="yes" style="display:inline;background-color:red;border:0px;padding:3px">{{$:/core/images/warning}} Tiddler exists</button>""" emptyValue="""<$button>
+<$action-createtiddler $tiddler={{!!stage-list}} />
+<$action-setfield $tiddler={{!!stage-list}} tags={{!!tags}} text={{{ [<qualify $:/temp/todo-text>get[text]] }}} type="text/x-markdown" />
+<$action-setfield tags="" />
+<$action-deletefield todo-edit />
+{{$:/core/images/done-button}} Create</$button>"""><<clobbercheck>></$set>
+\end
+
+\define statusEditorTab()
+<$list filter="[prefix[$:/plugins/jmh/pm/config/status/]]">
+<$link to={{!!title}} tooltip={{!!description}}>
+<div><$transclude tiddler={{!!icon}}/> <$view field="text"/></div>
+</$link>
+</$list>
+\end
+
+\define statusEditor(title)
+<div class="tc-drop-down-wrapper">
+<$button class="tc-btn-invisible" popupTitle={{{ [[$:/state/popup/status/]addsuffix<__title__>] }}}><$set name="btnpick" filter="[is[current]has[status]]" value="""<$macrocall $name="showstatus" status={{!!status}} />""" emptyValue="{{$:/core/images/down-arrow}}"><<btnpick>></$set></$button>
+<$reveal stateTitle={{{ [[$:/state/popup/status/]addsuffix<__title__>] }}} type="popup" position="belowleft" text="" default="">
+<div class="tc-drop-down">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<__title__>> status=<<navigateTo>>/>""">
+<<statusEditorTab>>
+</$linkcatcher>
+</div>
+</$reveal>
+</div>
+\end
+
+\define donefilter()
+<$set name="allowdone" filter="[is[current]has[allowdone]]" value="""<$button class="toggle-folder-off tc-btn-invisible" tooltip="Remove complete to-dos"><$action-deletefield allowdone />{{$:/plugins/jmh/pm/images/check-circle}}</$button>""" emptyValue="""<$button class="toggle-folder-on tc-btn-invisible" tooltip="Include all to-dos"><$action-setfield allowdone="yes" />{{$:/plugins/jmh/pm/images/check-circle-light}}</$button>"""><<allowdone>> </$set>
+\end
+
+\define checkstagelist()
+<$set name="chkstage" filter="[{!!stage-list}] -[{!!orig-stage-list}]" value="""
+<$action-listops $tiddler={{!!orig-stage-list}} $field="list" $subfilter="-[<currentTiddler>]"/>
+""" emptyValue=""><<chkstage>></$set>
+\end
+
+\define direct-editor2(tiddler)
+<div class="custom-editor">{{$tiddler$||$:/core/ui/EditTemplate/body}}</div>
+<style>
+.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
+display:none;
+}
+.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
+</style>
+\end
+
+<td class="td-handle" style="width:35px"><$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle/></$draggable></td>
+
+<$set name="a" filter="[is[current]get[editing]] -[[no]]" value='
+
+<td colspan="2" class="notelink-editbox"><$set name="donef" filter="[is[current]has[allowdone]]" value="" emptyValue="!tag[done]"><$macrocall $name="combobox2" tiddler=<<currentTiddler>> field="stage-list" subf={{!!subfilter}} projf={{!!projfilter}} /></$set>
+
+<$set name="delfolder" filter="[is[current]has[projfilter]]" value="""<$button class="toggle-folder-off tc-btn-invisible" tooltip="Remove project filtering"><$action-deletefield projfilter />{{$:/plugins/jmh/pm/images/folder}}</$button>""" emptyValue="""<$button class="toggle-folder-on tc-btn-invisible" tooltip="Filter by associated projects"><$action-setfield projfilter="[<hostTiddler>tags[]] +[tag[Project]tagging[]] +" />{{$:/plugins/jmh/pm/images/folder}}</$button>"""><<delfolder>> </$set>
+
+<$set name="todo-section" filter="[is[current]todo-edit[yes]]" emptyValue=<<new-todo-button>> value=<<new-todo-section>>>
+<<todo-section>></$set>
+
+<br><table style="border:0;margin-top:3px;margin-bottom:8px"><tr><td>Status:</td><td><$macrocall $name="statusEditor" title={{!!title}} /></td></tr></table>
+
+<<direct-editor2>><br><$button><$action-deletetiddler $tiddler={{!!title}} />{{$:/core/images/delete-button}} Delete this note</$button></td> 
+
+<$button tag="td" class="endbutton"><$action-setfield editing="no" /><$action-listops $tiddler=<<currentTiddler>> $field="list" $subfilter="""[is[current]enlist{!!list}] [{!!stage-list}] +[is[tiddler]]"""/><<checkstagelist>><$action-deletefield stage-list orig-stage-list />{{$:/core/images/done-button}}<br></$button>
+
+' emptyValue='
+
+<td style="width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
+
+<td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}{{!!text}}
+</div></td>
+
+<$button tag="td" class="endbutton"><$action-setfield editing="yes" /><$action-setfield $tiddler=<<currentTiddler>> stage-list={{{[enlist{!!list}] -[<hostTiddler>] +[get[title]]}}} /><$action-setfield $tiddler=<<currentTiddler>> orig-stage-list={{!!stage-list}} /><$action-listops $tiddler=<<currentTiddler>> $field="list" $subfilter="""[is[current]enlist{!!list}] -[{!!stage-list}] +[is[tiddler]]"""/>{{$:/core/images/edit-button}}</$button>
+
+'>
+<<a>></$set>
