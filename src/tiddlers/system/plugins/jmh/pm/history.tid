@@ -1,5 +1,5 @@
 created: 20210807182508881
-modified: 20220721201048124
+modified: 20220721203614327
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
@@ -16,6 +16,7 @@ type: text/vnd.tiddlywiki
 *** Update of list and display functionality to work best with Meetings dated with a YYMMDD prefix, as explained [[here|$:/plugins/jmh/pm/usage]].
 *** Considerable cleanup, enhancement, and addition to the [[setup|$:/plugins/jmh/pm/setup]] content available.
 *** Replaced the inline-editor (`<<tb>>`) with a clickable editor (configurable to apply to a subset of tiddlers).
+*** Add a popout-editor with helpful features for taking meeting notes, directly accessible from any tiddler 
 ** Minor additions
 *** Add sidebar tab with PM views: Journals, Schedule, Projects, HUD
 *** Make strikethrough available in markdown editing
