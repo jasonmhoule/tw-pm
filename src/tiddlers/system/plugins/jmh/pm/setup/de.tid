@@ -1,0 +1,30 @@
+created: 20220719211715653
+modified: 20220721165809413
+tags: 
+title: $:/plugins/jmh/pm/setup/de
+type: text/vnd.tiddlywiki
+
+\define get_kids(target)
+<$list filter="[[$target$]tagging[]tag[Project]]"><li>{{!!title}}</li>
+<ul><$macrocall $name=get_kids target={{!!title}} /></ul></$list>
+<$list filter="[[$(targdate)$]backlinks[]tag[$target$]!tag[Project]tag[todo]!tag[done]]"><li>{{!!title||$:/plugins/jmh/pm/ui/TodoTemplate}}</li>
+</$list>
+\end
+
+\define list-titles()
+<$list filter="[[$(targtid)$]!tag[Archived]]"><h2>{{!!title}}</h2>
+<ul><$macrocall $name=get_kids target={{!!title}} /></ul>
+</$list>
+\end
+
+<$edit-text tiddler="$:/temp/linkexplorer" field="targ" />
+<$select tiddler="$:/temp/linkexplorer" field="targtid">
+<option value="toplevel]tagging[">All</option>
+<$list filter="[[toplevel]tagging[]!tag[Archived]]">
+<option value={{!!title}}>{{!!title}}</option>
+</$list>
+</$select>
+<$wikify name="targdate" text="{{$:/temp/linkexplorer!!targ}}">
+<$wikify name="targtid" text="{{$:/temp/linkexplorer!!targtid}}">
+<<list-titles>>
+</$wikify></$wikify>
