@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220721145953480
+modified: 20220721152748385
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -132,6 +132,10 @@ type: text/vnd.tiddlywiki
 
 \define mtg(title)
   {{ $title$ || $:/plugins/jmh/pm/ui/MeetingTemplate}}
+\end
+
+\define msg(file, name:"")
+<div style="display:inline-block;position:relative;top:3px"><a href="$file$" download target="_blank" ><$image source="$:/plugins/jmh/pm/images/msg" height="20px" tooltip={{{ [[$file$]removeprefix{$:/plugins/jmh/pm/config!!msg-prefix}search-replace::regexp[...],[]decodeuri[]] }}} /></a></div>&nbsp;<i>$name$</i>
 \end
 
 \define recur-mtg()
