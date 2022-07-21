@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20220721200806046
+modified: 20220721204510489
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -446,6 +446,55 @@ k %>% grep(linefrom2, .)
 </$set></span>
 \end
 
+\define makeNJT()
+<span style="font-size:14px">[[Style Export]] | [[Minutes Editor]] | [[Weekly Pick List]] | [[Datelink Explorer]] | [[Table Editor|https://www.tablesgenerator.com/markdown_tables]]</span>
+
+# Time Block
+
+
+
+## 8 <hr>
+- Clear emails
+
+## 8:30 <hr>
+
+## 9 <hr>
+
+## 9:30 <hr>
+
+## 10 <hr>
+
+## 10:30 <hr>
+
+## 11 <hr>
+
+## 11:30 <hr>
+
+## 12 <hr>
+- Lunch
+- Clear & reply emails
+
+## 12:30 <hr>
+
+## 1 <hr>
+
+## 1:30 <hr>
+
+## 2 <hr>
+
+## 2:30 <hr>
+
+## 3 <hr>
+
+## 3:30 <hr>
+
+## 4 <hr>
+
+## 4:30 <hr>
+- Clear & reply emails
+- Copy & timeblock
+\end
+
 * ''Installation:'' A brand new project should start from tiddlywiki/empty (v5.2.2, although later should also work), and include the following plugins (available from this demo wiki):
 ** <mark>Add these, some already noted</mark>
 
@@ -658,3 +707,19 @@ Transclusion template to format tiddler in vanilla, MS Outlook-compatible format
 </$button>
 
 Simple search and filter utility to find and organize tiddlers linking to a common tiddler (e.g., a date, perhaps to find all tiddlers citing a past date)
+
+<hr>
+
+<$button>New Journal Title
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="$:/config/NewJournal/Title"
+  text="YY0MM0DD-" />
+</$button> <$button>New Journal Text
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="$:/config/NewJournal/Text"
+  text=<<makeNJT>> />
+</$button>
+
+Setup new Journal entries with a YYMMDD title and with a workday timeblock template.
