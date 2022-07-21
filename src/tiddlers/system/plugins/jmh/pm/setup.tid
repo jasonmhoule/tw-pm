@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20220721165356519
+modified: 20220721185030283
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -39,24 +39,25 @@ type: text/vnd.tiddlywiki
 
 ! [[Past Dues]]
 
+! Meeting without valid date prefix
+<$set name="digit-pattern2" value="^[0-9]{6}"><<list-links "[tag[Meeting]!tag[Recurring]!regexp:title<digit-pattern2>]">></$set>
+
 ! Dated but not waiting
-<$list filter="[has[due]!tag[waiting]!tag[done]]"><li>{{!!title}}</li></$list>
+<<list-links filter:"[has[due]!tag[waiting]!tag[done]]">>
 
 ! 10 earliest dates linked since <$list filter=
 "[!sort[modified]limit[300]last[1]]"><$view format="date" field="modified" template="mmm 0DD "/></$list>; [[details|Date assignment check]]
 
-<$list filter=
-"[!sort[modified]limit[300]links[]prefix[202]sort[]first[10]]"><li><$link tiddler={{!!title}} /></li></$list>
+`<$set name="digit-pattern" value="^[0-9]{6}$"><$list filter="[!sort[modified]limit[300]links[]regexp:title<digit-pattern>sort[]first[10]]"><li><$link tiddler={{!!title}} /></li></$list></$set>
 
 ! Unformatted Date Tiddlers
 //These should all be in the future//
 
-<$list filter=
-"[prefix[202]!contains:text[<hr>]rest[100]sort[]]"><li><$link tiddler={{!!title}} /></li></$list>
+<$set name="digit-pattern" value="^[0-9]{6}$"><<list-links "[regexp:title<digit-pattern>!tag[Journal]]">></$set>
 \end
 
 \define makePD()
-<$list filter="[tag[todo]!tag[done]links[]prefix[2021]sort[]]" variable="date"><li><<date>></li>
+<$list filter="[tag[todo]!tag[done]links[]tag[Journal]sort[]]" variable="date"><li><<date>></li>
 <ul><$list filter="[<date>backlinks[]tag[todo]!tag[done]]"><li><$link {{!!title}} /></li></$list>
 </ul></$list>
 \end
@@ -64,11 +65,13 @@ type: text/vnd.tiddlywiki
 \define makeDAC()
 All dates linked from tiddlers edited in the past 14 days (with the edited backlink tiddlers)
 
-<$list filter="[days[-14]links[]prefix[202]sort[]]"><li><$link /></li><<list-links filter:"[is[current]backlinks[]days[-14]]">></$list>
+<$set name="digit-pattern" value="^[0-9]{6}$">
+<$list filter="[days[-14]links[]regexp:title<digit-pattern>sort[]]"><li><$link /></li><<list-links filter:"[is[current]backlinks[]days[-14]]">></$list>
+</$set>
 \end
 
 \define makeUM()
-<$list filter="[tag[Meeting]!tag[Held]!tag[Recurring]sort[text]]">
+<$list filter="[tag[Meeting]!tag[Held]!tag[Recurring]sort[title]]">
 <h2><$link /></h2>
 <blockquote>{{!!text}}</blockquote>
 </$list>
@@ -253,7 +256,7 @@ Evaluate the status of projects, goals, and outcomes:
 <input type="checkbox"> Submit timesheets.
 \end
 
-\define URS()
+\define makeURS()
 - **nh.R** - NH file management
 
 ```
@@ -315,13 +318,9 @@ file <- dl_files[1]
 for(file in dl_files) {
   
   fname <- paste0(dl,"/",file)
-  msg2 <- read_msg(fname)
+  msg2 <- read_msg(fname)  
+  date <- sub("(.{6}).*","\\1",file)
   
-  year <- paste0("20",sub("(.{2}).*","\\1",file))
-  month <- sub(".{2}(.{2}).*","\\1",file)
-  day <- sub(".{4}(.{2}).*","\\1",file)
-  
-  # title <- msg2$subject
   title <- gsub("\\s+", " ", msg2$subject[1])
   host <- msg2$sender$sender_name[1]
   attendees <- msg2$display_envelope$display_to[1]
@@ -333,11 +332,11 @@ for(file in dl_files) {
   content <- gsub("\r\n\r\n","\n",content)
   content <- gsub("\\*\t","- ",content)
   
-  tid <- c(paste("title: ", title),
+  tid <- c(paste0("title: ", date, " ", title), #new
            paste("type: ", "text/x-markdown"),
            paste("tags: ", "Meeting"),
-           "",
-           paste0("[[", year, " / ", month, " / ", day, "]]"),
+           # "",
+           # paste0("[[", year, " / ", month, " / ", day, "]]"),
            "",
            paste("Host: ", host),
            "",
@@ -440,7 +439,7 @@ k %>% grep(linefrom2, .)
 ```
 \end
 
-\define SE()
+\define makeSE()
 <$edit-text tiddler="$:/styleexport" field="text" tag="input" size="60" focus="true"/>
 <span style="font-family:calibri;font-size:11pt;color:black;background-color:rgba(255,0,0,0.1)"><$set name="myVariable" tiddler="$:/styleexport" field="text">
 <$transclude tiddler=<<myVariable>> />
