@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220720195059567
+modified: 20220721145953480
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -94,7 +94,7 @@ type: text/vnd.tiddlywiki
 <ul class="pm-projects">
   <$list filter="[all[current]tagging[]tag[Project]!has[draft.of]!title[Inbox]!tag[Archived]]">
       <$droppable actions=<<refile-inbox-actions2 [[<<myVariable>>]]>>>
-        <li>{{ !!title || $:/plugins/jmh/pm/ui/TodoTemplate }} <$macrocall $name="todo-count" tag={{!!title}}/></li>
+        <li>{{ !!title || $:/plugins/jmh/pm/ui/TodoTemplate }}</li>
       </$droppable>
   </$list>
 </ul>
