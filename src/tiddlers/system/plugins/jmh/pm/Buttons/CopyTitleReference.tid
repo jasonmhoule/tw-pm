@@ -1,0 +1,35 @@
+caption: Copy tiddler title (Shift: Open new edit window)
+created: 20200419143537510
+description: Copy tiddler title or open tiddler in a new editing window
+list-after: $:/core/ui/Buttons/info
+modified: 20220721153512391
+tags: $:/tags/ViewToolbar
+title: $:/plugins/jmh/pm/Buttons/CopyTitleReference
+type: text/vnd.tiddlywiki
+
+\define checker()
+<$set name="chk1" filter="[<modifier>] -[[shift]]" value=<<copyclip>> emptyValue=<<openedit>>>
+<<chk1>>
+</$set>
+\end
+
+\define openedit()
+<$action-setfield 
+  $tiddler="$:/temp/one" 
+  $field="targ"
+  $value={{!!title}} />
+<$action-sendmessage 
+  $message="tm-open-window" 
+  $param="Minutes Editor" />
+\end
+
+\define copyclip()
+<$action-sendmessage 
+  $message="tm-copy-to-clipboard" 
+  $param={{!!title}} />
+\end
+
+\whitespace trim
+<$button tooltip={{$:/sib/Buttons/CopyTitleReference!!caption}} class=<<tv-config-toolbar-class>> actions=<<checker>>>
+{{$:/core/images/copy-clipboard}}
+</$button>
