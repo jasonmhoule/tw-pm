@@ -1,15 +1,8 @@
 created: 20210807182508881
-modified: 20220721211538812
+modified: 20220722143203761
 tags: 
 title: $:/plugins/jmh/pm/history
 type: text/vnd.tiddlywiki
-
-<$fieldmangler tiddler="$:/plugins/jmh/pm/ui/ViewTemplate/journaleditor">
-    <$button>
-      <$action-sendmessage $message="tm-add-tag" $param="$:/tags/ViewTemplate"/>
-        Make it so
-    </$button>
-  </$fieldmangler>
 
 * ''0.1.0'' -- significant update of many primary and supporting features
 ** Major additions

@@ -1,18 +1,17 @@
 created: 20220719154609408
 list-after: $:/core/ui/ViewTemplate/body
-modified: 20220721201116504
+modified: 20220722142927861
+tags: $:/tags/ViewTemplate
 title: $:/plugins/jmh/pm/ui/ViewTemplate/journaleditor
 type: text/vnd.tiddlywiki
 
 \define saveactions(tiddler, field)
-<$action-setfield $tiddler="$tiddler$" $field$={{{ [<temp>get[text]] }}} />
 <$action-deletetiddler $tiddler=<<temp>> />
 \end
 
 \define editactions(tiddler, field)
 <$set name="chk1" filter="[[ctrl]] -[<modifier>]" emptyValue="" value="""
-<$action-setfield $tiddler=<<temp>> text={{$tiddler$!!$field$}} type="text/x-markdown" />
-<$action-setfield $tiddler="$tiddler$" $field$="" />
+<$action-setfield $tiddler=<<temp>> text="editing" />
 """><<chk1>></$set>
 \end
 
@@ -23,7 +22,7 @@ type: text/vnd.tiddlywiki
 {{$:/core/images/done-button}}
 </$button>
 <$keyboard actions=<<saveactions tiddler:"$tiddler$" field:"$field$">> key="ctrl+enter">
-<div class="custom-editor">{{{ [<temp>] ||$:/core/ui/EditTemplate/body }}}</div>
+<div class="custom-editor">{{ ||$:/core/ui/EditTemplate/body }}</div>
 </$keyboard>
 """ emptyValue="""
 <table style="width:100%;border:0"><tr><$button tag="td" style="border:0" class="inline-edit tc-tiddler-body tc-reveal" actions=<<editactions tiddler:"$tiddler$" field:"$field$">>>
