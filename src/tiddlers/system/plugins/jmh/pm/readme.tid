@@ -1,5 +1,5 @@
 created: 20210807182508885
-modified: 20220722134731646
+modified: 20220722145416349
 tags: 
 title: $:/plugins/jmh/pm/readme
 type: text/vnd.tiddlywiki
@@ -26,9 +26,10 @@ While not strictly required, we //strongly// recommend installing the [[Relink|$
 * [[$:/plugins/flibbles/relink-markdown]]
 * [[$:/plugins/flibbles/relink-titles]]
 
-Due to the heavy note-taking purpose of this plugin, the [[editor-autolist-markdown|$:/plugins/jasonmhoule/editor-autolist-markdown]] plugin is also recommended.
+Due to the heavy note-taking purpose of this plugin, the [[editor-autolist-markdown|$:/plugins/jasonmhoule/editor-autolist-markdown]] and [[edit-comptext| $:/plugins/snowgoon88/edit-comptext]] plugins are also recommended.
 
 * [[$:/plugins/jasonmhoule/editor-autolist-markdown]]
+* [[$:/plugins/snowgoon88/edit-comptext]]
 
 ! Plugin
 
