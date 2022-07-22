@@ -1,47 +1,47 @@
 created: 20210807182508885
-modified: 20220722145416349
+modified: 20220722150708013
 tags: 
 title: $:/plugins/jmh/pm/readme
-type: text/vnd.tiddlywiki
+type: text/x-markdown
 
-This plugin is forked from version 0.0.45 of a previous plugin called `nico/pm`, which is a progenitor to [[Projectify|https://github.com/NicolasPetton/Projectify]]. (I can no longer find `nico/pm` to make a direct attribution.) This plugin is indebted to Nico and that project for its basis, and may clobber some of the macros (at minimum) if installed alongside it; from 0.0.45 it followed a different opinionated development path based on my own use and needs.
+This plugin is forked from version 0.0.45 of a previous plugin called `nico/pm`, which is a progenitor to [Projectify](https://github.com/NicolasPetton/Projectify). (I can no longer find `nico/pm` to make a direct attribution.) This plugin is indebted to Nico and that project for its basis, and may clobber some of the macros (at minimum) if installed alongside it; from 0.0.45 it followed a different opinionated development path based on my own use and needs.
 
-! Dependencies and Suggestions
+# Dependencies and Suggestions
 
 Install the plugins listed below by dragging the respective links to your wiki, then complete the import, save, and reload.
 
 PM depends on the following plugins:
 
-* [[$:/plugins/kixam/moment]]
-* [[$:/plugins/kixam/datepicker]]
-* [[$:/plugins/danielo515/ContextPlugin]]
+- $:/plugins/kixam/moment
+- $:/plugins/kixam/datepicker
+- $:/plugins/danielo515/ContextPlugin
 
 PM is set up to be used with Markdown formatting. It does not strictly rely on Markdown, but shortcuts and templates assume the wiki is in markdown, so it causes less friction in a markdown environment. The core Tiddlywiki markdown plugin is offered here, but alternatives should also work just as well:
 
-* [[$:/plugins/tiddlywiki/markdown]]
+- $:/plugins/tiddlywiki/markdown
 
-While not strictly required, we //strongly// recommend installing the [[Relink|$:/plugins/flibbles/relink]] plugin as well, as it makes renaming projects much more convenient. (With the update to YYMMDD-prefix convention for Meetings in v0.1.0, use of `relink` becomes virtually necessary.) Additional plugins for relinking markdown and tiddler titles are also provided.
+While not strictly required, we *strongly* recommend installing the `Relink` plugin as well, as it makes renaming projects much more convenient. (With the update to YYMMDD-prefix convention for Meetings in v0.1.0, use of `relink` becomes virtually necessary.) Additional plugins for relinking markdown and tiddler titles are also provided.
 
-* [[$:/plugins/flibbles/relink]]
-* [[$:/plugins/flibbles/relink-markdown]]
-* [[$:/plugins/flibbles/relink-titles]]
+- $:/plugins/flibbles/relink
+- $:/plugins/flibbles/relink-markdown
+- $:/plugins/flibbles/relink-titles
 
-Due to the heavy note-taking purpose of this plugin, the [[editor-autolist-markdown|$:/plugins/jasonmhoule/editor-autolist-markdown]] and [[edit-comptext| $:/plugins/snowgoon88/edit-comptext]] plugins are also recommended.
+Due to the heavy note-taking purpose of this plugin, the `editor-autolist-markdown` and `edit-comptext` plugins are also recommended.
 
-* [[$:/plugins/jasonmhoule/editor-autolist-markdown]]
-* [[$:/plugins/snowgoon88/edit-comptext]]
+- $:/plugins/jasonmhoule/editor-autolist-markdown
+- $:/plugins/snowgoon88/edit-comptext
 
-! Plugin
+# Plugin
 
 Drag & drop the following link into your wiki
 
-* [[$:/plugins/jmh/pm]]
+- $:/plugins/jmh/pm
 
 Then save & reload your wiki.
 
 Alternatively, start directly from this wiki and save a local copy to work from.
 
-! Getting started
+# Getting started
 
 See [[Setup|$:/plugins/jmh/pm/setup]] to get started configuring your wiki to use this plugin.
 

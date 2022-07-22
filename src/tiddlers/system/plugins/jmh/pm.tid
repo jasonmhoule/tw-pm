@@ -2,8 +2,8 @@ author: Jason Houle
 core-version: >=5.2.2
 created: 20210807181949819
 description: PM: project management plugin
-list: readme usage setup license history
-modified: 20220722133708551
+list: readme usage setup license history config
+modified: 20220722150007180
 plugin-type: plugin
 source: https://github.com/jasonmhoule/tw-pm
 tags: 
