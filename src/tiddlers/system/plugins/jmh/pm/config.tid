@@ -1,5 +1,5 @@
 created: 20220715175217416
-modified: 20220721211241200
+modified: 20220725150835646
 msg-prefix: TBD
 projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
 subf-mtg: tag[Meeting]
@@ -86,7 +86,7 @@ New Status Code</$button>
 <table style="width:100%">
 <$list filter="[[projf]] [[subf-mtg]] [[subf-todo]] [[subf-other]]" variable="field"><tr>
 <td><<field>></td>
-<td><$edit-text field=<<field>> size=60 /></td>
+<td><$edit-text tiddler="$:/plugins/jmh/pm/config" field=<<field>> size=60 /></td>
 </tr></$list>
 </table>
 
@@ -100,4 +100,4 @@ Tags to tiddlers in which to allow inline editing of text (do not change content
 
 Prefix (corresponding to file directory where .msg files are kept) to trim from `<<msg>>` macro:
 
-<$edit-text field="msg-prefix" tag="input" size=80 />
+<$edit-text tiddler="$:/plugins/jmh/pm/config" field="msg-prefix" tag="input" size=80 />
