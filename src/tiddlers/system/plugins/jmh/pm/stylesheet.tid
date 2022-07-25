@@ -1,10 +1,8 @@
 created: 20200426194806637
-modified: 20220721211059338
+modified: 20220725150010015
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
-
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline
 
 .pm-btn {
   border-radius: 1.5em;
@@ -275,42 +273,52 @@ html body.tc-body .pm-graybox {
     background-color: #f8f8f8;
     filter: drop-shadow(3px 3px 1px grey)
 }
+
 img.handle {
 	pointer-events: none;
     filter: opacity(10%);
 }
+
 td.td-handle:hover img {
     filter: opacity(100%);
 }
+
 td.endbutton {
     width: 45px;
     cursor: pointer;
     padding: 13px;
 }
+
 td.endbutton:hover {
   background-image: radial-gradient(circle closest-side, #ffffdd, transparent);;
   border-radius: 1em;
   border: 0px;
 }
+
 a.dropdown-link {
     display:inline;
 }
+
 div.tc-dropdown-item svg {
     vertical-align:middle
 }
+
 button.new-notelink {
     border-radius: 14px 14px 14px 14px;
     height: 28px;
     width: 28px;
     border: 2px solid;
 }
+
 button.new-notelink:hover {
     background-color: #46e06f;
     filter: drop-shadow(2px 2px 0px grey);
 }
+
 .new-notelink svg {
     padding: 0px 0px 4px 0px;
 }
+
 button.notelink-type-select {
     float:left;
     border-radius: 10px 0px 0px 10px;
@@ -318,6 +326,7 @@ button.notelink-type-select {
     width: 40px;
     border: 1px solid;
 }
+
 input.notelink-combo {
     border-radius: 0px 10px 10px 0px;
     border-width: 1px 1px 1px 0px;
@@ -326,21 +335,28 @@ input.notelink-combo {
     height: 25px;
     width: 60%
 }
+
 button.toggle-folder-off {
     width: 20px;
 }
+
 button.toggle-folder-off:hover img, button.toggle-folder-off:hover svg {
     filter: invert(26%) sepia(47%) saturate(2873%) hue-rotate(349deg) brightness(100%) contrast(95%);
 }
+
 button.toggle-folder-on img, button.toggle-folder-on svg {
     width: 20px;
     filter: invert(50%) sepia(0%) saturate(0%) brightness(160%) contrast(100%);
 }
+
 button.toggle-folder-on:hover img, button.toggle-folder-on:hover svg {
     width: 20px;
     filter: invert(78%) sepia(35%) saturate(592%) hue-rotate(60deg) brightness(96%) contrast(83%);
 }
+
 button.no-click {
     cursor: default;
     display:inline;
 }
+
+<$list filter="[prefix[$:/plugins/jmh/pm/config/status/]]">button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}}:disabled svg {fill: {{!!color}};}<br>button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}}:disabled {font-size:20pt;display: inline-block;margin: auto;}<br></$list>
