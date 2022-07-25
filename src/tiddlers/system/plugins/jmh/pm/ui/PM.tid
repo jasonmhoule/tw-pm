@@ -1,8 +1,8 @@
 caption: {{$:/plugins/jmh/pm/images/tasks}}
 created: 20220708210003591
-modified: 20220721154743629
+modified: 20220725151115251
 tags: $:/tags/SideBar
 title: $:/plugins/jmh/pm/ui/PM
 type: text/vnd.tiddlywiki
 
-<<tabs tabsList:"[pm-tabs[true]!sort[]]">>
+<<tabs tabsList:"[all[shadows]pm-tabs[true]!sort[]]">>
