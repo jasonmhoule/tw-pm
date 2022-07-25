@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220721165521912
+modified: 20220725152138636
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -224,6 +224,4 @@ type: text/vnd.tiddlywiki
 <div style="background-color:#eeeeee;padding:1em"><details><summary>$bgtext$</summary><$tiddler tiddler=<<txt>>><$transclude tiddler=<<txt>> /></$tiddler></details></div></$wikify>
 \end
 
-\define getfield()
-{{$:/config/pm/objectives/$(currentTiddler)$}}
-\end
+\define getfield() $:/config/pm/objectives/$(currentTiddler)$
