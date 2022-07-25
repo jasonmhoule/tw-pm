@@ -6,7 +6,6 @@
     "disable-hfs": "yes"
   },
   "plugins": [
-    "tiddlywiki/codemirror",
     "tiddlywiki/highlight"
   ],
   "build": {
