@@ -1,11 +1,10 @@
 caption: setup
 created: 20210806162209045
-modified: 20220721210657620
+modified: 20220725153528215
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
 \define makeOP()
-\define tidname() $:/config/pm/objectives/$(fieldname)$
 
 <div style="display:none">
 <style>
@@ -21,7 +20,7 @@ type: text/vnd.tiddlywiki
 </div>
 
 <h1>MM YYYY</h1>
-<table style="font-size:12px"><$list filter="[tag[toplevel]!tag[Archived]]" variable="fieldname"><tr style="vertical-align:top"><td><$link to=<<fieldname>>/></td><td style="width:500px"><$edit-text tiddler=<<tidname>> minHeight="10px" tag='textarea' class="myTextEdit" default="" /></td></tr></$list></table>
+<table style="font-size:12px"><$list filter="[tag[toplevel]!tag[Archived]]" variable="fieldname"><tr style="vertical-align:top"><td><$link to=<<fieldname>>/></td><td style="width:500px"><$edit-text tiddler={{{ [<fieldname>addprefix[$:/config/pm/objectives/]] }}} minHeight="10px" tag='textarea' class="myTextEdit" default="" /></td></tr></$list></table>
 \end
 
 \define makeDB()
@@ -520,7 +519,7 @@ The buttons below help set up a wiki with tiddlers that include tools and report
 <$action-sendmessage 
   $message="tm-new-tiddler"
   title="Objectives Planner"
-  text=<<makeOP>>/>
+  text=<<makeOP>> />
 </$button>
 
 A dashboard for assigning periodic objectives across all active projects, which become visible within each project.
