@@ -1,0 +1,8 @@
+caption: {{$:/language/SideBar/Recent/Caption}}
+created: 20220725160145292
+modified: 20220725163004471
+tags: $:/tags/SideBar
+title: $:/core/ui/SideBar/Recent
+type: text/vnd.tiddlywiki
+
+<$macrocall $name="timeline" format={{$:/language/RecentChanges/DateFormat}} subfilter={{$:/plugins/jmh/pm/config!!recent-subfilter}}/>

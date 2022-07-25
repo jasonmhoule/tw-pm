@@ -1,7 +1,8 @@
 created: 20220715175217416
-modified: 20220725150835646
+modified: 20220725160105996
 msg-prefix: TBD
 projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
+recent-subfilter: !prefix[note/]
 subf-mtg: tag[Meeting]
 subf-other: !tag[todo]!tag[Meeting]!prefix[note/]
 subf-todo: tag[todo]
@@ -89,6 +90,12 @@ New Status Code</$button>
 <td><$edit-text tiddler="$:/plugins/jmh/pm/config" field=<<field>> size=60 /></td>
 </tr></$list>
 </table>
+
+! ''Remove note links from 'Recent' tab''
+
+Configured by default to remove note tiddlers from 'Recent' sidebar tab (blank this field to show notes in Recent):
+
+<$edit-text tiddler="$:/plugins/jmh/pm/config" field="recent-subfilter" tag="input" size=40 />
 
 ! ''Inline Editing Configuration''
 
