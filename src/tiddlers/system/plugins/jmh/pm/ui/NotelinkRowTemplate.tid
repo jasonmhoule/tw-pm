@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220721210814066
+modified: 20220725144337679
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -83,13 +83,22 @@ type: text/vnd.tiddlywiki
 \end
 
 \define direct-editor2(tiddler)
+<$keyboard actions=<<savenote>> key="ctrl+enter">
 <div class="custom-editor">{{$tiddler$||$:/core/ui/EditTemplate/body}}</div>
+</$keyboard>
 <style>
 .custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
 display:none;
 }
 .custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
 </style>
+\end
+
+\define savenote()
+<$action-setfield editing="no" />
+<$action-listops $tiddler=<<currentTiddler>> $field="list" $subfilter="""[is[current]enlist{!!list}] [{!!stage-list}] +[is[tiddler]]"""/>
+<<checkstagelist>>
+<$action-deletefield stage-list orig-stage-list />
 \end
 
 <td class="td-handle" style="width:35px"><$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle/></$draggable></td>
@@ -107,7 +116,7 @@ display:none;
 
 <<direct-editor2>><br><$button><$action-deletetiddler $tiddler={{!!title}} />{{$:/core/images/delete-button}} Delete this note</$button></td> 
 
-<$button tag="td" class="endbutton"><$action-setfield editing="no" /><$action-listops $tiddler=<<currentTiddler>> $field="list" $subfilter="""[is[current]enlist{!!list}] [{!!stage-list}] +[is[tiddler]]"""/><<checkstagelist>><$action-deletefield stage-list orig-stage-list />{{$:/core/images/done-button}}<br></$button>
+<$button tag="td" class="endbutton" actions=<<savenote>>>{{$:/core/images/done-button}}<br></$button>
 
 ' emptyValue='
 
