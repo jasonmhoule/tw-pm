@@ -1,43 +1,7 @@
 created: 20210807182508881
-modified: 20220722143203761
+modified: 20220725151329474
 tags: 
 title: $:/plugins/jmh/pm/history
-type: text/vnd.tiddlywiki
+type: text/x-markdown
 
-* ''0.1.0'' -- significant update of many primary and supporting features
-** Major additions
-*** Create and view linking elements between mtg/todo tiddlers. Facilitates two-way use/lookup and allows for workflow management between tiddlers via status marking, noting takeaways, etc. Features include:
-**** Ability to create sub-notes to link between meetings and todos. The sub-notes carry their own status codes across the other notes.
-***** Smart searching, filtering, and linking capabilities when creating sub-notes.
-**** A viewtemplate for a table within meetings and todos that shows all of these incl status, drill-down
-***** Integrated with Minutes Editor for use in note-taking
-***** Draggable table rows for easy organization.
-***** Nicely transcluded fragments where tiddlers are previewed (drop-downs, [[Style Export]])
-**** Configurable
-***** Status codes, descriptions, and icons
-***** Filters for easy linking
-
-*** Update of list and display functionality to work best with Meetings dated with a YYMMDD prefix, as explained [[here|$:/plugins/jmh/pm/usage]].
-*** Considerable cleanup, enhancement, and addition to the [[setup|$:/plugins/jmh/pm/setup]] content available.
-*** Replaced the inline-editor (`<<tb>>`) with a clickable editor (configurable to apply to a subset of tiddlers).
-*** Add a popout-editor with helpful features for taking meeting notes, directly accessible from any tiddler 
-** Minor additions
-*** Add sidebar tab with PM views: Journals, Schedule, Projects, HUD
-*** Make strikethrough available in markdown editing
-*** Add hotkeys to wrap text with `<<todo` or `<<mtg`
-*** Add a toolbar button to copy tiddler title (or open it for editing in a new pane)
-*** New Journals, meetings, todos, and subprojects are type `text/x-markdown` by default
-*** Add `<<bg>>` macro for easy linking of details located in subtiddlers
-*** Add `<<msg>>` macro for embedding reference to messages
-*** Update `waiting` indicator to an icon in `todo` template
-*** Add an offset to datepicker so selected due date is true
-*** Improve formatting for subproject count icon
-*** Update MS Office macros
-**** Improve formatting
-**** Add a copy button
-**** Add MS Teams macro `<<teams>>`
-* ''0.0.3'' -- bug fix - add quick-add shortcut.
-* ''0.0.2'' -- bug fix on inline-editor.
-* ''0.0.1'' -- initial release.
-
-This plugin is forked from version 0.0.45 of a previous plugin called `nico/pm`, which is a preogenitor to [[Projectify|https://github.com/NicolasPetton/Projectify]]. (I can no longer find `nico/pm` to make a direct attribution.) This plugin is indebted to Nico and that project for its basis, and may clobber some of the macros (at minimum) if installed alongside it; from 0.0.45 it followed a different opinionated development path based on my own use and needs.
+See [Release Notes](https://github.com/jasonmhoule/tw-pm/releases) on GitHub.
