@@ -1,6 +1,6 @@
 created: 20210320085237753
 description: list-table-draggable(rowTemplate:"undefined",tiddler,field:"list",class)
-modified: 20220721210814070
+modified: 20220725164314269
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/notelink
 type: text/vnd.tiddlywiki
@@ -36,9 +36,10 @@ type: text/vnd.tiddlywiki
 </$vars>
 <$button class="new-notelink" tooltip="Add a note">
 <$action-createtiddler $basetitle="$:/temp/notelink" />
-<$set name="subfvalue" filter="[<currentTiddler>tag[Meeting]]" value={{$:/plugins/jmh/pm/config!!subf-todo}} emptyValue={{$:/plugins/jmh/pm/config!!subf-other}}>
-<$set name="subfvalue2" filter="[<currentTiddler>tag[todo]]" value={{$:/plugins/jmh/pm/config!!subf-mtg}} emptyValue=<<subfvalue>>>
-<$action-createtiddler $basetitle={{{ [{$:/temp/notelink!!created}addprefix[note/]] }}} list="[[$(currentTiddler)$]]" type="text/x-markdown" editing="yes" projfilter={{$:/plugins/jmh/pm/config!!projf}} subfilter=<<subfvalue2>> />
+<$set name="subfvalue" filter="""[<currentTiddler>tag[Meeting]]""" value={{$:/plugins/jmh/pm/config!!subf-todo}} emptyValue={{$:/plugins/jmh/pm/config!!subf-other}}>
+<$set name="subfvalue2" filter="""[<currentTiddler>tag[todo]]""" value={{$:/plugins/jmh/pm/config!!subf-mtg}} emptyValue=<<subfvalue>>>
+<$action-createtiddler $basetitle={{{ [{$:/temp/notelink!!created}addprefix[note/]] }}} $savetitle="$:/temp/notelink-latest" type="text/x-markdown" editing="yes" projfilter={{$:/plugins/jmh/pm/config!!projf}} subfilter=<<subfvalue2>> />
+<$action-listops $tiddler={{$:/temp/notelink-latest}} $field=list $subfilter="append[<currentTiddler>]" />
 </$set></$set>
 <$action-deletetiddler $tiddler="$:/temp/notelink" /> {{$:/core/images/new-button}} </$button>
 \end
