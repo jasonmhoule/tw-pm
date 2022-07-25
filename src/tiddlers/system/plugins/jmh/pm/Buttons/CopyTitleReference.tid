@@ -2,7 +2,7 @@ caption: Copy tiddler title (Shift: Open new edit window)
 created: 20200419143537510
 description: Copy tiddler title or open tiddler in a new editing window
 list-after: $:/core/ui/Buttons/info
-modified: 20220721153512391
+modified: 20220725154555505
 tags: $:/tags/ViewToolbar
 title: $:/plugins/jmh/pm/Buttons/CopyTitleReference
 type: text/vnd.tiddlywiki
@@ -20,7 +20,7 @@ type: text/vnd.tiddlywiki
   $value={{!!title}} />
 <$action-sendmessage 
   $message="tm-open-window" 
-  $param="Minutes Editor" />
+  $param="$:/plugins/jmh/pm/popout-editor" />
 \end
 
 \define copyclip()
@@ -30,6 +30,6 @@ type: text/vnd.tiddlywiki
 \end
 
 \whitespace trim
-<$button tooltip={{$:/sib/Buttons/CopyTitleReference!!caption}} class=<<tv-config-toolbar-class>> actions=<<checker>>>
+<$button tooltip={{$:/plugins/jmh/pm/Buttons/CopyTitleReference!!caption}} class=<<tv-config-toolbar-class>> actions=<<checker>>>
 {{$:/core/images/copy-clipboard}}
 </$button>
