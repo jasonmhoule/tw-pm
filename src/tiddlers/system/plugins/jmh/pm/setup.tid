@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20220725153528215
+modified: 20220727184848122
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -47,7 +47,7 @@ type: text/vnd.tiddlywiki
 ! 10 earliest dates linked since <$list filter=
 "[!sort[modified]limit[300]last[1]]"><$view format="date" field="modified" template="mmm 0DD "/></$list>; [[details|Date assignment check]]
 
-`<$set name="digit-pattern" value="^[0-9]{6}$"><$list filter="[!sort[modified]limit[300]links[]regexp:title<digit-pattern>sort[]first[10]]"><li><$link tiddler={{!!title}} /></li></$list></$set>
+<$set name="digit-pattern" value="^[0-9]{6}$"><$list filter="[!sort[modified]limit[300]links[]regexp:title<digit-pattern>sort[]first[10]]"><li><$link tiddler={{!!title}} /></li></$list></$set>
 
 ! Unformatted Date Tiddlers
 //These should all be in the future//
