@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220802191417299
+modified: 20220802193744713
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 <$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-todo}} state="!!subfilter"><$button tooltip="Tasks" class="notelink-type-select"><$action-setfield subfilter={{$:/plugins/jmh/pm/config!!subf-other}} />{{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
 <$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-other}} state="!!subfilter"><$button tooltip="Other Notes" class="notelink-type-select"><$action-setfield subfilter={{$:/plugins/jmh/pm/config!!subf-mtg}} />{{$:/core/images/globe}}</$button></$reveal>
 <$set name=disable filter="[is[current]todo-edit[yes]]" value="yes" emptyValue="no">
-<$edit-text tiddler="""$tiddler$""" field="""$field$""" tag="input" default="" disabled=<<disable>> focus="yes" focusPopup=<<focus>> class="tc-popup-handle notelink-combo"/></$set>
+<$edit-text tiddler="""$tiddler$""" field="""$field$""" tag="input" default="" disabled=<<disable>> focus={{{ [[$tiddler$]get[$field$]then[no]else[yes]] }}} focusPopup=<<focus>> class="tc-popup-handle notelink-combo"/></$set>
 <$reveal state=<<focus>> type="nomatch" text="" default="">
 <div class="tc-block-dropdown">
 <$linkcatcher to="""$tiddler$!!$field$""" >
