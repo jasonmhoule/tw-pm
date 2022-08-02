@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20220725150010015
+modified: 20220802191727223
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -359,4 +359,4 @@ button.no-click {
     display:inline;
 }
 
-<$list filter="[prefix[$:/plugins/jmh/pm/config/status/]]">button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}}:disabled svg {fill: {{!!color}};}<br>button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}}:disabled {font-size:20pt;display: inline-block;margin: auto;}<br></$list>
+<$list filter="[prefix[$:/plugins/jmh/pm/config/status/]]">button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}} svg {fill: {{!!color}};}<br>button.{{{ [{!!title}removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]] }}} {font-size:20pt;display: inline-block;margin: auto;}<br></$list>
