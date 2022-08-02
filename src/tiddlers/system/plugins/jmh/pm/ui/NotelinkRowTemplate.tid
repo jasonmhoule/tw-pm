@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220725144337679
+modified: 20220802191417299
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -24,7 +24,7 @@ type: text/vnd.tiddlywiki
 \define new-todo-button()
 <$reveal type="match" text="tag[todo]" state="!!subfilter"><<donefilter>> <$button> 
 <$action-setfield todo-edit="yes" />
-<$action-createtiddler $tiddler=<<qualify $:/temp/todo-text>> />
+<$action-createtiddler $basetitle=<<qualify $:/temp/todo-text>> />
 <$action-setfield $tiddler=<<qualify $:/temp/todo-text>> type="text/x-markdown" text="" />
 <$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="""[<hostTiddler>tags[]]  [[todo]] -[[Meeting]]""" />New {{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
 \end
@@ -44,7 +44,7 @@ type: text/vnd.tiddlywiki
 \define new-todo-create-area()
 <$set name="clobbercheck" filter="[{!!stage-list}is[tiddler]]" value="""
 <button disabled="yes" style="display:inline;background-color:red;border:0px;padding:3px">{{$:/core/images/warning}} Tiddler exists</button>""" emptyValue="""<$button>
-<$action-createtiddler $tiddler={{!!stage-list}} />
+<$action-createtiddler $basetitle={{!!stage-list}} />
 <$action-setfield $tiddler={{!!stage-list}} tags={{!!tags}} text={{{ [<qualify $:/temp/todo-text>get[text]] }}} type="text/x-markdown" />
 <$action-setfield tags="" />
 <$action-deletefield todo-edit />
