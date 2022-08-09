@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20220802214034349
+modified: 20220809212253595
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -336,11 +336,16 @@ input.notelink-combo {
     width: 60%
 }
 
+td.fold-note {
+		width:35px;
+		text-align:center;
+}
+
 td.fold-note span button {
 		display: none
 }
 
-td.fold-note:hover span button {
+tr:hover td.fold-note span button {
 		display: block
 }
 

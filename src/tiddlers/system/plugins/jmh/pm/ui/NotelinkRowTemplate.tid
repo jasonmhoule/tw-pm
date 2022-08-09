@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220802214104496
+modified: 20220809212342433
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -122,7 +122,7 @@ display:none;
 
 <td style="width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
 
-<td style="width:35px;text-align:center" class="fold-note">
+<td class="fold-note">
 <$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
 </$reveal>
