@@ -1,11 +1,11 @@
 created: 20211021172929905
-modified: 20220721203009979
+modified: 20220809213202916
 tags: 
 title: $:/plugins/jmh/pm/popout-editor
 type: text/vnd.tiddlywiki
 
 \define extract-ms(tiddler)
-<$list filter="[[$tiddler$]get[text]splitregexp[\n]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]]" variable="splitme">
+<$list filter="""[[$tiddler$]get[text]splitregexp[\n]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]]""" variable="splitme">
 <<splitme>>
 </$list>
 \end
