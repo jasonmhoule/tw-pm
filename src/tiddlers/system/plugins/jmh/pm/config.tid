@@ -1,11 +1,11 @@
 created: 20220715175217416
-modified: 20220725160105996
+modified: 20220809213954967
 msg-prefix: TBD
 projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
 recent-subfilter: !prefix[note/]
 subf-mtg: tag[Meeting]
 subf-other: !tag[todo]!tag[Meeting]!prefix[note/]
-subf-todo: tag[todo]
+subf-todo: tag[todo]!tag[Project]
 title: $:/plugins/jmh/pm/config
 type: text/vnd.tiddlywiki
 
