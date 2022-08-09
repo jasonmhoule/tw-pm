@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220802193744713
+modified: 20220802214104496
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -105,7 +105,7 @@ display:none;
 
 <$set name="a" filter="[is[current]get[editing]] -[[no]]" value='
 
-<td colspan="2" class="notelink-editbox"><$set name="donef" filter="[is[current]has[allowdone]]" value="" emptyValue="!tag[done]"><$macrocall $name="combobox2" tiddler=<<currentTiddler>> field="stage-list" subf={{!!subfilter}} projf={{!!projfilter}} /></$set>
+<td colspan="3" class="notelink-editbox"><$set name="donef" filter="[is[current]has[allowdone]]" value="" emptyValue="!tag[done]"><$macrocall $name="combobox2" tiddler=<<currentTiddler>> field="stage-list" subf={{!!subfilter}} projf={{!!projfilter}} /></$set>
 
 <$set name="delfolder" filter="[is[current]has[projfilter]]" value="""<$button class="toggle-folder-off tc-btn-invisible" tooltip="Remove project filtering"><$action-deletefield projfilter />{{$:/plugins/jmh/pm/images/folder}}</$button>""" emptyValue="""<$button class="toggle-folder-on tc-btn-invisible" tooltip="Filter by associated projects"><$action-setfield projfilter="[<hostTiddler>tags[]] +[tag[Project]tagging[]] +" />{{$:/plugins/jmh/pm/images/folder}}</$button>"""><<delfolder>> </$set>
 
@@ -122,7 +122,20 @@ display:none;
 
 <td style="width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
 
-<td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}{{!!text}}
+<td style="width:35px;text-align:center" class="fold-note">
+<$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
+</$reveal>
+<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="hide">{{$:/core/images/fold-button}}</$button>
+</$reveal>
+</td>
+
+<td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}
+<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$transclude field="text" mode="block" />
+</$reveal>
+
 </div></td>
 
 <$button tag="td" class="endbutton"><$action-setfield editing="yes" /><$action-setfield $tiddler=<<currentTiddler>> stage-list={{{[enlist{!!list}] -[<hostTiddler>] +[get[title]]}}} /><$action-setfield $tiddler=<<currentTiddler>> orig-stage-list={{!!stage-list}} /><$action-listops $tiddler=<<currentTiddler>> $field="list" $subfilter="""[is[current]enlist{!!list}] -[{!!stage-list}] +[is[tiddler]]"""/>{{$:/core/images/edit-button}}</$button>

@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20220802191727223
+modified: 20220802214034349
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -334,6 +334,14 @@ input.notelink-combo {
     padding-left: 7px;
     height: 25px;
     width: 60%
+}
+
+td.fold-note span button {
+		display: none
+}
+
+td.fold-note:hover span button {
+		display: block
 }
 
 button.toggle-folder-off {
