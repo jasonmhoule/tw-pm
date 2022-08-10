@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20220809212253595
+modified: 20220810133246991
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -230,7 +230,7 @@ input.pm-input.input-large {
   display:none
 }
 
-div.ms-full-link:hover .ms-cp-button {
+.ms-full-link:hover .ms-cp-button {
   display:inline
 }
 

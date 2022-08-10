@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220725152138636
+modified: 20220810133235703
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -137,7 +137,14 @@ type: text/vnd.tiddlywiki
 \end
 
 \define msg(file, name:"")
-<div style="display:inline-block;position:relative;top:3px"><a href="$file$" download target="_blank" ><$image source="$:/plugins/jmh/pm/images/msg" height="20px" tooltip={{{ [[$file$]removeprefix{$:/plugins/jmh/pm/config!!msg-prefix}search-replace::regexp[...],[]decodeuri[]] }}} /></a></div>&nbsp;<i>$name$</i>
+<span class="ms-full-link"><div style="display:inline-block;position:relative;top:3px"><a href="$file$" download target="_blank" ><$image source="$:/plugins/jmh/pm/images/msg" height="20px" tooltip={{{ [[$file$]removeprefix{$:/plugins/jmh/pm/config!!msg-prefix}search-replace::regexp[...],[]decodeuri[]] }}} /></a></div>&nbsp;<i>$name$</i>
+<$vars b="""$file$""" c="""$name$""">
+<$button class='tc-btn-invisible ms-cp-button' message="tm-copy-to-clipboard" param=<<msgmakeme>>>{{$:/core/images/clone-button}}</$button>
+</$vars></span>
+\end
+
+\define msgmakeme()
+<<msg "$(b)$" "$(c)$">>
 \end
 
 \define recur-mtg()
