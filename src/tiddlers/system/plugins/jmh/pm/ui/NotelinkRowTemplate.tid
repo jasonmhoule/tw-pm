@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220809212342433
+modified: 20220810131715158
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -22,7 +22,7 @@ type: text/vnd.tiddlywiki
 \end
 
 \define new-todo-button()
-<$reveal type="match" text="tag[todo]" state="!!subfilter"><<donefilter>> <$button> 
+<$reveal type="match" text={{$:/plugins/jmh/pm/config!!subf-todo}} state="!!subfilter"><<donefilter>> <$button> 
 <$action-setfield todo-edit="yes" />
 <$action-createtiddler $basetitle=<<qualify $:/temp/todo-text>> />
 <$action-setfield $tiddler=<<qualify $:/temp/todo-text>> type="text/x-markdown" text="" />
@@ -107,7 +107,7 @@ display:none;
 
 <td colspan="3" class="notelink-editbox"><$set name="donef" filter="[is[current]has[allowdone]]" value="" emptyValue="!tag[done]"><$macrocall $name="combobox2" tiddler=<<currentTiddler>> field="stage-list" subf={{!!subfilter}} projf={{!!projfilter}} /></$set>
 
-<$set name="delfolder" filter="[is[current]has[projfilter]]" value="""<$button class="toggle-folder-off tc-btn-invisible" tooltip="Remove project filtering"><$action-deletefield projfilter />{{$:/plugins/jmh/pm/images/folder}}</$button>""" emptyValue="""<$button class="toggle-folder-on tc-btn-invisible" tooltip="Filter by associated projects"><$action-setfield projfilter="[<hostTiddler>tags[]] +[tag[Project]tagging[]] +" />{{$:/plugins/jmh/pm/images/folder}}</$button>"""><<delfolder>> </$set>
+<$set name="delfolder" filter="[is[current]has[projfilter]]" value="""<$button class="toggle-folder-off tc-btn-invisible" tooltip="Remove project filtering"><$action-deletefield projfilter />{{$:/plugins/jmh/pm/images/folder}}</$button>""" emptyValue="""<$button class="toggle-folder-on tc-btn-invisible" tooltip="Filter by associated projects"><$action-setfield projfilter={{$:/plugins/jmh/pm/config!!projf}} />{{$:/plugins/jmh/pm/images/folder}}</$button>"""><<delfolder>> </$set>
 
 <$set name="todo-section" filter="[is[current]todo-edit[yes]]" emptyValue=<<new-todo-button>> value=<<new-todo-section>>>
 <<todo-section>></$set>
