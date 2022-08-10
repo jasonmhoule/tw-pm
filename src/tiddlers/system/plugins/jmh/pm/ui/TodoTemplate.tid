@@ -1,5 +1,5 @@
 created: 20200422200123438
-modified: 20220721210937134
+modified: 20220802192808540
 title: $:/plugins/jmh/pm/ui/TodoTemplate
 type: text/vnd.tiddlywiki
 
@@ -22,7 +22,7 @@ type: text/vnd.tiddlywiki
 <b>Links</b>
 <$set name=auto filter='[prefix[note/]contains:list<currentTiddler>]' >
 <$set name=auto2 filter="[enlist<auto>] -[<currentTiddler>get[list]enlist-input[]]" >
-<$list filter="""[<currentTiddler>get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]]""">
+<$list filter="""[<currentTiddler>get[list]enlist-input[]prefix[note/]] [enlist<auto2>] +[is[tiddler]]""">
 <span class="pm-indent1">
 <span class="pm-graybox" style="white-space: normal">
 <table style="border:0"><tr><td><$macrocall $name=showstatus status={{!!status}} /></td><td>{{!!text}}</td></tr></table>

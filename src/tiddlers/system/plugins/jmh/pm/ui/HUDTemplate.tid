@@ -1,5 +1,5 @@
 created: 20210409191946366
-modified: 20210807182835052
+modified: 20220802190154688
 title: $:/plugins/jmh/pm/ui/HUDTemplate
 type: text/vnd.tiddlywiki
 
@@ -9,4 +9,4 @@ type: text/vnd.tiddlywiki
 <$macrocall $name="total-todo-count" tag={{!!title}}/>
 <$macrocall $name="no-todo-ind" tag={{!!title}}/>
 <$macrocall $name="no-mtg-ind" tag={{!!title}}/>
-</li><ul><$list filter="[all[current]tagging[]tag[Project]]"><li>{{!!title||$:/plugins/jmh/pm/ui/HUDTemplate}}</li></$list></ul>
+</li><ul><$list filter="[all[current]tagging[]tag[Project]!tag[Archived]]"><li>{{!!title||$:/plugins/jmh/pm/ui/HUDTemplate}}</li></$list></ul>

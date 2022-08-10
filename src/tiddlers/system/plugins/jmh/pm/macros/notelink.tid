@@ -1,6 +1,6 @@
 created: 20210320085237753
 description: list-table-draggable(rowTemplate:"undefined",tiddler,field:"list",class)
-modified: 20220725164314269
+modified: 20220809212311867
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/notelink
 type: text/vnd.tiddlywiki
@@ -10,16 +10,28 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=<<targetTiddler>> $field=<<targetField>> $subfilter="""+[insertbefore:currentTiddler<actionTiddler>is[tiddler]]"""/>
 \end
 
+\define fold-actions()
+<$list filter="""[<tiddler>get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
+<$action-setfield $tiddler="$:/plugins/jmh/pm/foldconfig" $index=<<currentTiddler>> $value="hide" />
+</$list>
+\end
+
+\define unfold-actions()
+<$list filter="""[<tiddler>get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
+<$action-setfield $tiddler="$:/plugins/jmh/pm/foldconfig" $index=<<currentTiddler>> $value="show" />
+</$list>
+\end
+
 \define list-table-draggable(rowTemplate:"$:/plugins/jmh/pm/ui/NotelinkRowTemplate",tiddler,field:"list",class)
 \whitespace trim
 
 <$vars tiddler={{{ [<__tiddler__>is[blank]then<currentTiddler>else[$tiddler$]] }}}>
 
-<table style="width:100%" class="list-table-draggable $class$">
 <$vars targetTiddler=<<tiddler>> targetField="""$field$""" hostTiddler=<<currentTiddler>>>
 <$tiddler tiddler=<<tiddler>>>
 <$set name=auto filter='[prefix[note/]contains:list<hostTiddler>]' >
 <$set name=auto2 filter="[enlist<auto>] -[<tiddler>get[$field$]enlist-input[]]" >
+<table style="width:100%" class="list-table-draggable $class$">
 <$list filter="""[<tiddler>get[$field$]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
 <$droppable
    actions=<<list-table-draggable-drop-actions>>
@@ -28,12 +40,8 @@ type: text/vnd.tiddlywiki
    <$transclude tiddler="""$rowTemplate$"""/>
 </$droppable>
 </$list>
-</$set>
-</$set>
-</$tiddler>
-</$vars>
 </table>
-</$vars>
+<table style="border:0px" class="list-table-draggable"><tr style="border:0px"><td>
 <$button class="new-notelink" tooltip="Add a note">
 <$action-createtiddler $basetitle="$:/temp/notelink" />
 <$set name="subfvalue" filter="""[<currentTiddler>tag[Meeting]]""" value={{$:/plugins/jmh/pm/config!!subf-todo}} emptyValue={{$:/plugins/jmh/pm/config!!subf-other}}>
@@ -41,7 +49,19 @@ type: text/vnd.tiddlywiki
 <$action-createtiddler $basetitle={{{ [{$:/temp/notelink!!created}addprefix[note/]] }}} $savetitle="$:/temp/notelink-latest" type="text/x-markdown" editing="yes" projfilter={{$:/plugins/jmh/pm/config!!projf}} subfilter=<<subfvalue2>> />
 <$action-listops $tiddler={{$:/temp/notelink-latest}} $field=list $subfilter="append[<currentTiddler>]" />
 </$set></$set>
-<$action-deletetiddler $tiddler="$:/temp/notelink" /> {{$:/core/images/new-button}} </$button>
+<$action-deletetiddler $tiddler="$:/temp/notelink" /> {{$:/core/images/new-button}} </$button></td>
+<td class="fold-note"><span>
+<$button class=<<tv-config-toolbar-class>> actions=<<unfold-actions>>>{{$:/core/images/unfold-button}}</$button>
+</span></td>
+<td class="fold-note"><span>
+<$button class=<<tv-config-toolbar-class>> actions=<<fold-actions>>>{{$:/core/images/fold-button}}</$button>
+</span></td></tr></table>
+</$set>
+</$set>
+</$tiddler>
+</$vars>
+</$vars>
+
 \end
 
 \define showstatus(status)
