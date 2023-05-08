@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20230508191328309
+modified: 20230508192716371
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -64,9 +64,7 @@ type: text/vnd.tiddlywiki
 
 \define todo-count(tag)
   <span class="pm-todo-count">
-    <$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]tag[done]count[]]">{{!!title}}</$list> 
-    / 
-    <$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]count[]]">{{!!title}}</$list>
+    <$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]tag[done]count[]]">{{!!title}}</$list>&nbsp;/&nbsp;<$list filter="[tag[todo]tag[$tag$]!tag[Project]!has[draft.of]count[]]">{{!!title}}</$list>
   </span>
 \end
 
