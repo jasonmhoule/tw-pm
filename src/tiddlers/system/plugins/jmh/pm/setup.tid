@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20230508184705482
+modified: 20230508191407740
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -31,7 +31,7 @@ type: text/vnd.tiddlywiki
 
 \define makeLT()
 ! Orphaned Meetings
-<<list-links filter:"[!is[system]tag[Meeting]sort[title]!tag[Recurring]] -[!is[system]tag[Project]tagging[]tag[Meeting]] -[!is[system]tag[Recurring]tagging[]tag[Meeting]]">>
+<<list-links filter:"[!is[system]tag[Meeting]sort[title]] -[!is[system]tag[Project]tagging[]tag[Meeting]] -[!is[system]tag[Recurring]tagging[]tag[Meeting]]">>
 
 ! Inline Notes to Clean Up
 <$list filter="[!is[system]!is[current]!title[Dashboard]regexp:text[!!! ]sort[modified]]"><$link><$view field="title"/></$link><span class="pm-indent1"><$link><span class="pm-graybox"><$context term="!!! " before="0" after="200" /></span></$link></span></$list>
@@ -39,7 +39,7 @@ type: text/vnd.tiddlywiki
 ! [[Past Dues]]
 
 ! Meeting without valid date prefix
-<$set name="digit-pattern2" value="^[0-9]{6}"><<list-links "[tag[Meeting]!tag[Recurring]!regexp:title<digit-pattern2>]">></$set>
+<$set name="digit-pattern2" value="^[0-9]{6}"><<list-links "[tag[Meeting]!regexp:title<digit-pattern2>]">></$set>
 
 ! Dated but not waiting
 <<list-links filter:"[has[due]!tag[waiting]!tag[done]]">>
@@ -70,7 +70,7 @@ All dates linked from tiddlers edited in the past 14 days (with the edited backl
 \end
 
 \define makeUM()
-<$list filter="[tag[Meeting]!tag[Held]!tag[Recurring]sort[title]]">
+<$list filter="[tag[Meeting]!tag[Held]sort[title]]">
 <h2><$link /></h2>
 <blockquote>{{!!text}}</blockquote>
 </$list>

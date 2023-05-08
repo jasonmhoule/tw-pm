@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20220810133235703
+modified: 20230508191328309
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -27,11 +27,11 @@ type: text/vnd.tiddlywiki
 \end
 
 \define meeting-list(tag emptyMessage:"''🙌 No meetings planned!''")
-  <div><<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]!tag[Recurring]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">></div>
+  <div><<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">></div>
 \end
 
 \define rcr-meeting-list(tag emptyMessage:"<i>No recurring meetings</i>")
-  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[Meeting]tag[Recurring]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">>
+  <<list-tagged-draggable tag:"$tag$" subFilter:"tag[Recurring]!has[draft.of]sort[title]" itemTemplate:"$:/plugins/jmh/pm/ui/MeetingTemplate" emptyMessage:"$emptyMessage$">>
 \end
 
 \define todo-list-completed(tag)
@@ -103,7 +103,7 @@ type: text/vnd.tiddlywiki
 <$macrocall $name="new-sp-button" tag={{!!title}} label="New Subproject" title={{!!title}} />
 </$set>
 
-  <$list filter="[all[current]tagging[]tag[Meeting]tag[Recurring]first[1]]">
+  <$list filter="[all[current]tagging[]tag[Recurring]first[1]]">
   <h2>Recurring Meetings</h2>
   <$macrocall $name="rcr-meeting-list" tag="$tag$"/>
   </$list>

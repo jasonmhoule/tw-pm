@@ -1,6 +1,6 @@
 caption: Usage & Help
 created: 20200427133943777
-modified: 20220722150059702
+modified: 20230508191547795
 title: $:/plugins/jmh/pm/usage
 type: text/x-markdown
 
@@ -80,6 +80,6 @@ Yes, just drag a todo from the inbox into one of the projects.
 
 Meetings work best when prefixed with YYMMDD. Defaults and prompts help facilitate this, and various features like lists, displays, and the daily task compiler are set up to expect this format. It also helps distinguish meetings by title only, and to know when the meeting is scheduled for!
 
-Note: Recurring meeting //series// tiddlers are not expected to use this convention.
+Note: Recurring meeting *series* tiddlers are not expected to use this convention. Also, the series tiddler is tagged with `Recurring` and contain a call to `<<recur-mtg>>` while each meeting instance is tagged `Meeting`.
 
 Because meetings can be rescheduled, it is highly recommended to install the relink and relink-markdown plugins as well to facilitate making updates to all instances and references to a meeting, rather than needing to arduously do this by hand (or break links) should the meeting date change.
