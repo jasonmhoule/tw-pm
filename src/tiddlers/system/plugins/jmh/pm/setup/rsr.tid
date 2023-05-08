@@ -1,0 +1,24 @@
+created: 20230508184503604
+modified: 20230508184615848
+start: 
+tags: 
+title: $:/plugins/jmh/pm/setup/rsr
+type: text/vnd.tiddlywiki
+
+\define mya()
+<$action-setfield $field=text $value={{{ [{!!text}search-replace:g<start>,<end>] }}} />
+\end
+
+Start: <$edit-text class="my-text-edit" field="start" />
+
+End: <$edit-text class="my-text-edit" field="end" />
+
+<$let start={{!!start}} end={{!!end}}>
+<$list filter="[!is[system]!is[current]search{!!start}]"><$button actions=<<mya>>>Go</$button> <$link /><br></$list>
+</$let>
+
+<style>
+.my-text-edit {
+  width:100%
+}
+</style>

@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20220727184848122
+modified: 20230508184705482
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -712,6 +712,28 @@ Transclusion template to format tiddler in vanilla, MS Outlook-compatible format
 </$button>
 
 Simple search and filter utility to find and organize tiddlers linking to a common tiddler (e.g., a date, perhaps to find all tiddlers citing a past date)
+
+<hr>
+
+<$button>Batch open or close tiddlers
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Batch open or close tiddlers"
+  text={{$:/plugins/jmh/pm/setup/boct}} />
+</$button>
+
+Tool for managing tiddlers and tagging en masse
+
+<hr>
+
+<$button>Refiling search-replace
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Refiling search-replace"
+  text={{$:/plugins/jmh/pm/setup/rsr}} />
+</$button>
+
+Tool for finding and replacing text within tiddlers - especially useful for updating local file references when your files move
 
 <hr>
 

@@ -1,0 +1,51 @@
+created: 20230508184522058
+modified: 20230508184545392
+tags: 
+title: $:/plugins/jmh/pm/setup/boct
+type: text/vnd.tiddlywiki
+
+\define openTiddlers()
+<$button>
+<$list filter={{$:/temp/batchopen}}>
+<$action-navigate $to={{!!title}}/>
+</$list>
+Open tiddlers
+</$button>
+<$button>
+<$list filter={{$:/temp/batchopen}}>
+<$action-sendmessage $message="tm-close-tiddler" $param={{!!title}}/>
+</$list>
+Close matching tiddlers
+</$button>
+\end
+
+\define tagTiddlers()
+<$button>
+<$list filter={{$:/temp/batchopen}}>
+<$fieldmangler tiddler={{!!title}}>
+<$action-sendmessage $message="tm-add-tag" $param={{$:/temp/batchtag}}/>
+</$fieldmangler>
+</$list>
+Add tag
+</$button>
+<$button>
+<$list filter={{$:/temp/batchopen}}>
+<$fieldmangler tiddler={{!!title}}>
+<$action-sendmessage $message="tm-remove-tag" $param={{$:/temp/batchtag}}/>
+</$fieldmangler>
+</$list>
+Remove tag
+</$button>
+\end
+
+<$edit-text tiddler="$:/temp/batchopen" default="" tag="input" /> <<openTiddlers>>
+<br>
+<$edit-text tiddler="$:/temp/batchtag" default="" tag="input" /> <<tagTiddlers>>
+
+<ol><$list filter={{$:/temp/batchopen}}>
+<li>{{!!title}}</li>
+</$list></ol>
+
+<$button><$list filter="[[Topic]tagging[]]"><$action-setfield $field=color $value="#dacadb" /></$list>Color All Topics</$button>
+
+cf. [[aoc]] for tiddler build template
