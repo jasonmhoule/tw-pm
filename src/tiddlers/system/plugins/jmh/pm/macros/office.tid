@@ -1,5 +1,5 @@
 created: 20210212161405899
-modified: 20220809213550069
+modified: 20230508185618773
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/office
 type: text/vnd.tiddlywiki
@@ -17,11 +17,11 @@ type: text/vnd.tiddlywiki
 \end
 
 \define msoffice(file name type short-type)
-<div class='ms-full-link'><a href="ms-$type$:ofe|u|$file$" target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:middle; display:inline-block">{{$:/plugins/jmh/pm/images/ms-$type$}}</span><span style="width: 4pt; display:inline-block"> </span><span style="height:14px;vertical-align:top">$name$</span></a>
+<span class='ms-full-link'><a href="ms-$type$:ofe|u|$file$" target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:top; display:inline-block">{{$:/plugins/jmh/pm/images/ms-$type$}}</span><span style="width: 4pt; display:inline-block"> </span><span style="height:14px;vertical-align:top">$name$</span></a>
 <$vars a='$short-type$' b="""$file$""" c="""$name$""">
 <$button class='tc-btn-invisible ms-cp-button' message="tm-copy-to-clipboard" param=<<msmakeme>>>{{$:/core/images/clone-button}}</$button>
 </$vars>
-</div>
+</span>
 \end
 
 \define msmakeme()
