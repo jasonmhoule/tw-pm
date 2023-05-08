@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20220810131715158
+modified: 20230508192139977
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -132,8 +132,8 @@ display:none;
 </td>
 
 <td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}
-<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
-<$transclude field="text" mode="block" />
+<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show" class="notelink-text">
+{{!!text}}
 </$reveal>
 
 </div></td>
@@ -142,3 +142,10 @@ display:none;
 
 '>
 <<a>></$set>
+
+<style>
+.notelink-text {
+  display: inline-block;
+  word-break: break-word;
+}
+</style>
