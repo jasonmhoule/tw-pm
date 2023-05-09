@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20230508191407740
+modified: 20230509214207695
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -259,28 +259,13 @@ Evaluate the status of projects, goals, and outcomes:
 - **nh.R** - NH file management
 
 ```
-nh <- "C:/Users/houlej2/Downloads/Notes/NoteHub.html"
-nh_old <- "C:/Users/houlej2/Downloads/Notes/NoteHub_old.html"
-
-check_dir <- function() {
-  print("Running...")
-  fl <- dir("//mspm1bnas57s/global_it_bi/eu_mdr/dropfiles")
-  fl <- fl[!(fl %in% c("Open Notebook.onetoc2","New Section 1.one"))]
-  is <- grep(" ",fl)
-  if(length(is) == 0) {
-    print("No issues!")
-    return()
-  }
-  for(i in is) {
-    print(paste("File",i,"has a space in the name."))
-  }
-  print(fl)
-}
+nh <- "C:/Users/houlej2/Downloads/Notes/ToteHub.html"
+nh_old <- "C:/Users/houlej2/Downloads/Notes/ToteHub_old.html"
 
 # Find all matches in Downloads
 dl <- "C:/Users/houlej2/Downloads/"
 dl_files <- dir(dl)
-flist <- dl_files[grep("NoteHub",dl_files)]
+flist <- dl_files[grep("ToteHub",dl_files)]
 if (length(flist) > 0) {
   dl_nh <- paste0(dl,flist)
   
@@ -302,22 +287,29 @@ if (length(flist) > 0) {
   file.remove(dl_nh)
 }
 
-# check_dir()
+```
+
+- **runmp.bat** - windows batch script to run the below; place in `/Meetings` folder
+
+```
+"C:\Program Files\R\R-4.3.0\bin\Rscript.exe" C:\Users\houlej2\Downloads\Notes\mp.R
 ```
 
 - **mp.R** - turn meeting invites into tiddlers
 
 ```
+# devtools::install_github("hrbrmstr/msgxtractr") # requires RTools
 library(msgxtractr)
 
 # Find all matches in Meetings
 dl <- "C:/Users/houlej2/Downloads/Notes/Meetings"
 dl_files <- dir(dl,recursive = TRUE)
-file <- dl_files[1]
+dl_files <- dl_files[!grepl(".tid",dl_files)]
+dl_files <- dl_files[!grepl(".bat",dl_files)]
 for(file in dl_files) {
   
   fname <- paste0(dl,"/",file)
-  msg2 <- read_msg(fname)  
+  msg2 <- read_msg(fname)
   date <- sub("(.{6}).*","\\1",file)
   
   title <- gsub("\\s+", " ", msg2$subject[1])
@@ -325,7 +317,7 @@ for(file in dl_files) {
   attendees <- msg2$display_envelope$display_to[1]
   optional <- msg2$display_envelope$display_cc[1]
   
-  content <- msg2$body$text[1]
+  content <- msg2$body$text[stringr::str_length(msg2$body$text)>2][1]
   content <- content[length(content)]
   content <- sub("<https://zoom.us/>.*","",content)
   content <- gsub("\r\n\r\n","\n",content)
@@ -334,8 +326,6 @@ for(file in dl_files) {
   tid <- c(paste0("title: ", date, " ", title), #new
            paste("type: ", "text/x-markdown"),
            paste("tags: ", "Meeting"),
-           # "",
-           # paste0("[[", year, " / ", month, " / ", day, "]]"),
            "",
            paste("Host: ", host),
            "",
@@ -351,25 +341,12 @@ for(file in dl_files) {
            "**Next Steps**")
   
   outf <- as.numeric(Sys.time())
-  Sys.sleep(1)
-  writeLines(tid,paste0("C:/Users/houlej2/Downloads/Notes/",outf,".tid"))
+  Sys.sleep(0.5)
+  writeLines(tid,paste0("C:/Users/houlej2/Downloads/Notes/Meetings/",outf,".tid"))
   file.remove(fname)
 }
 
-# # Not working
-# library(jsonlite)
-# 
-# ccc <- paste(paste0("[[", year, " / ", month, " / ", day, "]]"),
-# "",
-# paste("Host: ", host),
-# paste("Attendees: ", attendees),
-# paste("Optional:", optional),
-# "",
-# content,
-# "<hr>", sep = "\n")
-# jsout <- jsonlite::toJSON(list("title" = title, "type" = "text/x-markdown", "tags" = "Meeting", "text" = ccc))
-# 
-# writeLines(jsout,paste0("\\\\mspm1bnas04/home26/houlej2/Notes/","outf",".json"))
+cat(length(dl_files))
 ```
 
 - **dm.R** - setup meeting folders
@@ -391,7 +368,7 @@ make_date_folders <- function(year, month, firstmon) {
 }
 
 # Update this line with YY, MM, and the date of the first Monday of the month
-make_date_folders("22","07",4)
+make_date_folders("23","05",1)
 ```
 
 - **vtt.R** - process vtt files
@@ -407,18 +384,16 @@ vr4 <- vr3[vr3 != ""]
 writeLines(vr4, "C:/Users/houlej2/Downloads/Hyatt.txt")
 ```
 
-- **migration.R** - directly edit NH source file (for file location migration)
+- **migration.R** - directly edit NH source file (for file location migration) <mark>consider removing for search-and-replace
 
 ```
 library(tidyverse)
 
 nh <- "C:/Users/houlej2/Downloads/Notes/NoteHub.html"
-# nh_old <- "C:/Users/houlej2/Downloads/Notes/migration_mapping.csv"
 
 #### Example ####
 
 k <- readLines(nh)
-# k <- readLines(nh_old, 100000)
 linefrom1 <- "file:///C:/Users/houlej2/Downloads/Data%20Team%20Workspace/Initiatives/1A%20Portfolio"
 linefrom2 <- "file://sitebuilder2/corporate/EUMDR/EUMDRDataTeam/Shared%20Documents/Data%20Team%20Workspace/Initiatives/1A%20Portfolio"
 lineto <- "file:///C:/Users/houlej2/OneDrive%20-%20Medtronic%20PLC/EU%20MDR%20Portfolio%20Tracker/Archives/Solution%20Design%20and%20Implementation"
@@ -429,10 +404,6 @@ k %>%
   writeLines("C:/Users/houlej2/Downloads/Notes/NoteHub_edited.html")
 end <- Sys.time()
 end - start
-
-# k[grep("Downloads/Notes",k)]
-# 
-# gsub("hi","bye",c("hi","hith","ho","hiho"))
 
 k %>% grep(linefrom2, .)
 ```
