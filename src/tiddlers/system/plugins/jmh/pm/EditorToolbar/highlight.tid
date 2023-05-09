@@ -1,0 +1,18 @@
+caption: {{$:/language/Buttons/Highlight/Caption}}
+condition: [<targetTiddler>]
+created: 20230329230327400
+description: {{$:/language/Buttons/Highlight/Hint}}
+icon: $:/plugins/jmh/pm/images/highlight
+list-after: $:/core/ui/EditorToolbar/quote
+modified: 20230509212654954
+shortcuts: ((highlight))
+tags: $:/tags/EditorToolbar
+title: $:/plugins/jmh/pm/EditorToolbar/highlight
+type: text/vnd.tiddlywiki
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix="<mark>"
+	suffix="</mark>"
+/>

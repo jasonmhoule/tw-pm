@@ -1,0 +1,6 @@
+created: 20230329231454930
+modified: 20230509212654948
+title: $:/config/ShortcutInfo/highlight
+type: text/vnd.tiddlywiki
+
+{{$:/language/Buttons/Highlight/Hint}}
