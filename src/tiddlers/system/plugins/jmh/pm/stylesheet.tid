@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20230508185602034
+modified: 20230510211136567
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -189,6 +189,8 @@ input.pm-input.input-large {
 .pm-todo:hover .pm-due-date.no-due-date {
   opacity: 1;
 }
+
+.pm-todo:hover .ms-cp-button { display:inline }
 
 .pm-projects .tc-droppable.tc-dragover {
   background: #ffd;

@@ -1,5 +1,5 @@
 created: 20200422200514984
-modified: 20230508192716371
+modified: 20230510210838482
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/project
 type: text/vnd.tiddlywiki
@@ -222,6 +222,10 @@ type: text/vnd.tiddlywiki
 <span class="pm-bluesq-count"><<result>></span>
 </$reveal>
 </$list>
+\end
+
+\define projcp()
+<<$(a)$ [[$(b)$]]>>
 \end
 
 \define bg(bgtext:"Background" suffix:"bg")

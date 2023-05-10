@@ -1,5 +1,5 @@
 created: 20200422200123438
-modified: 20220802192808540
+modified: 20230510211453539
 title: $:/plugins/jmh/pm/ui/TodoTemplate
 type: text/vnd.tiddlywiki
 
@@ -10,8 +10,9 @@ type: text/vnd.tiddlywiki
   </$checkbox> <span style="font-size:10px"><$list filter="[all[current]has[minutes]]">{{!!minutes}}m</$list></span>
 <$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
-<$set name="a" filter="[<currentTiddler>tag[Project]]" value='<$macrocall $name="todo-count" tag=<<currentTiddler>>/>' emptyValue=""><<a>></$set>
- {{||$:/plugins/jmh/pm/ui/TodoDueDateTemplate}}<br/>
+<$set name="a" filter="[<currentTiddler>tag[Project]]" value='<$macrocall $name="todo-count" tag=<<currentTiddler>>/>' emptyValue=""><<a>></$set><$vars a="todo" b=<<currentTiddler>>>
+<$button class='tc-btn-invisible ms-cp-button' message="tm-copy-to-clipboard" param=<<projcp>>>{{$:/core/images/clone-button}}</$button>
+</$vars>{{||$:/plugins/jmh/pm/ui/TodoDueDateTemplate}}<br/>
 </$reveal></span>
 <$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="hide">{{$:/core/images/fold-button}}</$button>

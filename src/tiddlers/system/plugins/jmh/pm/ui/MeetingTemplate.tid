@@ -1,5 +1,5 @@
 created: 20201203173858914
-modified: 20220810135627983
+modified: 20230510211540058
 title: $:/plugins/jmh/pm/ui/MeetingTemplate
 type: text/vnd.tiddlywiki
 
@@ -16,7 +16,9 @@ type: text/vnd.tiddlywiki
 <$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes"> <span class="pm-todo">{{||$:/plugins/jmh/pm/images/meeting}} <$link to={{!!title}}><$view field="title"/></$link>
 <$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
- {{{ [all[current]tags[]match[Held]] ||$:/core/ui/TagTemplate}}}<span class="pm-due-date no-due-date" style="padding:0px"><$button class=<<tv-config-toolbar-class>> actions=<<openedit>>>{{$:/core/images/export-button}}</$button></span>
+ {{{ [all[current]tags[]match[Held]] ||$:/core/ui/TagTemplate}}}<$vars a="mtg" b=<<currentTiddler>>>
+<$button class='tc-btn-invisible ms-cp-button' message="tm-copy-to-clipboard" param=<<projcp>>>{{$:/core/images/clone-button}}</$button>
+</$vars>&nbsp;<$button class='tc-btn-invisible ms-cp-button' actions=<<openedit>>>{{$:/core/images/export-button}}</$button>
 <br/>
 </$reveal>
 </span>
