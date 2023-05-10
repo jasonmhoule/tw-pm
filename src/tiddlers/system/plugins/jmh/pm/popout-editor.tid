@@ -1,13 +1,20 @@
 created: 20211021172929905
-modified: 20220809213202916
+modified: 20230510214519936
 tags: 
 title: $:/plugins/jmh/pm/popout-editor
 type: text/vnd.tiddlywiki
 
 \define extract-ms(tiddler)
-<$list filter="""[[$tiddler$]get[text]splitregexp[\n]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]]""" variable="splitme">
-<<splitme>>
+<$list filter="""[[$tiddler$]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
+<<splitme>><br>
 </$list>
+<$set name=auto filter='[prefix[note/]contains:list[$tiddler$]]' >
+<$set name=auto2 filter="[enlist<auto>] -[[$tiddler$]get[list]enlist-input[]]" >
+<$list filter="""[[$tiddler$]get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
+<$list filter="""[is[current]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
+<<splitme>><br>
+</$list>
+</$list></$set></$set>
 \end
 
 <$edit-text tiddler="$:/temp/one" field="targ" size="50" focus="true"/>
