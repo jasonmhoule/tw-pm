@@ -1,6 +1,6 @@
 created: 20220719154609408
 list-after: $:/core/ui/ViewTemplate/body
-modified: 20220725164316296
+modified: 20230511162038102
 tags: $:/tags/ViewTemplate
 title: $:/plugins/jmh/pm/ui/ViewTemplate/journaleditor
 type: text/vnd.tiddlywiki
@@ -10,7 +10,7 @@ type: text/vnd.tiddlywiki
 \end
 
 \define editactions()
-<$set name="chk1" filter="[[ctrl]] -[<modifier>]" emptyValue="" value="""
+<$set name="chk1" filter="[[alt]] -[<modifier>]" value="" emptyValue="""
 <$action-setfield $tiddler=<<temp>> text="editing" />
 """><<chk1>></$set>
 \end
