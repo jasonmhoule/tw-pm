@@ -1,5 +1,5 @@
 created: 20220715175217416
-modified: 20220809213954967
+modified: 20230511203244840
 msg-prefix: TBD
 projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
 recent-subfilter: !prefix[note/]
@@ -90,6 +90,12 @@ New Status Code</$button>
 <td><$edit-text tiddler="$:/plugins/jmh/pm/config" field=<<field>> size=60 /></td>
 </tr></$list>
 </table>
+
+! ''Configure notelink categories''
+
+List category options for notelinks. Category list is single words separated by spaces. They will be applied as tags, so generally should not clobber other common system tags (e.g., <<tag todo>>, <<tag Meeting>>, <<tag Project>>)
+
+<$edit-text tiddler="$:/plugins/jmh/pm/config" field="notelink-categories" tag="input" size=80 />
 
 ! ''Remove note links from 'Recent' tab''
 
