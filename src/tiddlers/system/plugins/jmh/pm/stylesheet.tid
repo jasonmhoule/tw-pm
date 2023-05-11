@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20230510211136567
+modified: 20230511163539182
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -238,12 +238,6 @@ input.pm-input.input-large {
 
 .ms-full-link {
   white-space:nowrap
-}
-	
-.waiting-icon svg {
-  width: {{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}};
-	height: {{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}};
-	vertical-align: middle;
 }
 
 html body.tc-body .pm-indent {margin-left:1.5em;display:block;}

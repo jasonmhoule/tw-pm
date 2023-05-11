@@ -1,9 +1,8 @@
 created: 20200424135048294
-modified: 20220720213810013
+modified: 20230511163459221
 title: $:/plugins/jmh/pm/ui/TodoDueDateTemplate
 type: text/vnd.tiddlywiki
 
-<span class="waiting-icon">{{{[all[current]tag[waiting]] || $:/core/images/timestamp-on}}}</span>
 <$reveal type="nomatch" state="!!due" text="">
   <span class="pm-due-date">
     <$edit-date tag="span" field="due" icon="$:/plugins/jmh/pm/images/calendar-check" fieldFormat="YYYYMMDD23mmssSSS" />

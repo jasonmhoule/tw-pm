@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20230509214207695
+modified: 20230511163015238
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -40,9 +40,6 @@ type: text/vnd.tiddlywiki
 
 ! Meeting without valid date prefix
 <$set name="digit-pattern2" value="^[0-9]{6}"><<list-links "[tag[Meeting]!regexp:title<digit-pattern2>]">></$set>
-
-! Dated but not waiting
-<<list-links filter:"[has[due]!tag[waiting]!tag[done]]">>
 
 ! 10 earliest dates linked since <$list filter=
 "[!sort[modified]limit[300]last[1]]"><$view format="date" field="modified" template="mmm 0DD "/></$list>; [[details|Date assignment check]]
@@ -96,7 +93,7 @@ All dates linked from tiddlers edited in the past 14 days (with the edited backl
 
 # General Filler Tasks
 
-<$list filter="[has[minutes]!tag[waiting]!tag[done]sortan[minutes]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
+<$list filter="[has[minutes]!has[due]!tag[done]sortan[minutes]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
 \end
 
 \define makeWWmain()
@@ -175,10 +172,10 @@ Open/create a [[Weekly Review Log]] and summarize key accomplishments/takeaways:
 - Log any tasks that come to mind.
 - Make notes regarding prep and annotate prep dates.
 
-<input type="checkbox"> Review "waiting" list
-- Are any follow-ups complete? Clear "waiting" tag and ensure next step is defined.
-- Each follow-up should have a date associated to trigger follow-up on my daily plan.
-> <$list filter="[tag[waiting]sort[due]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
+<input type="checkbox"> Review due list
+- Each follow-up should have a date associated to trigger follow-up on daily plan.
+- Are any follow-ups complete? Clear due date and ensure next step is defined.
+> <$list filter="[has[due]sort[due]]" template="$:/plugins/jmh/pm/ui/TodoTemplate">
 
 <input type="checkbox"> Review for recurring meetings without children
 > <$list filter="[tag[Recurring]!tag[Held]] -[!tag[Held]tags[]tag[Recurring]]" template="$:/plugins/jmh/pm/ui/MeetingTemplate">
