@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20230508192139977
+modified: 20230511162358366
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -123,16 +123,16 @@ display:none;
 <td style="width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
 
 <td class="fold-note">
-<$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="hide">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="show">{{$:/core/images/unfold-button}}</$button>
 </$reveal>
-<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show">
+<$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="hide">
 <$button class=<<tv-config-toolbar-class>> setTitle="$:/plugins/jmh/pm/foldconfig" setIndex=<<currentTiddler>> setTo="hide">{{$:/core/images/fold-button}}</$button>
 </$reveal>
 </td>
 
 <td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}
-<$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="show" class="notelink-text">
+<$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="hide" class="notelink-text">
 {{!!text}}
 </$reveal>
 
