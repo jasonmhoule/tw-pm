@@ -1,0 +1,14 @@
+created: 20230512161911189
+modified: 20230512161951041
+tags: 
+title: $:/plugins/jmh/pm/setup/nlpl
+type: text/vnd.tiddlywiki
+
+\define ltd()
+<<list-tagged-draggable tag:$(cat)$ itemTemplate:"$:/plugins/jmh/pm/ui/NotelinkSumDragTemplate">>
+\end
+
+<$list filter="[enlist{$:/plugins/jmh/pm/config!!notelink-categories}]" variable="cat">
+<h2><<cat>></h2>
+<<ltd>>
+</$list>

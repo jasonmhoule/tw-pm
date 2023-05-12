@@ -1,0 +1,11 @@
+created: 20230512144709581
+modified: 20230512162019796
+tags: 
+title: $:/plugins/jmh/pm/ui/NotelinkSumDragTemplate
+type: text/vnd.tiddlywiki
+
+<table class="nsd"><tr><td class="td-handle">
+<$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle /></$draggable>
+</td>
+<td>
+<$list filter="[enlist{!!list}tag[todo]]" template="$:/plugins/jmh/pm/ui/TodoTemplate" /><$button to={{!!title}} class="tc-btn-invisible"><span class="nsd-span">{{$:/core/images/link}}</span> <$view field={{{ [<cat>addprefix[cat-]] }}} /></$button></td></tr></table>

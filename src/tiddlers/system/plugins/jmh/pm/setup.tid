@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20230512143157462
+modified: 20230512162633404
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -718,3 +718,14 @@ Tool for finding and replacing text within tiddlers - especially useful for upda
 </$button>
 
 Setup new Journal entries with a YYMMDD title and with a workday timeblock template.
+
+<hr>
+
+<$button>Notelink Pick List
+<$action-sendmessage 
+  $message="tm-new-tiddler"
+  title="Notelink Pick List"
+  text={{$:/plugins/jmh/pm/setup/nlpl}} />
+</$button>
+
+Utility for listing categorized notelinks with their category summaries, and re-ordering them.
