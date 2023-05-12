@@ -4,21 +4,28 @@ created: 20161118171456554
 description: Insert Day Tasks
 icon: $:/plugins/jmh/pm/images/checklist
 list-before: $:/core/ui/EditorToolbar/more
-modified: 20230511162758157
+modified: 20230512174455805
 tags: $:/tags/EditorToolbar
 title: $:/plugins/jmh/pm/dailytasks
 type: text/vnd.tiddlywiki
 
 \define myrealtid() <$transclude tiddler="$(targetTiddler)$" field="draft.of">
 
+\define notelinkview()
+<$list filter="[is[current]get[list]enlist-input[]tag[todo]]"><<p2>>[{{!!title}}]]>></$list><br>
+<$list filter="[is[current]fields[]prefix[cat-]]" variable="fld"><$list filter="[<fld>removeprefix[cat-]]" variable="cat">  - <<cat>>: {{{ [is[current]get<fld>] }}}</$list>
+</$list>
+\end
+
 \define b4j()
-<$list filter="[all[current]backlinks[]!tag[todo]!tag[Meeting]]"><<p3>>[{{!!title}}]]<br>
+<$list filter="[all[current]backlinks[]!tag[todo]!tag[Meeting]!search:title[note/]]"><<p3>>[{{!!title}}]]<br>
 </$list>
 <$list filter="[search:title<currentTiddler>tag[Meeting]]"><<p1>>[{{!!title}}]]>><br>
 </$list>
 <$list filter="[all[current]backlinks[]tag[todo]]"><<p2>>[{{!!title}}]]>><br>
 </$list><$list filter="[all[current]backlinks[]tag[Meeting]]"><<p4>>[{{!!title}}]]<br>
 </$list>
+<$list filter="[all[current]backlinks[]search:title[note/]]"><<notelinkview>></$list>
 & follow-ups:
 <$list filter="[tag[todo]has[due]days:due[1]]">  <<p2>>[{{!!title}}]]>><br>
 </$list>
