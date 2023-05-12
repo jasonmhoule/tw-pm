@@ -1,7 +1,7 @@
 created: 20220715175217416
-modified: 20230511203244840
+modified: 20230512182804673
 msg-prefix: TBD
-projf: [<hostTiddler>tags[]] +[tag[Project]tagging[]] +
+projf: [<hostTiddler>tags[]] [<hostTiddler>tags[]tag[Recurring]tags[]] +[tag[Project]tagging[]] +
 recent-subfilter: !prefix[note/]
 subf-mtg: tag[Meeting]
 subf-other: !tag[todo]!tag[Meeting]!prefix[note/]
