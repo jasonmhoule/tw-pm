@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20230512134319016
+modified: 20230512143822987
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -417,3 +417,38 @@ td.nl-category:hover {
 span.nl-category:hover {
   filter: drop-shadow(0px 0px 2px red);
 }
+
+table.notelink-vt { 
+  border:0;
+  margin-top:3px;
+  margin-bottom:8px;
+  width:100%;
+}
+
+table.notelink-vt tr td {
+  border:0;
+}
+
+table.notelink-vt tr {
+  border:0;
+}
+
+.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
+  display:none;
+}
+
+.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{
+  width:100%;
+}
+
+td.inline-edit:hover {
+  background: rgba(0, 100, 255, 0.005);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.notelink-text {
+  display: inline-block;
+  word-break: break-word;
+}
+
+.myTextEdit { width:100% }

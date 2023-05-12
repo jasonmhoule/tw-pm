@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20230512141221601
+modified: 20230512143013541
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -86,12 +86,6 @@ type: text/vnd.tiddlywiki
 <$keyboard actions=<<savenote>> key="ctrl+enter">
 <div class="custom-editor">{{$tiddler$||$:/core/ui/EditTemplate/body}}</div>
 </$keyboard>
-<style>
-.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
-display:none;
-}
-.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
-</style>
 \end
 
 \define savenote()
@@ -166,10 +160,3 @@ display:none;
 
 '>
 <<a>></$set>
-
-<style>
-.notelink-text {
-  display: inline-block;
-  word-break: break-word;
-}
-</style>

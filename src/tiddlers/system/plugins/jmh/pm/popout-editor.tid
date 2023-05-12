@@ -1,5 +1,5 @@
 created: 20211021172929905
-modified: 20230510214519936
+modified: 20230512143805449
 tags: 
 title: $:/plugins/jmh/pm/popout-editor
 type: text/vnd.tiddlywiki
@@ -21,21 +21,8 @@ type: text/vnd.tiddlywiki
 
 <$macrocall $name="extract-ms" tiddler={{$:/temp/one!!targ}} />
 <div class="custom-editor"><$tiddler tiddler={{$:/temp/one!!targ}}><$transclude tiddler="$:/core/ui/EditTemplate/body" /></$tiddler></div>
-<style>
-.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
-display:none;
-}
-.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
-</style>
 <$list filter="[[$:/temp/one]get[targ]!tag[Held]]" emptyMessage="(Held)"><$fieldmangler tiddler=<<currentTiddler>>><$button actions='<$action-sendmessage $message="tm-add-tag" $param="Held"/>'>Held</$button></$fieldmangler></$list>
 
 <$tiddler tiddler={{$:/temp/one!!targ}}>
 <<list-table-draggable>>
 </$tiddler>
-<style>
-.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
-display:none;
-}
-.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
-.myTextEdit { width:100% }
-</style>

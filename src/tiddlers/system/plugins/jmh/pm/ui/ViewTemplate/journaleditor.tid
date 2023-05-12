@@ -1,6 +1,6 @@
 created: 20220719154609408
 list-after: $:/core/ui/ViewTemplate/body
-modified: 20230511162038102
+modified: 20230512142942679
 tags: $:/tags/ViewTemplate
 title: $:/plugins/jmh/pm/ui/ViewTemplate/journaleditor
 type: text/vnd.tiddlywiki
@@ -47,15 +47,4 @@ type: text/vnd.tiddlywiki
 <$set name="a" filter={{{ [{$:/plugins/jmh/pm/ViewTemplateBodyFilters/journaleditor}search-replace::<outstr>,<instr>] }}} emptyValue="" value="""
 
 <<draft-editor>>
-
-<style>
-.custom-editor :is(.tc-editor-toolbar,.tc-tiddler-preview-preview){
-display:none;
-}
-.custom-editor .tc-edit-texteditor.tc-edit-texteditor-body{width:100%;}
-td.inline-edit:hover {
-    background: rgba(0, 100, 255, 0.005);
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
-}
-</style>
 """><<a>></$set>
