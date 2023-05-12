@@ -1,0 +1,6 @@
+created: 20230512172625916
+modified: 20230512172629265
+title: $:/config/markdown/renderWikiTextPragma
+type: text/vnd.tiddlywiki
+
+\rules only html image macrocallinline syslink transcludeinline wikilink prettylink filteredtranscludeblock macrocallblock transcludeblock latex-parser
