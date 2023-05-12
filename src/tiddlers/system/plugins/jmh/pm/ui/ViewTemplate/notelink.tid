@@ -1,6 +1,6 @@
 created: 20221012194632912
 list-before: $:/core/ui/ViewTemplate/body
-modified: 20230511164456830
+modified: 20230511221255267
 tags: $:/tags/ViewTemplate
 title: $:/plugins/jmh/pm/ui/ViewTemplate/notelink
 type: text/vnd.tiddlywiki
@@ -13,6 +13,7 @@ type: text/vnd.tiddlywiki
 <table class="myvt"><tr><td><$macrocall $name="statusEditor" title={{!!title}} /></td>
 <td><$list filter="[enlist{!!list}]" template="$:/plugins/jmh/pm/ui/TodoMeetingTemplate" /></td>
 </tr></table>
+<<select-category>> <<category-summaries>><hr>
 </$reveal>
 </$importvariables>
 

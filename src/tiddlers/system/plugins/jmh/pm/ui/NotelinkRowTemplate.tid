@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20230511162358366
+modified: 20230512141221601
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -101,6 +101,28 @@ display:none;
 <$action-deletefield stage-list orig-stage-list />
 \end
 
+\define select-category()
+<table style="width:100%;border: 0px;"><tr>
+<$list filter="[enlist{$:/plugins/jmh/pm/config!!notelink-categories}]" variable="cat"><td class="nl-category"><$checkbox actions=<<category-cancel>> tag=<<cat>>><div class={{{ [all[current]tags[]] :intersection[<cat>] +[then[nl-category-match ]else[]addsuffix[nl-category-btn]] }}} style="display:inline-block;width:100%"><<cat>></div></$checkbox></td></$list>
+</tr></table>
+\end
+
+\define category-summaries()
+<$keyboard actions=<<savenote>> key="ctrl+enter">
+<div style="padding:0px 15px"><table class="cat-sum-tbl"><$list filter="[all[current]tags[]] :intersection[enlist{$:/plugins/jmh/pm/config!!notelink-categories}]" variable="cat"><tr><td style="padding:3px 10px 3px 0px"><span class="nl-category"><$checkbox actions=<<category-cancel>> tag=<<cat>>>{{$:/core/images/cancel-button}}</$checkbox></span></td><td style="font-size:larger;padding:0px 15px;"><<cat>>: </td><td style="width:100%"><$edit-text placeholder="Add the category status here" field={{{ [<cat>addprefix[cat-]] }}} /></td></tr></$list></table></div>
+</$keyboard>
+\end
+
+\define category-summaries-ro()
+<$list filter="[all[current]tags[]] :intersection[enlist{$:/plugins/jmh/pm/config!!notelink-categories}] +[first[]]" variable="x">
+<div style="background-color:#ffc;padding:3px 6px"><$list filter="[all[current]tags[]] :intersection[enlist{$:/plugins/jmh/pm/config!!notelink-categories}]" variable="cat"><b><<cat>>:</b> <$view field={{{ [<cat>addprefix[cat-]] }}} /><br></$list></div>
+</$list>
+\end
+
+\define category-cancel()
+<$action-deletefield $field={{{ [<cat>addprefix[cat-]] }}} />
+\end
+
 <td class="td-handle" style="width:35px"><$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle/></$draggable></td>
 
 <$set name="a" filter="[is[current]get[editing]] -[[no]]" value='
@@ -113,6 +135,8 @@ display:none;
 <<todo-section>></$set>
 
 <br><table style="border:0;margin-top:3px;margin-bottom:8px"><tr><td>Status:</td><td><$macrocall $name="statusEditor" title={{!!title}} /></td></tr></table>
+
+<<select-category>> <<category-summaries>>
 
 <<direct-editor2>><br><$button><$action-deletetiddler $tiddler={{!!title}} />{{$:/core/images/delete-button}} Delete this note</$button></td> 
 
@@ -131,7 +155,7 @@ display:none;
 </$reveal>
 </td>
 
-<td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}
+<td><div style="border-style:solid;border-image:linear-gradient(90deg, transparent 10%, grey, transparent 80%) 1;border-width:1px;border-right:0;border-left:0;border-bottom:0;">{{{ [enlist{!!list}] -[<hostTiddler>] -[[Tester]] || $:/plugins/jmh/pm/ui/TodoMeetingTemplate}}}<br><<category-summaries-ro>>
 <$reveal type="nomatch" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="hide" class="notelink-text">
 {{!!text}}
 </$reveal>
