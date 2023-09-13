@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20230512143013541
+modified: 20230913144429676
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -26,7 +26,7 @@ type: text/vnd.tiddlywiki
 <$action-setfield todo-edit="yes" />
 <$action-createtiddler $basetitle=<<qualify $:/temp/todo-text>> />
 <$action-setfield $tiddler=<<qualify $:/temp/todo-text>> type="text/x-markdown" text="" />
-<$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="""[<hostTiddler>tags[]]  [[todo]] -[[Meeting]]""" />New {{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
+<$action-listops $tiddler=<<currentTiddler>> $field="tags" $subfilter="""[<hostTiddler>tags[]]  [[todo]] -[[Meeting]] -[[Held]]""" />New {{$:/plugins/jmh/pm/images/tasks}}</$button></$reveal>
 \end
 
 \define new-todo-section()
