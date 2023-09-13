@@ -1,6 +1,6 @@
-caption: {{$:/plugins/jmh/pm/images/tasks}}
+caption: <span class="pmpm">{{$:/plugins/jmh/pm/images/tasks}}</span>
 created: 20220708210003591
-modified: 20220725151115251
+modified: 20230913143917420
 tags: $:/tags/SideBar
 title: $:/plugins/jmh/pm/ui/PM
 type: text/vnd.tiddlywiki
