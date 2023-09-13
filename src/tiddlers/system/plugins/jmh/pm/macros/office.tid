@@ -1,27 +1,29 @@
 created: 20210212161405899
-modified: 20230508185618773
+modified: 20230913143525421
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/office
 type: text/vnd.tiddlywiki
 
-\define doc(file name:"Word file")
+\define doc(file name)
 <<msoffice file:"""$file$""" name:"""$name$""" type:"word" short-type:"doc">>
 \end
 
-\define xls(file name:"Excel file")
+\define xls(file name)
 <<msoffice file:"""$file$""" name:"""$name$""" type:"excel" short-type:"xls">>
 \end
 
-\define ppt(file name:"Powerpoint file")
+\define ppt(file name)
 <<msoffice file:"""$file$""" name:"""$name$""" type:"powerpoint" short-type:"ppt">>
 \end
 
 \define msoffice(file name type short-type)
-<span class='ms-full-link'><a href="ms-$type$:ofe|u|$file$" target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:top; display:inline-block">{{$:/plugins/jmh/pm/images/ms-$type$}}</span><span style="width: 4pt; display:inline-block"> </span><span style="height:14px;vertical-align:top">$name$</span></a>
-<$vars a='$short-type$' b="""$file$""" c="""$name$""">
+<$set name="c" filter="[[$name$]] -[[]]" value="$name$" emptyValue={{{ [[$file$]split[/]last[]decodeuri[]split[.xls]split[.doc]split[.ppt]first[]] }}}>
+<span class='ms-full-link'><a href="ms-$type$:ofe|u|$file$" target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:top; display:inline-block">{{$:/plugins/jmh/pm/images/ms-$type$}}</span><span style="width: 4pt; display:inline-block"> </span><span style="height:14px;vertical-align:top"><<c>></span></a>
+<$vars a='$short-type$' b="""$file$""">
 <$button class='tc-btn-invisible ms-cp-button' message="tm-copy-to-clipboard" param=<<msmakeme>>>{{$:/core/images/clone-button}}</$button>
 </$vars>
 </span>
+</$set>
 \end
 
 \define msmakeme()
