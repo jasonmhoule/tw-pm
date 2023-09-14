@@ -1,6 +1,6 @@
 created: 20210320085237753
 description: list-table-draggable(rowTemplate:"undefined",tiddler,field:"list",class)
-modified: 20220809212311867
+modified: 20230914213503362
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/notelink
 type: text/vnd.tiddlywiki
@@ -65,5 +65,5 @@ type: text/vnd.tiddlywiki
 \end
 
 \define showstatus(status)
-<$set name="staticon" filter="[is[current]has[status]]" value="""<$button disabled="yes" tooltip={{$status$!!text}} class={{{ [[$status$]removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]addsuffix[ tc-btn-invisible tc-btn-dropdown no-click]] }}}><$tiddler tiddler="$status$"><$transclude tiddler={{!!icon}}/></$tiddler></$button>""" emptyValue="{{$:/core/images/close-button}}"><<staticon>></$set>
+<$set name="staticon" filter="[is[current]has[status]]" value="""<$button disabled="no" tooltip={{$status$!!text}} class={{{ [[$status$]removeprefix[$:/plugins/jmh/pm/config/status/]addprefix[a]addsuffix[ tc-btn-invisible tc-btn-dropdown no-click]] }}}><$tiddler tiddler="$status$"><$transclude tiddler={{!!icon}}/></$tiddler></$button>""" emptyValue="{{$:/core/images/close-button}}"><<staticon>></$set>
 \end
