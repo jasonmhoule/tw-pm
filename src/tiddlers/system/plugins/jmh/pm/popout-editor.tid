@@ -1,17 +1,17 @@
 created: 20211021172929905
-modified: 20230914211738919
+modified: 20230914213207648
 tags: 
 title: $:/plugins/jmh/pm/popout-editor
 type: text/vnd.tiddlywiki
 
-\define extract-ms(tiddler)
-<$list filter="""[[$tiddler$]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
+\define extract-ms()
+<$list filter="""[is[current]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
 <<splitme>><br>
 </$list>
 <$list filter="[[$tiddler$]has[teamsmtg]]"><$macrocall $name=teamsmtg x={{!!teamsmtg}} /></$list>
-<$set name=auto filter='[prefix[note/]contains:list[$tiddler$]]' >
-<$set name=auto2 filter="[enlist<auto>] -[[$tiddler$]get[list]enlist-input[]]" >
-<$list filter="""[[$tiddler$]get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
+<$set name=auto filter='[prefix[note/]contains:list<currentTiddler>]' >
+<$set name=auto2 filter="[enlist<auto>] -[<currentTiddler>get[list]enlist-input[]]" >
+<$list filter="""[<currentTiddler>get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
 <$list filter="""[is[current]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
 <<splitme>><br>
 </$list>
@@ -20,10 +20,10 @@ type: text/vnd.tiddlywiki
 
 <$edit-text tiddler="$:/temp/one" field="targ" size="50" focus="true"/>
 
-<$macrocall $name="extract-ms" tiddler={{$:/temp/one!!targ}} />
-<div class="custom-editor"><$tiddler tiddler={{$:/temp/one!!targ}}><$transclude tiddler="$:/core/ui/EditTemplate/body" /></$tiddler></div>
-<$list filter="[[$:/temp/one]get[targ]!tag[Held]]" emptyMessage="(Held)"><$fieldmangler tiddler=<<currentTiddler>>><$button actions='<$action-sendmessage $message="tm-add-tag" $param="Held"/>'>Held</$button></$fieldmangler></$list>
-
 <$tiddler tiddler={{$:/temp/one!!targ}}>
+<$macrocall $name="extract-ms" tiddler={{$:/temp/one!!targ}} />
+<div class="custom-editor"><$transclude tiddler="$:/core/ui/EditTemplate/body" /></div>
+<$list filter="[is[current]!tag[Held]]" emptyMessage="(Held)"><$fieldmangler><$button actions='<$action-sendmessage $message="tm-add-tag" $param="Held"/>'>Held</$button></$fieldmangler></$list>
+
 <<list-table-draggable>>
 </$tiddler>
