@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20230914213958074
+modified: 20230914215108053
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -284,7 +284,8 @@ td.td-handle:hover img {
 }
 
 td.endbutton {
-    width: 45px;
+    min-width: 45px;
+    max-width: 45px;
     cursor: pointer;
     padding: 13px;
 }

@@ -1,5 +1,5 @@
 created: 20220714153746404
-modified: 20230913144429676
+modified: 20230914215208084
 title: $:/plugins/jmh/pm/ui/NotelinkRowTemplate
 type: text/vnd.tiddlywiki
 
@@ -117,7 +117,7 @@ type: text/vnd.tiddlywiki
 <$action-deletefield $field={{{ [<cat>addprefix[cat-]] }}} />
 \end
 
-<td class="td-handle" style="width:35px"><$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle/></$draggable></td>
+<td class="td-handle" style="max-width:35px;min-width:35px"><$draggable tiddler={{!!title}}><$image source="$:/plugins/jmh/pm/images/hamburger" class=handle/></$draggable></td>
 
 <$set name="a" filter="[is[current]get[editing]] -[[no]]" value='
 
@@ -138,7 +138,7 @@ type: text/vnd.tiddlywiki
 
 ' emptyValue='
 
-<td style="width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
+<td style="max-width:35px;min-width:35px"><$macrocall $name="showstatus" status={{!!status}} /></td>
 
 <td class="fold-note">
 <$reveal type="match" stateTitle="$:/plugins/jmh/pm/foldconfig" stateIndex=<<currentTiddler>> text="hide">
