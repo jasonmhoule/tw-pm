@@ -1,5 +1,5 @@
 created: 20210212161405899
-modified: 20230913143525421
+modified: 20230914211339029
 tags: $:/tags/Macro
 title: $:/plugins/jmh/pm/macros/office
 type: text/vnd.tiddlywiki
@@ -34,4 +34,8 @@ type: text/vnd.tiddlywiki
 <$wikify name="tmlk" text=<<teamslink $users$ "$topicName$">>>
 <a href={{{ [[msteams:/l/chat/0/0?users=]addsuffix[$users$]addsuffix[&topicName=]addsuffix[$topicName$]encodeuri[]] }}} target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:middle; display:inline-block">{{$:/plugins/jmh/pm/images/ms-teams}}</span><span style="width: 4pt; display:inline-block"> </span><span style="height:14px;vertical-align:top;text-decoration: none">$topicName$</span></a>
 </$wikify>
+\end
+
+\define teamsmtg(x)
+<a href={{{ [[msteams:/l/meetup-join/]addsuffix[$x$]] }}} target = "_blank" style="text-decoration: none"><span style="width: 14pt; vertical-align:middle; display:inline-block">{{$:/plugins/jmh/pm/images/ms-teams}}</span><span style="width: 4pt; display:inline-block"> </span><span style="font-size:large;height:14px;vertical-align:top;text-decoration: none">Join Meeting</span></a>
 \end

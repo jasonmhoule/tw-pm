@@ -1,6 +1,6 @@
 caption: setup
 created: 20210806162209045
-modified: 20230512162633404
+modified: 20230914212711642
 title: $:/plugins/jmh/pm/setup
 type: text/vnd.tiddlywiki
 
@@ -295,7 +295,7 @@ if (length(flist) > 0) {
 - **mp.R** - turn meeting invites into tiddlers
 
 ```
-# devtools::install_github("hrbrmstr/msgxtractr") # requires RTools
+#  devtools::install_github("hrbrmstr/msgxtractr") # requires RTools
 library(msgxtractr)
 
 # Find all matches in Meetings
@@ -303,40 +303,54 @@ dl <- "C:/Users/houlej2/Downloads/Notes/Meetings"
 dl_files <- dir(dl,recursive = TRUE)
 dl_files <- dl_files[!grepl(".tid",dl_files)]
 dl_files <- dl_files[!grepl(".bat",dl_files)]
+# file <- dl_files[1]
 for(file in dl_files) {
-  
+ 
   fname <- paste0(dl,"/",file)
   msg2 <- read_msg(fname)
   date <- sub("(.{6}).*","\\1",file)
-  
+ 
   title <- gsub("\\s+", " ", msg2$subject[1])
   host <- msg2$sender$sender_name[1]
   attendees <- msg2$display_envelope$display_to[1]
   optional <- msg2$display_envelope$display_cc[1]
-  
+ 
   content <- msg2$body$text[stringr::str_length(msg2$body$text)>2][1]
   content <- content[length(content)]
+  aa <- unique(stringr::str_extract_all(content, "https://.*(xlsx|docx|pptx)")[[1]])
+  mtg <- stringr::str_extract(content, "https://teams.microsoft.com/l/meetup-join/(.*)\\>", group=TRUE)[[1]]
   content <- sub("<https://zoom.us/>.*","",content)
+  content <- gsub("________________________________________________________________________________.*________________________________________________________________________________","", content)
+  content <- sub(".*x <https://.*(xlsx|docx|pptx)?web=1> \r\n\r\n\r\n","",content)
   content <- gsub("\r\n\r\n","\n",content)
   content <- gsub("\\*\t","- ",content)
-  
+ 
   tid <- c(paste0("title: ", date, " ", title), #new
-           paste("type: ", "text/x-markdown"),
-           paste("tags: ", "Meeting"),
+           paste("type:", "text/x-markdown"),
+           paste("tags:", "Meeting"),
            "",
-           paste("Host: ", host),
+           paste("Host:", host),
            "",
-           paste("Attendees: ", attendees),
+           paste("Attendees:", attendees),
            "",
            paste("Optional:", optional),
            "",
            content,
            "<hr>",
            "",
-           "**Minutes**",
-           "",
-           "**Next Steps**")
-  
+           "**Notes**")
+ 
+  if(length(aa) != 0) {
+    typ <- stringr::str_sub(stringr::str_extract(aa, "(xlsx|docx|pptx)"),1,3)
+    ins <- paste0("<<", typ, ' "', aa,'">>')
+    qq <- c(rbind(ins, rep("", length(ins))))
+    tid <- c(tid[1:4], qq, tid[5:length(tid)])
+  }
+ 
+  if(!is.na(mtg)) {
+    tid <- c(tid[1:3], paste("teamsmtg:",mtg), tid[4:length(tid)])
+  }
+ 
   outf <- as.numeric(Sys.time())
   Sys.sleep(0.5)
   writeLines(tid,paste0("C:/Users/houlej2/Downloads/Notes/Meetings/",outf,".tid"))

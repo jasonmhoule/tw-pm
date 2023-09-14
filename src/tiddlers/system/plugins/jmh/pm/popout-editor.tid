@@ -1,5 +1,5 @@
 created: 20211021172929905
-modified: 20230512143805449
+modified: 20230914211738919
 tags: 
 title: $:/plugins/jmh/pm/popout-editor
 type: text/vnd.tiddlywiki
@@ -8,6 +8,7 @@ type: text/vnd.tiddlywiki
 <$list filter="""[[$tiddler$]get[text]splitregexp[\n]splitregexp[>>]regexp[<<(xls|doc|ppt)]splitregexp[.*<<]!is[blank]addprefix[<<]addsuffix[>>]]""" variable="splitme">
 <<splitme>><br>
 </$list>
+<$list filter="[[$tiddler$]has[teamsmtg]]"><$macrocall $name=teamsmtg x={{!!teamsmtg}} /></$list>
 <$set name=auto filter='[prefix[note/]contains:list[$tiddler$]]' >
 <$set name=auto2 filter="[enlist<auto>] -[[$tiddler$]get[list]enlist-input[]]" >
 <$list filter="""[[$tiddler$]get[list]enlist-input[]] [enlist<auto2>] +[is[tiddler]prefix[note/]]""">
