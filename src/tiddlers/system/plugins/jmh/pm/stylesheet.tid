@@ -1,5 +1,5 @@
 created: 20200426194806637
-modified: 20230913143949408
+modified: 20230914213958074
 tags: $:/tags/Stylesheet
 title: $:/plugins/jmh/pm/stylesheet
 type: text/vnd.tiddlywiki
@@ -478,7 +478,9 @@ table.nsd button:hover span.nsd-span {
 }
 
 table.nsd button {
-  padding: 5px 0px 0px 15px
+  padding: 5px 0px 0px 15px;
+	text-wrap: wrap;
+	text-align: left;
 }
 
 span.pmpm svg {
