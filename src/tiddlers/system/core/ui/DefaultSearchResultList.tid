@@ -1,8 +1,8 @@
 caption: {{$:/language/Search/DefaultResults/Caption}}
 created: 20230511165406599
 first-search-filter: [!is[system]search:title<userInput>sort[title]limit[250]]
-modified: 20230511165904544
-second-search-filter: [!is[system]search<userInput>] [!is[system]search<userInput>search:title[note/]get[list]enlist-input[]] +[sort[title]limit[250]]
+modified: 20230915142408967
+second-search-filter: [!is[system]search<userInput>] [!is[system]search<userInput>search:title[note/]get[list]enlist-input[]] +[unique[]sort[title]limit[250]]
 tags: $:/tags/SearchResults
 title: $:/core/ui/DefaultSearchResultList
 type: text/vnd.tiddlywiki
