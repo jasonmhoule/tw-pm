@@ -1,11 +1,62 @@
 created: 20230512161911189
-modified: 20230512161951041
+modified: 20230915143311081
 tags: 
 title: $:/plugins/jmh/pm/setup/nlpl
 type: text/vnd.tiddlywiki
 
+\define list-tagged-draggable-drop-actions2(tag)
+<!-- Save the current ordering of the tiddlers with this tag -->
+<$set name="order" filter="[<__tag__>tagging[]] -[<__tag__>get[list]enlist-input[]] :all[<__tag__>tagging[]] +[unique[]]">
+<!-- Remove any list-after or list-before fields from the tiddlers with this tag -->
+<$list filter="[<__tag__>tagging[]]">
+<$action-deletefield $field="list-before"/>
+<$action-deletefield $field="list-after"/>
+</$list>
+<!-- Save the new order to the Tag Tiddler -->
+<$action-listops $tiddler=<<__tag__>> $field="list" $filter="[enlist<order>] +[insertbefore<actionTiddler>,<currentTiddler>]"/>
+<!-- Make sure the newly added item has the right tag -->
+<!-- Removing this line makes dragging tags within the dropdown work as intended -->
+<!--<$action-listops $tiddler=<<actionTiddler>> $tags=<<__tag__>>/>-->
+<!-- Using the following 5 lines as replacement makes dragging titles from outside into the dropdown apply the tag -->
+<$list filter="[<actionTiddler>!contains:tags<__tag__>]">
+<$fieldmangler tiddler=<<actionTiddler>>>
+<$action-sendmessage $message="tm-add-tag" $param=<<__tag__>>/>
+</$fieldmangler>
+</$list>
+</$set>
+\end
+
+\define list-tagged-draggable2(tag,subFilter,emptyMessage,itemTemplate,elementTag:"div",storyview:"")
+\whitespace trim
+<span class="tc-tagged-draggable-list">
+<$set name="tag" value=<<__tag__>>>
+<$list filter="[<__tag__>tagging[]$subFilter$] -[<__tag__>get[list]enlist-input[]] :all[<__tag__>tagging[]] +[unique[]]" emptyMessage=<<__emptyMessage__>> storyview=<<__storyview__>>>
+<$elementTag$ class="tc-menu-list-item">
+<$droppable actions="""<$macrocall $name="list-tagged-draggable-drop-actions2" tag=<<__tag__>>/>""" enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$>
+<$transclude tiddler="""$itemTemplate$""">
+<$link to={{!!title}}>
+<$view field="title"/>
+</$link>
+</$transclude>
+</$elementTag$>
+</$droppable>
+</$elementTag$>
+</$list>
+<$tiddler tiddler="">
+<$droppable actions="""<$macrocall $name="list-tagged-draggable-drop-actions2" tag=<<__tag__>>/>""" enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$ style="height:0.5em;">
+</$elementTag$>
+</$droppable>
+</$tiddler>
+</$set>
+</span>
+\end
+
 \define ltd()
-<<list-tagged-draggable tag:$(cat)$ itemTemplate:"$:/plugins/jmh/pm/ui/NotelinkSumDragTemplate">>
+<<list-tagged-draggable2 tag:$(cat)$ itemTemplate:"$:/plugins/jmh/pm/ui/NotelinkSumDragTemplate">>
 \end
 
 <$list filter="[enlist{$:/plugins/jmh/pm/config!!notelink-categories}]" variable="cat">
